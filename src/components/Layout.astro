@@ -93,7 +93,7 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
         <!-- Botón hamburguesa móvil -->
         <button 
           id="menu-toggle" 
-          class="md:hidden my-6 p-2 text-gray-700 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
+          class="md:hidden my-4 p-2 text-gray-700 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
           aria-label="Abrir menú"
           aria-expanded="false"
         >
@@ -150,14 +150,14 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
       <div class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <p>&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
         <nav aria-label="Secundario">
-          <ul class="flex gap-4 font-wittgenstein">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/ruta/faedo-de-cinera">La Ruta</a></li>
-            <li><a href="/historia-naturaleza">Historia y Naturaleza</a></li>
-            <li><a href="/eventos">Eventos</a></li>
-            <li><a href="/guia-visitantes">Guía</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/faq">FAQ</a></li>
+          <ul class="md:flex md:gap-4 font-wittgenstein text-center">
+            <li><a class="py-2 inline-block" href="/">Inicio</a></li>
+            <li><a class="py-2 inline-block" href="/ruta/faedo-de-cinera">La Ruta</a></li>
+            <li><a class="py-2 inline-block" href="/historia-naturaleza">Historia y Naturaleza</a></li>
+            <li><a class="py-2 inline-block" href="/eventos">Eventos</a></li>
+            <li><a class="py-2 inline-block" href="/guia-visitantes">Guía</a></li>
+            <li><a class="py-2 inline-block" href="/blog">Blog</a></li>
+            <li><a class="py-2 inline-block" href="/faq">FAQ</a></li>
           </ul>
         </nav>
       </div>

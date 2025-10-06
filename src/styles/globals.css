@@ -74,6 +74,10 @@ p a:focus-visible {
 
 .prose > section {
   margin-bottom: 32px;
+
+  h3, h2 {
+    color: var(--color-emerald-800);  
+  }
 }
 
 /* Listas personalizadas con check icon */
@@ -227,7 +231,8 @@ p {
   line-height: 1.5;
 }
 
-p strong {
+p strong,
+li strong {
   color: var(--color-emerald-900);
 }
 
@@ -236,14 +241,12 @@ h3 {
   font-size: 1.4rem;
   margin-bottom: var(--spacing-custom);
   margin-top: 32px;
-  color: var(--color-emerald-800);
 }
 
 
 h2 {
   font-size: 1.8rem;
   margin-bottom:var(--spacing-custom);
-  color: var(--color-emerald-800);
 }
 
 h1 {
