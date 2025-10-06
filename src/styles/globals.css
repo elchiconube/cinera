@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Variables CSS globales */
+:root {
+  /* Fuentes personalizadas */
+  --font-heading: 'Wittgenstein', serif;
+  --font-body: 'Figtree', sans-serif;
+  --font-size-base: 19px;
+}
+
 /* Tema personalizado - Tailwind v4 */
 @theme {
   /* Colores personalizados */
@@ -16,8 +24,14 @@
   
   /* Variables personalizadas */
   --container: 1200px;
-
   --spacing-custom: 18px;
+  
+  /* Font families para Tailwind */
+  --font-family-heading: 'Wittgenstein', serif;
+  --font-family-body: 'Figtree', sans-serif;
+  
+  /* Font size base */
+  --font-size-base: 19px;
 }
 
 /* Accesibilidad básica */
@@ -26,16 +40,34 @@ html:focus-within {
 }
 
 /* Tipografía base para buena legibilidad */
-@layer base {
-  body {
-    @apply bg-white text-gray-800 antialiased;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-gray-900;
-  }
-  a {
-    @apply text-primary-700 underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-primary-400;
-  }
+body {
+  background-color: white;
+  color: rgb(31 41 55);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-style: italic;
+}
+
+p a {
+  color: var(--color-primary-700);
+  text-underline-offset: 2px;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+p a:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 2px;
 }
 
 /* Utilidades */
@@ -45,6 +77,58 @@ html:focus-within {
     max-width: var(--container);
     margin-inline: auto;
     padding-inline: 1rem;
+  }
+  
+  /* Clases de fuente personalizadas */
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  /* Clases de peso para Wittgenstein */
+  .font-wittgenstein {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-style: italic;
+  }
+    
+  /* Clases de peso para Figtree */
+  .font-figtree-light {
+    font-family: var(--font-body);
+    font-weight: 300;
+  }
+  
+  .font-figtree-regular {
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+  
+  .font-figtree-medium {
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+  
+  .font-figtree-semibold {
+    font-family: var(--font-body);
+    font-weight: 600;
+  }
+  
+  .font-figtree-bold {
+    font-family: var(--font-body);
+    font-weight: 700;
+  }
+  
+  .font-figtree-extrabold {
+    font-family: var(--font-body);
+    font-weight: 800;
+  }
+  
+  .font-figtree-black {
+    font-family: var(--font-body);
+    font-weight: 900;
   }
 }
 
