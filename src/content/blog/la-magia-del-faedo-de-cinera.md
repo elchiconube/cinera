@@ -22,7 +22,7 @@ El arroyo sigue su curso y abraza un pequeño claro. Resulta sencillo imaginar r
 
 No se sabe con certeza, pero quizás el cabello y ojos claros de algunos habitantes de estas tierras procedan de antepasados celtas. Y quizás también, el afán de los vecinos por mimar este pequeño bosque sea heredado de esta cultura.
 
-En cualquier caso, **mucho tiene de mágico que hoy en día un pueblo dedique su tiempo y mucho esfuerzo a cuidar un puñado de árboles y un arroyo**. Limpiar, repoblar, reconstruir sus puentes y asociarse: A.DEL.FA. (Amigos del Faedo).
+En cualquier caso, **mucho tiene de mágico que hoy en día un pueblo dedique su tiempo y mucho esfuerzo a cuidar un puñado de árboles y un arroyo**. Limpiar, repoblar y reconstruir sus puentes.
 
 ## El Bosque Mejor Cuidado de España
 
@@ -69,8 +69,6 @@ Las hayas eran consideradas árboles de conocimiento en la tradición celta. Su 
 ## Un Bosque con Alma
 
 Lo que hace realmente mágico al Faedo de Ciñera no son solo sus hayas centenarias, ni su arroyo cristalino, ni siquiera su rica biodiversidad. **Lo que hace mágico al Faedo es el amor de un pueblo**.
-
-A.DEL.FA. (Asociación de Amigos del Faedo) organiza jornadas de limpieza, actividades educativas para niños, rutas guiadas... Los vecinos de Ciñera han convertido la conservación de su bosque en una misión colectiva.
 
 Y eso, en un mundo donde el individualismo impera, donde los espacios naturales se descuidan y se olvidan, **eso sí que es magia pura**.
 

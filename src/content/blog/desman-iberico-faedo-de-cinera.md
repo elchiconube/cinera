@@ -117,8 +117,6 @@ Durante tu visita al **Faedo de Ciñera**, puedes contribuir a la conservación 
 
 ✓ **Educa a otros**: Comparte lo que has aprendido sobre esta especie única
 
-✓ **Apoya la conservación**: Valora el trabajo de ADELFA (Asociación de Amigos del Faedo)
-
 ## La Importancia del Premio 2007
 
 Que el Faedo de Ciñera fuera premiado en 2007 como el **"Bosque mejor cuidado de España"** no es casualidad. El trabajo de conservación de los vecinos de Ciñera ha permitido mantener el ecosistema en un estado óptimo que hace posible la supervivencia de especies tan exigentes como el desmán ibérico.

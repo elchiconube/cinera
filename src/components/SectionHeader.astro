@@ -10,20 +10,18 @@ interface Props {
 const {
   title,
   description,
-  icon = "M228.92,49.69a8,8,0,0,0-6.86-1.45L160.93,63.52,99.58,32.84a8,8,0,0,0-5.52-.6l-64,16A8,8,0,0,0,24,56V200a8,8,0,0,0,9.94,7.76l61.13-15.28,61.35,30.68A8.15,8.15,0,0,0,160,224a8,8,0,0,0,1.94-.24l64-16A8,8,0,0,0,232,200V56A8,8,0,0,0,228.92,49.69ZM104,52.94l48,24V203.06l-48-24ZM40,62.25l48-12v127.5l-48,12Zm176,131.5-48,12V78.25l48-12Z",
-  bgColor = "emerald",
-  textColor = "emerald"
+  icon,
 } = Astro.props;
 ---
 
 <header class="text-center max-w-2xl mx-auto mb-10">
-  <div class={`inline-block rounded-full bg-${bgColor}-100 p-4 text-${textColor}-700 mb-2`}>
+  {icon && <div class="inline-block rounded-full bg-emerald-100 p-4 text-emerald-700 mb-2">
     <svg width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
       <path d={icon}></path>
     </svg>
-  </div>
-  <h2 class={`mb-2 text-${textColor}-800`}>{title}</h2>
-  <p class={`text-balance text-${textColor}-800 font-medium leading-6`}>
+  </div>}
+  <h2 class="text-3xl mb-2 text-emerald-800 text-balance">{title}</h2>
+  <p class="text-balance text-emerald-800 font-medium leading-6">
     {description}
   </p>
 </header>

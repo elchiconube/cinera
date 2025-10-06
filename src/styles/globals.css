@@ -16,6 +16,8 @@
   
   /* Variables personalizadas */
   --container: 1200px;
+
+  --spacing-custom: 18px;
 }
 
 /* Accesibilidad básica */
@@ -105,11 +107,13 @@ html:focus-within {
 }
 
 p {
-  margin-bottom: 12px
+  margin-bottom: var(--spacing-custom)
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom:var(--spacing-custom);
+  color: var(--color-emerald-800);
 }
 
 h1 {

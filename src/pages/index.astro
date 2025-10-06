@@ -2,7 +2,7 @@
 import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import CardGrid from '../components/CardGrid.astro';
+import Cards from '../components/Cards.astro';
 
 
 import imagenRuta from '../assets/paseo-faedo.webp';
@@ -88,7 +88,9 @@ const cards = [
       title="Planifica tu visita"
       description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
     />
-    <CardGrid cards={cards} />
+    <div class="grid sm:grid-cols-4 gap-4">
+      <Cards cards={cards} />
+    </div>
   </section>
 
 </Layout>

@@ -45,7 +45,6 @@ Organizar todo el contenido histórico y técnico proporcionado para crear pági
 
 7. **Premio "Bosque Mejor Cuidado"** ✅
    - Ministerio de Medio Ambiente 2007
-   - Asociación ADELFA
    - AMPA Colegio San Miguel Arcángel
 
 8. **Descripciones Literarias** ✅
@@ -190,7 +189,6 @@ Organizar todo el contenido histórico y técnico proporcionado para crear pági
 #### **8. `/premio-bosque-mejor-cuidado` - NUEVA** ✨
 **Contenido:**
 - Premio 2007 Ministerio Medio Ambiente
-- Asociación ADELFA (Amigos del Faedo)
 - Trabajo de conservación
 - AMPA Colegio San Miguel Arcángel
 - Actividades de conservación
@@ -199,7 +197,6 @@ Organizar todo el contenido histórico y técnico proporcionado para crear pági
 **Keywords:**
 - "premio faedo de ciñera"
 - "bosque mejor cuidado españa"
-- "adelfa faedo"
 - "conservación faedo de ciñera"
 
 **Longitud:** 700-900 palabras
@@ -267,7 +264,6 @@ Organizar todo el contenido histórico y técnico proporcionado para crear pági
 
 ### **Post 5: "El Faedo de Ciñera: Bosque Mejor Cuidado de España"**
 - Historia del premio
-- Trabajo de ADELFA
 - Cómo ayudar a conservar
 - Actividades de voluntariado
 

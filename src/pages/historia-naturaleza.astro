@@ -2,13 +2,57 @@
 import Layout from '../components/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Seo from '../components/Seo.astro';
+import { Image } from 'astro:assets';
+
+import fagus from '../assets/fagus.webp';
+
+const fagusImage = {
+  src: fagus,
+  alt: 'Haya Fagus',
+};
+
+const items = [
+  {
+    href: "/haya-fagus",
+    title: "El Haya Fagus",
+    description: "Árbol de 500 años, uno de los 100 más singulares de España",
+  },
+  {
+    href: "/flora-fauna",
+    title: "Flora y Fauna",
+    description: "Biodiversidad completa del bosque y sus alrededores"
+  },
+  {
+    href: "/geologia",
+    title: "Geología",
+    description: "400 millones de años de historia en las rocas"
+  },
+  {
+    href: "/patrimonio-minero",
+    title: "Pozo Ibarra",
+    description: "Historia minera y el castillete de 1930"
+  },
+  {
+    href: "/haeda",
+    title: "Leyenda de Haeda",
+    description: "Cuento popular del Faedo para leer con niños"
+  },
+  {
+    href: "/ruta/faedo-de-cinera",
+    title: "Planifica tu Visita",
+    description: "Mapa, GPX, puntos de interés y consejos"
+  }
+]
+
 ---
 <Layout title="Historia y Naturaleza del Faedo de Ciñera" description="Hayedo, fauna, flora, patrimonio minero y geología del Faedo de Ciñera (León). 400 millones de años de historia natural y cultural.">
   <Seo slot="head" title="Historia y Naturaleza del Faedo de Ciñera" description="Hayedo, fauna, flora, patrimonio minero y geología del Faedo de Ciñera (León). 400 millones de años de historia natural y cultural." />
   <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/historia-naturaleza', label: 'Historia y Naturaleza' }]} />
-  <section class="container prose prose-slate max-w-none py-8">
-    <h1>Historia y Naturaleza del Faedo de Ciñera</h1>
-    
+  <section>
+    <header class="text-center max-w-2xl mx-auto mb-10">
+      <h1 class="mb-2 text-emerald-800 text-balance">Historia y Naturaleza del Faedo de Ciñera</h1>
+    </header>
+    <div class="prose prose-slate max-w-4xl mx-auto py-8">
     <p class="lead">
       El <strong>Faedo de Ciñera</strong> es mucho más que un hayedo: es un espacio donde confluyen 
       400 millones de años de historia geológica, un ecosistema único de transición mediterránea-atlántica, 
@@ -41,17 +85,23 @@ import Seo from '../components/Seo.astro';
     </p>
 
     <h2>El Haya Fagus: 500 Años de Historia</h2>
-    <p>
-      Entre todas las hayas del bosque destaca <strong><a href="/haya-fagus">El Haya Fagus</a></strong>, 
-      un gigante de más de <strong>500 años de edad</strong> que se sitúa entre el escaso club de árboles 
-      singulares centenarios de España. Con 6,32m de perímetro y 23m de altura, fue incluido en el libro 
-      <em>"Árboles, Leyendas Vivas"</em> como uno de los <strong>100 árboles más singulares de España</strong>.
-    </p>
-    <p>
-      Este árbol ha sido testigo de la historia minera del valle, viendo pasar cada día a los trabajadores 
-      que se dirigían a las minas del Grupo Ciñera. Su forma característica de "copa de vino" lo hace 
-      único entre las hayas españolas.
-    </p>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+      <p>
+        Entre todas las hayas del bosque destaca <strong><a href="/haya-fagus">El Haya Fagus</a></strong>, 
+        un gigante de más de <strong>500 años de edad</strong> que se sitúa entre el escaso club de árboles 
+        singulares centenarios de España. Con 6,32m de perímetro y 23m de altura, fue incluido en el libro 
+        <em>"Árboles, Leyendas Vivas"</em> como uno de los <strong>100 árboles más singulares de España</strong>.
+      </p>
+      <p>
+        Este árbol ha sido testigo de la historia minera del valle, viendo pasar cada día a los trabajadores 
+        que se dirigían a las minas del Grupo Ciñera. Su forma característica de "copa de vino" lo hace 
+        único entre las hayas españolas.
+      </p>
+    </div>
+      <Image src={fagusImage.src} alt={fagusImage.alt} />
+    </div>
+   
 
     <h2>Flora y Fauna del Faedo de Ciñera</h2>
     <p>
@@ -150,7 +200,6 @@ import Seo from '../components/Seo.astro';
       actividades que llevan a cabo todos los sectores sociales del municipio:
     </p>
     <ul>
-      <li><strong>A.DEL.FA.</strong> (Asociación de Amigos del Faedo): 300 socios dedicados a la conservación</li>
       <li>Ayuntamiento de La Pola de Gordón</li>
       <li>Junta Vecinal de Ciñera</li>
       <li>Vecinos que participan en las actividades de conservación</li>
@@ -183,34 +232,22 @@ import Seo from '../components/Seo.astro';
       <a href="/blog/la-magia-del-faedo-de-cinera">Descubre por qué el Faedo es un bosque mágico</a> donde 
       druidas, hayas centenarias y la dedicación de un pueblo crean un espacio único.
     </p>
+  </div>
+    <div class="not-prose border-t border-gray-200 mt-8 py-10 px-10">
+      <header class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="mb-2 text-3xl text-emerald-800 text-balance">Explora más sobre el Faedo</h3>
+        <p class="text-balance text-emerald-800 font-medium leading-6">
+          Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+        </p>
+      </header>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4"> 
 
-    <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-      <h3 class="text-lg font-semibold mb-4">Explora Más sobre el Faedo</h3>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <a href="/haya-fagus" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">El Haya Fagus</h4>
-          <p class="text-sm text-gray-600">Árbol de 500 años, uno de los 100 más singulares de España</p>
-        </a>
-        <a href="/flora-fauna" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">Flora y Fauna</h4>
-          <p class="text-sm text-gray-600">Biodiversidad completa del bosque y sus alrededores</p>
-        </a>
-        <a href="/geologia" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">Geología</h4>
-          <p class="text-sm text-gray-600">400 millones de años de historia en las rocas</p>
-        </a>
-        <a href="/patrimonio-minero" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">Pozo Ibarra</h4>
-          <p class="text-sm text-gray-600">Historia minera y el castillete de 1930</p>
-        </a>
-        <a href="/haeda" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">Leyenda de Haeda</h4>
-          <p class="text-sm text-gray-600">Cuento popular del Faedo para leer con niños</p>
-        </a>
-        <a href="/ruta/faedo-de-cinera" class="block p-4 border rounded-md hover:shadow">
-          <h4 class="font-medium mb-2">Planifica tu Visita</h4>
-          <p class="text-sm text-gray-600">Mapa, GPX, puntos de interés y consejos</p>
-        </a>
+        {items.map(item => (
+          <a href={item.href} class="block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end bg-gradient-to-tr from-emerald-500 to-emerald-600">
+            <h4 class="font-bold text-white text-2xl drop-shadow-lg">{item.title}</h4>
+            <p class="text-m text-white mt-1 font-semibold mr-12 drop-shadow-md">{item.description}</p>
+          </a>
+        ))}
       </div>
     </div>
   </section>
