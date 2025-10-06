@@ -4,6 +4,10 @@ excerpt: "Guía completa para llegar al Faedo de Ciñera desde León, Madrid, As
 date: 2025-10-02
 tags: ["transporte", "aparcamiento", "acceso", "guia"]
 coverImage: ../../assets/blog-placeholder-3.jpg
+author:
+  name: "Faedo de Ciñera"
+  handle: "@faedodecinera"
+  avatar: "/favicon.svg"
 ---
 
 Una de las preguntas más frecuentes sobre el **Faedo de Ciñera** es cómo llegar hasta allí. En este artículo te explicamos todas las opciones de transporte para llegar al **Faedo de Ciñera** desde diferentes puntos de España.
@@ -149,10 +153,14 @@ Si vienes en coche, hay gasolineras en:
 
 En el pueblo de Ciñera encontrarás:
 
-- 🏪 Bar/tienda pequeña
-- 🚻 Baños públicos (limitados)
-- ⛪ Iglesia de San Miguel Arcángel (referencia)
-- 🅿️ Aparcamiento gratuito
+- 🏪 Bares/Restaurantes en la plaza de la iglesia
+- ⛪ Iglesia de San Miguel Arcángel
+- 🅿️ Aparcamiento gratuito en el pueblo
+- 🏠 Casas rurales
+- 📖 Biblioteca municipal
+- 🛒 Supermercado
+- 💊 Farmacia
+- 👕 Lavandería autoservicio
 
 **Importante**: No hay supermercados grandes. Lleva lo necesario desde León o La Robla.
 

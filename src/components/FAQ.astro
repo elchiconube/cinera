@@ -1,6 +1,15 @@
 ---
 interface QA { question: string; answer: string; }
-const { items = [] as QA[] } = Astro.props;
+interface Props {
+  items?: QA[];
+  title?: string;
+  subtitle?: string;
+}
+const { 
+  items = [] as QA[], 
+  title = "¿Tienes preguntas?<br />Aquí están las respuestas.",
+  subtitle = "Todo lo que necesitas saber sobre el Faedo de Ciñera."
+} = Astro.props;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -11,16 +20,32 @@ const jsonLd = {
   })),
 };
 ---
-<section class="container py-8">
-  <h2 class="text-2xl mb-4">Preguntas frecuentes</h2>
-  <dl class="divide-y divide-gray-200 border border-gray-200 rounded-lg bg-white">
-    {items.map((q) => (
-      <div class="p-4">
-        <dt class="font-medium">{q.question}</dt>
-        <dd class="mt-2 text-gray-700">{q.answer}</dd>
-      </div>
-    ))}
-  </dl>
+<section class="container py-8 md:py-12">
+  <div class="max-w-2xl mx-auto lg:text-balance">
+    <h1 
+      class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight"
+      set:html={title}
+    />
+    <p class="text-base mt-2 font-medium text-gray-700">
+      {subtitle}
+    </p>
+    <dl class="flex flex-col pt-12 mt-12 border-t gap-12 border-gray-200">
+      {items.map((q) => (
+        <div>
+          <dt>
+            <h3 class="text-lg md:text-xl font-semibold">
+              {q.question}
+            </h3>
+          </dt>
+          <dd>
+            <p class="text-sm mt-2 font-medium text-gray-700">
+              {q.answer}
+            </p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </section>
 
