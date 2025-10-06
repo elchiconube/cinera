@@ -24,7 +24,7 @@
   
   /* Variables personalizadas */
   --container: 1200px;
-  --spacing-custom: 18px;
+  --spacing-custom: 10px;
   
   /* Font families para Tailwind */
   --font-family-heading: 'Wittgenstein', serif;
@@ -59,6 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 p a {
   color: var(--color-primary-700);
   text-underline-offset: 2px;
+  font-weight: 500;
+  text-decoration: underline;
 }
 
 p a:hover {
@@ -68,6 +70,36 @@ p a:hover {
 p a:focus-visible {
   outline: 2px solid var(--color-primary-400);
   outline-offset: 2px;
+}
+
+.prose > section {
+  margin-bottom: 32px;
+}
+
+/* Listas personalizadas con check icon */
+.prose ul {
+  margin: 20px 0 20px 20px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.prose ul li {
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.prose ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23047857' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
 }
 
 /* Utilidades */
@@ -191,8 +223,22 @@ p a:focus-visible {
 }
 
 p {
-  margin-bottom: var(--spacing-custom)
+  margin-bottom: var(--spacing-custom);
+  line-height: 1.5;
 }
+
+p strong {
+  color: var(--color-emerald-900);
+}
+
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-custom);
+  margin-top: 32px;
+  color: var(--color-emerald-800);
+}
+
 
 h2 {
   font-size: 1.8rem;
