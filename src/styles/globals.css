@@ -47,13 +47,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-body);
   font-size: var(--font-size-base);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 400;
   font-style: italic;
+  line-height: 1.1;
 }
 
 p a {
@@ -226,9 +227,13 @@ p a:focus-visible {
   }
 }
 
+.lead {
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
 p {
   margin-bottom: var(--spacing-custom);
-  line-height: 1.5;
 }
 
 p strong,
@@ -236,21 +241,22 @@ li strong {
   color: var(--color-emerald-900);
 }
 
-
-h3 {
-  font-size: 1.4rem;
-  margin-bottom: var(--spacing-custom);
-  margin-top: 32px;
+.prose {
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-custom);
+    margin-top: 32px;
+  }
+  
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom:var(--spacing-custom);
+  }
 }
 
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom:var(--spacing-custom);
-}
 
 h1 {
   font-size: 3rem;
-  line-height: 1.2;
 }
   

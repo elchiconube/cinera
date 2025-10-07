@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
 
@@ -10,39 +11,6 @@ const fagusImage = {
   src: fagus,
   alt: "Haya Fagus",
 };
-
-const items = [
-  {
-    href: "/haya-fagus",
-    title: "El Haya Fagus",
-    description: "Árbol de 500 años, uno de los 100 más singulares de España",
-  },
-  {
-    href: "/flora-fauna",
-    title: "Flora y Fauna",
-    description: "Biodiversidad completa del bosque y sus alrededores",
-  },
-  {
-    href: "/geologia",
-    title: "Geología",
-    description: "400 millones de años de historia en las rocas",
-  },
-  {
-    href: "/patrimonio-minero",
-    title: "Pozo Ibarra",
-    description: "Historia minera y el castillete de 1930",
-  },
-  {
-    href: "/haeda",
-    title: "Leyenda de Haeda",
-    description: "Cuento popular del Faedo para leer con niños",
-  },
-  {
-    href: "/ruta/faedo-de-cinera",
-    title: "Planifica tu Visita",
-    description: "Mapa, GPX, puntos de interés y consejos",
-  },
-];
 ---
 
 <Layout
@@ -60,7 +28,7 @@ const items = [
       { href: "/historia-naturaleza", label: "Historia y Naturaleza" },
     ]}
   />
-  <section>
+  <div>
     <header class="text-center max-w-2xl mx-auto mt-5">
       <h1 class="mb-2 text-emerald-800 text-balance">
         Historia y Naturaleza del Faedo de Ciñera
@@ -360,7 +328,7 @@ const items = [
         </p>
       </section>
     </div>
-    <div class="not-prose border-t border-gray-200 mt-8 py-10 px-10">
+    <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
       <header class="text-center max-w-2xl mx-auto mb-10">
         <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
           Explora más sobre el Faedo
@@ -371,22 +339,8 @@ const items = [
         </p>
       </header>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {
-          items.map((item) => (
-            <a
-              href={item.href}
-              class="block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end bg-gradient-to-tr from-emerald-500 to-emerald-600"
-            >
-              <h4 class="font-bold text-white text-2xl drop-shadow-lg">
-                {item.title}
-              </h4>
-              <p class="text-m text-white mt-1 font-semibold mr-12 drop-shadow-md">
-                {item.description}
-              </p>
-            </a>
-          ))
-        }
+        <Cards ids={['guia-visitantes','haya-fagus', 'flora-fauna', 'geologia', 'patrimonio-minero', 'ruta']} titleTag="h4" />
       </div>
     </div>
-  </section>
+  </di>
 </Layout>

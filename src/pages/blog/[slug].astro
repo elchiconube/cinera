@@ -45,18 +45,18 @@ export async function getStaticPaths() {
 <Layout title={data.title} description={data.excerpt}>
   <Seo slot="head" title={data.title} description={data.excerpt} type="article" jsonLd={blogLd} />
   <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/blog', label: 'Blog' }, { href: `/blog/${slug}`, label: data.title }]} />
-  <article class="container py-8 md:py-12">
+  <article class="max-w-4xl mx-auto py-8 md:py-12 px-4">
     <div class="max-w-xl mx-auto">
       <div class="text-center md:text-balance">
-        <p class="text-xs relative font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">
+        <p class="text-xs relative font-semibold uppercase tracking-wide text-gray-600">
           <time datetime={data.date.toISOString()}>
             {data.date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
         </p>
-        <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 font-semibold tracking-tight text-gray-900 dark:text-white">
+        <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 font-semibold tracking-tight text-emerald-900">
           {data.title}
         </h1>
-        <p class="text-base mt-2 font-medium text-gray-700 dark:text-gray-300">
+        <p class="text-base mt-2 font-medium text-emerald-700">
           {data.excerpt}
         </p>
       </div>
@@ -72,11 +72,11 @@ export async function getStaticPaths() {
             </div>
           )}
           <div>
-            <p class="text-xs relative font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">
+            <p class="text-xs relative font-semibold uppercase tracking-wide text-emerald-600">
               {data.author.name}
             </p>
             {data.author.handle && (
-              <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
+              <p class="text-xs font-medium text-emerald-500">
                 {data.author.handle}
               </p>
             )}
@@ -84,7 +84,7 @@ export async function getStaticPaths() {
         </div>
       )}
     </div>
-    <div class="pt-12 mx-auto mt-12 border-t prose prose-slate max-w-none border-gray-200 dark:border-gray-700">
+    <div class="pt-12 mx-auto mt-12 border-t prose max-w-none border-gray-200">
       <Content />
     </div>
   </article>

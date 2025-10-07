@@ -1,51 +1,64 @@
 ---
-interface Card {
-  href: string;
-  title: string;
-  description: string;
-  icon: string; // SVG path
-  backgroundImage?: string; // URL de la imagen
-}
+import { getCardsByIds } from "../data/cards";
 
 interface Props {
-  cards: Card[];
-  gradientFrom?: string;
-  gradientTo?: string;
+  ids: string[];
+  titleTag?: "h2" | "h3" | "h4";
 }
 
-const {
-  cards,
-} = Astro.props;
+const { ids, titleTag } = Astro.props;
+
+const cards = getCardsByIds(ids)
 ---
 
-{cards.map((card) => (
-  <a
-    class={`block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end ${
-      !card.backgroundImage ? `bg-gradient-to-tr from-emerald-500 to-emerald-600` : ''
-    }`}
-    href={card.href}
-  >
-    {card.backgroundImage && (
-      <img 
-        src={card.backgroundImage} 
-        alt={card.title}
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-    )}
+{
+  cards.map((card) => {
+    const TitleTag = titleTag || "h3";
+    return (
+      <a
+        class={`block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end ${
+          !card.backgroundImage
+            ? "bg-gradient-to-tr from-emerald-500 to-emerald-600"
+            : ""
+        }`}
+        href={card.href}
+      >
+        {card.backgroundImage && (
+          <img
+            src={card.backgroundImage}
+            alt={card.title}
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
 
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-black/20"></div>
-    </div>
-    
-    <div class="absolute top-3 right-3 bg-white/20 p-2 rounded-full text-white backdrop-blur-sm">
-      <svg width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-        <path d={card.icon}></path>
-      </svg>
-    </div>
-    
-    <div class="relative z-10">
-      <h3 class="font-bold text-white text-2xl drop-shadow-lg">{card.title}</h3>
-      <p class="text-m text-white mt-1 font-semibold mr-12 drop-shadow-md">{card.description}</p>
-    </div>
-  </a>
-))}
+        <div class="absolute inset-0 z-0">
+          <div class="absolute inset-0 bg-black/20" />
+        </div>
+
+        {card.icon && (
+          <div class="absolute top-3 right-3 bg-white/20 p-2 rounded-full text-white backdrop-blur-sm">
+            <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <path d={card.icon} />
+            </svg>
+          </div>
+        )}
+
+        <div class="relative z-10">
+          <TitleTag class="font-bold text-white text-2xl drop-shadow-lg">
+            {card.title}
+          </TitleTag>
+          {card.description && (
+            <p class="text-m text-white mt-1 font-semibold mr-12 drop-shadow-md">
+              {card.description}
+            </p>
+          )}
+        </div>
+      </a>
+    );
+  })
+}
