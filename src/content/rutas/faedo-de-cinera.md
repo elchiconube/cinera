@@ -14,7 +14,7 @@ access: "Desde León, A-66 dirección Oviedo, salida La Robla/Ciñera. En bus (A
 parking: "Aparcamiento señalizado en Ciñera, junto al inicio de la ruta."
 family_friendly: true
 tags: ["senderismo", "León", "hayedo", "otoño", "con niños", "fácil"]
-coverImage: ../../assets/blog-placeholder-1.jpg
+coverImage: ../../assets/faedo-de-cinera.webp
 gallery:
   - ../../assets/blog-placeholder-2.jpg
   - ../../assets/blog-placeholder-3.jpg

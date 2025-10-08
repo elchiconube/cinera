@@ -11,12 +11,33 @@ const { ids, titleTag } = Astro.props;
 const cards = getCardsByIds(ids)
 ---
 
+<style>
+  .card-link {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-image {
+    transition: none;
+  }
+
+  /* Solo aplicar zoom en desktop (pantallas mayores a 768px) */
+  @media (min-width: 768px) {
+    .card-image {
+      transition: transform 0.4s ease;
+    }
+
+    .card-link:hover .card-image {
+      transform: scale(1.05);
+    }
+  }
+</style>
+
 {
   cards.map((card) => {
     const TitleTag = titleTag || "h3";
     return (
       <a
-        class={`block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end ${
+        class={`card-link block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end ${
           !card.backgroundImage
             ? "bg-gradient-to-tr from-emerald-500 to-emerald-600"
             : ""
@@ -27,7 +48,7 @@ const cards = getCardsByIds(ids)
           <img
             src={card.backgroundImage}
             alt={card.title}
-            class="absolute inset-0 w-full h-full object-cover"
+            class="card-image absolute inset-0 w-full h-full object-cover"
           />
         )}
 
