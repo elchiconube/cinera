@@ -6,9 +6,12 @@ import Seo from '../components/Seo.astro';
 <Layout title="Guía para visitantes del Faedo" description="Alojamientos, restaurantes, itinerarios recomendados y normas ambientales para visitar el Faedo de Ciñera (León)">
   <Seo slot="head" title="Guía para visitantes del Faedo" description="Alojamientos, restaurantes, itinerarios recomendados y normas ambientales para visitar el Faedo de Ciñera (León)" />
   <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/guia-visitantes', label: 'Guía para visitantes' }]} />
-  <section class="container prose prose-slate max-w-none py-8">
-    <h1>Guía para visitantes del Faedo de Ciñera</h1>
-    
+  
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">Guía para visitantes del Faedo de Ciñera</h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
     <p class="lead">
       Esta guía te ayudará a planificar tu visita al <strong>Faedo de Ciñera</strong> de forma completa: 
       desde dónde alojarte y comer, hasta cuatro itinerarios diferentes según tu tiempo y preferencias.
@@ -276,5 +279,6 @@ import Seo from '../components/Seo.astro';
       <li><a href="/premio-2007">Premio "Bosque mejor cuidado de España" 2007</a></li>
       <li><a href="/faq">Preguntas frecuentes sobre el Faedo</a></li>
     </ul>
-  </section>
+    </div>
+  </div>
 </Layout>

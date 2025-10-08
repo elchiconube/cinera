@@ -27,15 +27,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     ]}
   />
   
-  <section class="container prose prose-slate max-w-none py-8">
-    <article>
-        <h1>{title}</h1>
-        
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">{title}</h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
         <p class="lead">
           El <strong>Faedo de Ciñera</strong> no es solo un bosque: es un espacio vivo donde los vecinos 
           de Ciñera se reúnen cada año para celebrar, cuidar y compartir su tesoro natural.
         </p>
 
+        <section>
         <h2>Encuentro Anual: Primer Sábado de Julio</h2>
         <p>
           Cada <strong>primer sábado de julio</strong>, el Faedo de Ciñera acoge un encuentro entrañable 
@@ -77,10 +79,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             No olvides recoger toda tu basura. El Faedo es de todos y entre todos lo cuidamos.
           </p>
         </div>
+        </section>
 
-        <h3>Actividades</h3>
+        <section>
+        <h2>Actividades</h2>
 
-        <h4>1. Jornadas de Limpieza (durante todo el año)</h4>
+        <h3>1. Jornadas de Limpieza (durante todo el año)</h3>
         <p>
           Varias veces al año, la junta vecinal de Ciñera organiza <strong>jornadas de limpieza del Faedo</strong>:
         </p>
@@ -127,7 +131,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           <li><strong>Charlas:</strong> Sobre conservación y patrimonio natural</li>
           <li><strong>Actividades para niños:</strong> El <a href="/haeda">cuento de Haeda</a> y otras leyendas</li>
         </ul>
+        </section>
 
+        <section>
         <h2>Colaboradores del Faedo</h2>
         <p>
           El cuidado del Faedo es un trabajo colectivo en el que participan:
@@ -138,7 +144,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           <li><strong>AMPA del Colegio San Miguel Arcángel:</strong> Actividades educativas</li>
           <li><strong>Vecinos individuales:</strong> Participación voluntaria</li>
         </ul>
+        </section>
 
+        <section>
         <h2>El Premio que lo Cambió Todo</h2>
         <p>
           En el año <strong>2007</strong>, todo este trabajo fue reconocido cuando el Faedo de Ciñera 
@@ -154,7 +162,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           <a href="/premio-2007">Conoce todos los detalles del premio 2007</a> y el comunicado oficial 
           de Bosques sin Fronteras.
         </p>
+        </section>
 
+        <section>
         <h2>La Magia de un Pueblo Unido</h2>
         <p>
           Mucho tiene de mágico que hoy en día un pueblo dedique su tiempo y mucho esfuerzo a cuidar 
@@ -165,7 +175,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           Este es un <strong>premio a un pueblo que, a pesar de sus diferencias y problemas, trabaja unido</strong>. 
           Y eso, en sí mismo, ¿no es magia?
         </p>
+        </section>
 
+        <section>
         <h2>Cómo Participar</h2>
         <p>
           Si quieres contribuir al cuidado del Faedo de Ciñera:
@@ -186,7 +198,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           Lleva tu comida, tu respeto por el bosque y tus ganas de compartir un día especial 
           en la naturaleza.
         </p>
+        </section>
 
+        <section>
         <h2>Calendario de Actividades 2025</h2>
         <div class="not-prose overflow-x-auto">
           <table class="min-w-full border">
@@ -234,8 +248,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             o pregunta en Ciñera.
           </p>
         </div>
+        </section>
+    </div>
 
-        <div class="not-prose border-t border-gray-200 pt-6 mt-8">
+        <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
           <h3 class="text-lg font-semibold mb-3">Más sobre el Faedo de Ciñera</h3>
           <div class="grid sm:grid-cols-3 gap-3">
             <a href="/premio-2007" class="block p-3 border rounded-md hover:shadow text-sm">
@@ -252,6 +268,5 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             </a>
           </div>
         </div>
-      </article>
-  </section>
+  </div>
 </Layout>

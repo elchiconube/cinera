@@ -8,12 +8,20 @@ const posts = (await getCollection('blog')).sort((a,b) => +b.data.date - +a.data
 ---
 <Layout title="Blog: senderismo en León" description="Artículos SEO sobre la Ruta del Faedo de Ciñera, consejos y senderismo en León">
   <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/blog', label: 'Blog' }]} />
-  <section class="container py-8">
-    <h1 class="text-2xl mb-4">Blog</h1>
-    <div class="grid md:grid-cols-3 gap-6">
-      {posts.map((p) => (
-        <PostCard title={p.data.title} excerpt={p.data.excerpt} href={`/blog/${p.slug}`} cover={p.data.coverImage} date={p.data.date.toISOString()} tags={p.data.tags} />
-      ))}
+  
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">Blog</h1>
+      <p class="text-base font-medium text-emerald-700">
+        Artículos sobre el Faedo de Ciñera, consejos y senderismo en León
+      </p>
+    </header>
+    <div class="max-w-7xl mx-auto py-8 px-4">
+      <div class="grid md:grid-cols-3 gap-6">
+        {posts.map((p) => (
+          <PostCard title={p.data.title} excerpt={p.data.excerpt} href={`/blog/${p.slug}`} cover={p.data.coverImage} date={p.data.date.toISOString()} tags={p.data.tags} />
+        ))}
+      </div>
     </div>
-  </section>
+  </div>
 </Layout>
