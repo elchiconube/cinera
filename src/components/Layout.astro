@@ -148,16 +148,16 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
     </main>
     <footer class="border-t border-gray-100" transition:persist>
       <div class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <p>&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
+        <p class="text-center md:text-left">&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
         <nav aria-label="Secundario">
           <ul class="md:flex md:gap-4 font-wittgenstein text-center">
-            <li><a class="py-2 inline-block" href="/">Inicio</a></li>
-            <li><a class="py-2 inline-block" href="/ruta/faedo-de-cinera">La Ruta</a></li>
-            <li><a class="py-2 inline-block" href="/historia-naturaleza">Historia y Naturaleza</a></li>
-            <li><a class="py-2 inline-block" href="/eventos">Eventos</a></li>
-            <li><a class="py-2 inline-block" href="/guia-visitantes">Guía</a></li>
-            <li><a class="py-2 inline-block" href="/blog">Blog</a></li>
-            <li><a class="py-2 inline-block" href="/faq">FAQ</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/">Inicio</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/ruta/faedo-de-cinera">La Ruta</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/historia-naturaleza">Historia y Naturaleza</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/eventos">Eventos</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/guia-visitantes">Guía</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/blog">Blog</a></li>
+            <li><a class="text-lg md:text-xs py-2 inline-block" href="/faq">FAQ</a></li>
           </ul>
         </nav>
       </div>

@@ -2,6 +2,7 @@
 import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import ScrollRevealText from '../components/ScrollRevealText.astro'
 import Cards from '../components/Cards.astro';
 import MediaGrid from '../components/MediaGrid.astro';
 ---
@@ -41,7 +42,15 @@ import MediaGrid from '../components/MediaGrid.astro';
 
   <MediaGrid />
 
-  <section class="prose prose-slate max-w-4xl mx-auto mb-10">
+
+  <section class="py-20">
+    <ScrollRevealText 
+    text="Un bosque mágico para toda la familia"
+    class="max-w-2xl text-center mx-auto px-4 font-wittgenstein text-emerald-800"
+  />
+</section>
+  
+  <section class="prose prose-slate max-w-4xl mx-auto mb-10 px-4">
     <p>
       <strong>El Faedo de Ciñera</strong> es uno de los bosques de hayas más meridionales de Europa, ubicado en la localidad leonesa de <strong>Ciñera de Gordón</strong>. Este impresionante hayedo se extiende por las laderas de la montaña, ofreciendo un espectáculo natural único especialmente durante el otoño, cuando sus hojas adquieren tonalidades doradas y rojizas que transforman el paisaje en una auténtica postal de ensueño. El sendero que atraviesa <strong>el Faedo</strong> permite a los visitantes sumergirse en un ambiente mágico, donde los árboles centenarios crean una bóveda natural que filtra la luz del sol, y el murmullo del arroyo acompaña cada paso del recorrido. Esta joya natural representa un ecosistema de gran valor ecológico que ha sido preservado a lo largo de generaciones.
   </p>

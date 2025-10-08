@@ -20,7 +20,6 @@ const cards = getCardsByIds(ids)
     transition: none;
   }
 
-  /* Solo aplicar zoom en desktop (pantallas mayores a 768px) */
   @media (min-width: 768px) {
     .card-image {
       transition: transform 0.4s ease;
@@ -37,7 +36,7 @@ const cards = getCardsByIds(ids)
     const TitleTag = titleTag || "h3";
     return (
       <a
-        class={`card-link block p-4 rounded-xl hover:shadow no-underline min-h-[390px] relative overflow-hidden flex flex-col justify-end ${
+        class={`card-link block p-4 rounded-xl hover:shadow no-underline aspect-square relative overflow-hidden flex flex-col justify-end ${
           !card.backgroundImage
             ? "bg-gradient-to-tr from-emerald-500 to-emerald-600"
             : ""
