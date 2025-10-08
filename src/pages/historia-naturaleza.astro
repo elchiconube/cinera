@@ -5,11 +5,41 @@ import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
 
-import fagus from "../assets/fagus.webp";
+import imageFaedo from "../assets/paseo-faedo.webp";
+import imageFagus from "../assets/fagus.webp";
+import imageBuitre from "../assets/buitre.webp";
+import imageDesman from "../assets/desman-iberico.webp";
+import imageZorro from "../assets/zorro.webp";
+import imageCaliza from "../assets/piedra-caliza.webp";
 
-const fagusImage = {
-  src: fagus,
+const fagus = {
+  src: imageFagus,
   alt: "Haya Fagus",
+};
+
+const faedo = {
+  src: imageFaedo,
+  alt: "Paseo Faedo",
+};
+
+const buitre = {
+  src: imageBuitre,
+  alt: "Buitre Leonado",
+};
+
+const desman = {
+  src: imageDesman,
+  alt: "Desman Iberico",
+};
+
+const zorro = {
+  src: imageZorro,
+  alt: "Zorro",
+};
+
+const caliza = {
+  src: imageCaliza,
+  alt: "Piedra Caliza",
 };
 ---
 
@@ -53,6 +83,11 @@ const fagusImage = {
           es evidencia de la <strong>influencia del asturleonés</strong> en la comarca
           de Gordón.
         </p>
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={faedo.src}
+          alt={faedo.alt}
+        />
         <p>
           <a href="/blog/origen-nombre-faedo"
             >Descubrela fascinante historia del nombre "Faedo"</a
@@ -107,9 +142,9 @@ const fagusImage = {
             </p>
           </div>
           <Image
-            class="border border-emerald-500 rounded-2xl aspect-4/4 object-cover"
-            src={fagusImage.src}
-            alt={fagusImage.alt}
+            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={fagus.src}
+            alt={fagus.alt}
           />
         </div>
       </section>
@@ -176,6 +211,27 @@ const fagusImage = {
             lirones
           </li>
         </ul>
+
+        <div class="grid md:grid-cols-3 gap-4 my-8">
+          <Image
+            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={buitre.src}
+            alt={buitre.alt}
+          />
+
+          <Image
+            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={desman.src}
+            alt={desman.alt}
+          />
+
+          <Image
+            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={zorro.src}
+            alt={zorro.alt}
+          />
+        </div>
+
         <p>
           Consulta la página completa de <a href="/flora-fauna"
             >Flora y Fauna del Faedo</a
@@ -205,6 +261,12 @@ const fagusImage = {
             literalmente las rocas
           </li>
         </ul>
+
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={caliza.src}
+          alt={caliza.alt}
+        />
         <p>
           Las <strong>capas de carbón</strong> de la Formación Pastora (310 millones
           de años) fueron el origen de la minería de Ciñera. <a href="/geologia"
@@ -344,16 +406,9 @@ const fagusImage = {
           natural.
         </p>
       </header>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Cards
-          ids={[
-            "guia-visitantes",
-            "haya-fagus",
-            "flora-fauna",
-            "geologia",
-            "patrimonio-minero",
-            "ruta",
-          ]}
+          ids={["haya-fagus", "flora-fauna", "geologia", "patrimonio-minero"]}
           titleTag="h4"
         />
       </div>

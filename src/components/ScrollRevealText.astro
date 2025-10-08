@@ -33,7 +33,6 @@ const words = text.split(' ');
 
   .char {
     opacity: 0.2;
-    transition: opacity 0.4s ease-out;
   }
 
   @media (max-width: 768px) {
@@ -63,14 +62,14 @@ const words = text.split(' ');
         // Progreso: 0 cuando está fuera de vista, 1 cuando está centrado
         const progress = Math.max(0, Math.min(1, (distanceFromCenter + windowHeight / 2) / (windowHeight + rect.height)));
         
-        // Revelar caracteres progresivamente
+        // Revelar caracteres progresivamente (sin transición)
         chars.forEach((char, index) => {
           const charProgress = index / chars.length;
-          const revealThreshold = charProgress * 0.5; // 80% del progreso total
+          const revealThreshold = charProgress * 0.5;
           
+          // Cambio instantáneo: solo 0.2 o 1
           if (progress >= revealThreshold) {
-            const charOpacity = Math.min(1, (progress - revealThreshold) / 0.2 + 0.2);
-            (char as HTMLElement).style.opacity = charOpacity.toString();
+            (char as HTMLElement).style.opacity = '1';
           } else {
             (char as HTMLElement).style.opacity = '0.2';
           }
