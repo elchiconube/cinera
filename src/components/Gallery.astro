@@ -1,0 +1,219 @@
+---
+import { Image } from "astro:assets";
+
+import imageFadeo1 from "../assets/faedo-1.webp"
+import imageFadeo2 from "../assets/faedo-2.webp"
+import imageFadeo3 from "../assets/faedo-3.webp"
+import imageFadeo4 from "../assets/faedo-4.webp"
+import imageFadeo5 from "../assets/faedo-5.webp"
+import imageFadeo6 from "../assets/faedo-6.webp"
+import imageFagus from "../assets/fagus.webp"
+import imageFagus2 from "../assets/fagus-2.webp"
+import imageFagus3 from "../assets/fagus-3.webp"
+import imageBruja from "../assets/bruja.webp"
+import imageBocamina from "../assets/bocamina.webp"
+import imageBocamina2 from "../assets/bocamina-2.webp"
+import imageBocamina3 from "../assets/bocamina-3.webp"
+import imageCamino from "../assets/camino.webp"
+import imageMarmitas from "../assets/marmitas.webp"
+import imageCastillete from "../assets/pozo-ibarra.webp"
+import imageValle from "../assets/valle.webp"
+import imageMineria from "../assets/mineria.webp"
+
+const gallery = [
+  imageFadeo1,
+  imageFagus,
+  imageBruja,
+  imageFadeo2,
+  imageBocamina3,
+  imageCamino,
+  imageFadeo3,
+  imageCastillete,
+  imageValle,
+  imageFadeo4,
+  imageFagus2,
+  imageMineria,
+  imageFadeo5,
+  imageBocamina,
+  imageBocamina2,
+  imageMarmitas,
+  imageFadeo6,
+  imageFagus3,
+]
+
+---
+
+<section class="py-12 px-4">
+  <div class="max-w-7xl mx-auto">
+    <header class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-emerald-800 mb-2">Galería del Faedo</h2>
+      <p class="text-emerald-600">Descubre la belleza del hayedo y sus alrededores</p>
+    </header>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+      {gallery.map((image: any, index: number) => (
+        <button 
+          data-image-index={index}
+          class="gallery-item group relative aspect-square overflow-hidden rounded-xl bg-gray-100 hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-emerald-500"
+          aria-label={`Ver imagen ${index + 1} de ${gallery.length}: ${image.alt || 'Faedo de Ciñera'}`}
+          type="button"
+        >
+          <Image
+            src={image}
+            alt={`Faedo de Ciñera foto ${index + 1}`}
+            class="w-full h-full object-cover group-hover:scale-110 group-focus:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300" aria-hidden="true">
+            <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4">
+              <p class="text-white text-xs sm:text-sm font-medium">Ver imagen completa</p>
+            </div>
+          </div>
+          <div class="absolute top-2 sm:top-4 right-2 sm:right-4 text-white bg-white/20 backdrop-blur-sm rounded-full p-1.5 sm:p-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300" aria-hidden="true">
+            <svg width="16" height="16" class="sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+            </svg>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div 
+    id="lightbox" 
+    class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-2 sm:p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Visor de imágenes"
+  >
+    <button 
+      id="close-lightbox" 
+      class="absolute top-2 right-2 sm:top-4 sm:right-4 text-white hover:text-gray-300 transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-white rounded-lg"
+      aria-label="Cerrar visor de imágenes"
+      type="button"
+    >
+      <svg width="24" height="24" class="sm:w-8 sm:h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <button 
+      id="prev-image" 
+      class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-white rounded-lg"
+      aria-label="Imagen anterior"
+      type="button"
+    >
+      <svg width="32" height="32" class="sm:w-12 sm:h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <button 
+      id="next-image" 
+      class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-white rounded-lg"
+      aria-label="Imagen siguiente"
+      type="button"
+    >
+      <svg width="32" height="32" class="sm:w-12 sm:h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+    <div class="max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
+      <img 
+        id="lightbox-image" 
+        src="" 
+        alt="" 
+        class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
+      />
+    </div>
+
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
+      <span id="image-counter" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+  const imageCounter = document.getElementById('image-counter');
+  const closeLightbox = document.getElementById('close-lightbox');
+  const prevImage = document.getElementById('prev-image');
+  const nextImage = document.getElementById('next-image');
+  
+  let currentIndex = 0;
+  const images = Array.from(galleryItems).map(item => {
+    const img = item.querySelector('img');
+    return {
+      src: img?.src || '',
+      alt: img?.alt || ''
+    };
+  });
+
+  function updateImageCounter() {
+    if (imageCounter) {
+      imageCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+  }
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    lightboxImage.src = images[index].src;
+    lightboxImage.alt = images[index].alt;
+    updateImageCounter();
+    lightbox?.classList.remove('hidden');
+    lightbox?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus en el botón de cerrar para accesibilidad
+    setTimeout(() => closeLightbox?.focus(), 100);
+  }
+
+  function closeLightboxFn() {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+    document.body.style.overflow = '';
+    
+    // Devolver el foco al botón que abrió el lightbox
+    const button = galleryItems[currentIndex] as HTMLElement;
+    button?.focus();
+  }
+
+  function showPrevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImage.src = images[currentIndex].src;
+    lightboxImage.alt = images[currentIndex].alt;
+    updateImageCounter();
+  }
+
+  function showNextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImage.src = images[currentIndex].src;
+    lightboxImage.alt = images[currentIndex].alt;
+    updateImageCounter();
+  }
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => openLightbox(index));
+  });
+
+  closeLightbox?.addEventListener('click', closeLightboxFn);
+  prevImage?.addEventListener('click', showPrevImage);
+  nextImage?.addEventListener('click', showNextImage);
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightboxFn();
+    if (e.key === 'ArrowLeft') showPrevImage();
+    if (e.key === 'ArrowRight') showNextImage();
+  });
+
+  // Close on background click
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightboxFn();
+  });
+</script>

@@ -6,6 +6,9 @@ import imageDesman from '../assets/desman-iberico.webp';
 import imageBlog from '../assets/blog.webp';
 import imageGeologia from '../assets/geologia.webp';
 import imageMineria from '../assets/pozo-ibarra.webp'
+import imageMarmitas from '../assets/marmitas.webp'
+import imageBocamina from '../assets/bocamina.webp'
+import imagePuente from '../assets/puente-palos.webp'
 import imageFagus from '../assets/fagus.webp'
 import imageNutria from '../assets/nutria.webp'
 
@@ -53,10 +56,10 @@ export const allCards: Card[] = [
     backgroundImage: imageBruja.src
   },
   {
-    id: 'haya-fagus',
+    id: 'fagus',
     href: '/haya-fagus',
     title: 'El Haya Fagus',
-    description: 'Árbol de 500 años, uno de los 100 más singulares de España',
+    description: 'Uno de los 100 más singulares de España',
     icon: 'M198.1,62.59a76,76,0,0,0-140.2,0A71.71,71.71,0,0,0,16,127.8C15.9,166,48,199,86.14,200A72.09,72.09,0,0,0,120,192.47V232a8,8,0,0,0,16,0V192.47A72.17,72.17,0,0,0,168,200l1.82,0C208,199,240.11,166,240,127.8A71.71,71.71,0,0,0,198.1,62.59ZM169.45,184a56.08,56.08,0,0,1-33.45-10v-41l43.58-21.78a8,8,0,1,0-7.16-14.32L136,115.06V88a8,8,0,0,0-16,0v51.06L83.58,120.84a8,8,0,1,0-7.16,14.32L120,156.94v17a56,56,0,0,1-33.45,10C56.9,183.23,31.92,157.52,32,127.84A55.77,55.77,0,0,1,67.11,76a8,8,0,0,0,4.53-4.67,60,60,0,0,1,112.72,0A8,8,0,0,0,188.89,76,55.79,55.79,0,0,1,224,127.84C224.08,157.52,199.1,183.23,169.45,184Z',
     backgroundImage: imageFagus.src
   },
@@ -75,6 +78,30 @@ export const allCards: Card[] = [
     description: '400 millones de años de historia en las rocas',
     icon: 'M246,98.73l-56-64A8,8,0,0,0,184,32H72a8,8,0,0,0-6,2.73l-56,64a8,8,0,0,0,.17,10.73l112,120a8,8,0,0,0,11.7,0l112-120A8,8,0,0,0,246,98.73ZM222.37,96H180L144,48h36.37ZM74.58,112l30.13,75.33L34.41,112Zm89.6,0L128,202.46,91.82,112ZM96,96l32-42.67L160,96Zm85.42,16h40.17l-70.3,75.33ZM75.63,48H112L76,96H33.63Z',
     backgroundImage: imageGeologia.src
+  },
+  {
+    id: 'puente',
+    href: '/blog/puente-de-palos',
+    title: 'Puente de palos',
+    description: 'Construcción histórica utilizada por mineros.',
+    icon: 'M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z',
+    backgroundImage: imagePuente.src
+  },
+  {
+    id: 'marmitas',
+    href: '/blog/marmitas-de-gigante',
+    title: 'Marmitas de gigante',
+    description: 'Piscinas naturales en verano',
+    icon: "M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM128,216a72.08,72.08,0,0,1-72-72c0-57.23,55.47-105,72-118,16.53,13,72,60.75,72,118A72.08,72.08,0,0,1,128,216Zm55.89-62.66a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z",
+    backgroundImage: imageMarmitas.src
+  },
+  {
+    id: 'bocamina',
+    href: '/blog/bocamina-menos-cincuenta',
+    title: 'Bocamina "Menos 50"',
+    description: 'Entrada rehabilitada por los vecinos.',
+    icon: 'M224,152V136a96.37,96.37,0,0,0-64-90.51V40a16,16,0,0,0-16-16H112A16,16,0,0,0,96,40v5.49A96.37,96.37,0,0,0,32,136v16a16,16,0,0,0-16,16v24a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V168A16,16,0,0,0,224,152Zm-16-16v16H160V62.67A80.36,80.36,0,0,1,208,136ZM144,40V152H112V40ZM48,136A80.36,80.36,0,0,1,96,62.67V152H48Zm176,56H32V168H224v24Z',
+    backgroundImage: imageBocamina.src
   },
   {
     id: 'patrimonio-minero',
