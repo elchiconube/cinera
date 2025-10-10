@@ -1,9 +1,12 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-3.jpg";
+import imageFagus from "../assets/fagus.webp";
+import imageFagus2 from "../assets/fagus-2.webp";
+import imageFagus3 from "../assets/fagus-3.webp";
 
 const title = "El Haya Fagus: Árbol de 500 Años en el Faedo de Ciñera";
 const description =
@@ -15,7 +18,7 @@ const landmarkSchema = {
   "@type": "LandmarksOrHistoricalBuildings",
   name: "Haya Fagus de Ciñera",
   description: "Árbol centenario de 500 años, uno de los 100 árboles más singulares de España",
-  image: cover.src,
+  image: imageFagus.src,
   geo: {
     "@type": "GeoCoordinates",
     latitude: 42.8862,
@@ -35,7 +38,7 @@ const landmarkSchema = {
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageFagus.src}
     url={canonical}
     type="place"
     jsonLd={landmarkSchema}
@@ -48,29 +51,36 @@ const landmarkSchema = {
     ]}
   />
   
-  <section class="container py-8 grid lg:grid-cols-3 gap-8">
-    <article class="prose prose-slate max-w-none lg:col-span-2">
-      <h1>{title}</h1>
-      
-      <div class="not-prose bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
-        <p class="text-sm text-gray-700">
-          <strong>Datos del árbol:</strong> 500 años de edad • 6,32m de perímetro • 23m de altura • 
-          Incluido en "Árboles, Leyendas Vivas" como uno de los 100 árboles más singulares de España
-        </p>
-      </div>
-
-      <h2>Bienvenidos al Haya más antigua del Faedo</h2>
-      <p>
-        Me llamo <strong>Fagus</strong> y tengo 500 años, no lo recuerdo muy bien ¡es tanto tiempo!. 
-        Dicen que soy una de las hayas más ancianas de España.
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        El Haya Fagus: Árbol de 500 Años
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
+      <p class="lead">
+        Me llamo <strong>Fagus</strong> y tengo 500 años. Soy una de las hayas más ancianas de España, 
+        con 6,32m de perímetro y 23m de altura. Incluido en "Árboles, Leyendas Vivas" como uno de los 
+        100 árboles más singulares de España.
       </p>
+
+      <section>
+      <h2>Bienvenidos al Haya más antigua del Faedo</h2>
       <p>
         También soy peculiar por mi forma, me dicen. Tengo un perímetro de 6,32m en mi base y mido 23m de altura. 
         Lo normal es que mis hermanas, las hayas, sean árboles grandes, imponentes, hasta de 30m. Con las copas anchas 
         y abombadas, la mía tiene forma de copa de vino. No recuerdo, pero es probable que alguna tormenta me arrancase 
         la guía, o.... ¡quizás algún vecino!.
       </p>
+      
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageFagus}
+        alt="El Haya Fagus de 500 años"
+      />
+      </section>
 
+      <section>
       <h2>Un árbol singular reconocido en toda España</h2>
       <p>
         Estas características y la <a href="/haeda">leyenda de "La bruja Haeda"</a> hacen que me encuentre incluida 
@@ -81,7 +91,9 @@ const landmarkSchema = {
         Mirad a vuestro entorno ¡El Faedo!, aquí vivo. Un bosque en el que se respira magia. Este suelo calizo y 
         la materia orgánica hacen que nuestros hayucos, los frutos del haya, germinen fácilmente.
       </p>
+      </section>
 
+      <section>
       <h2>La vida en el bosque</h2>
       <p>
         Los animales que aquí viven esconden nuestros frutos en huecos y grietas, olvidándolas luego, por ello, 
@@ -95,7 +107,15 @@ const landmarkSchema = {
         durante el invierno. ¡Anímate a madrugar la próxima vez! Disfrutarás al ver al 
         <a href="/flora-fauna#desman">desmán de los pirineos</a> en su baño matutino.
       </p>
+      
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageFagus2}
+        alt="Detalle del Haya Fagus"
+      />
+      </section>
 
+      <section>
       <h2>Testigo de la historia minera</h2>
       <p>
         Paraje especial sin duda, aquí se respira vida. Hace unos 150 años los hombres de Villar del Puerto y 
@@ -112,7 +132,9 @@ const landmarkSchema = {
         Un poco más arriba en el antiguo "puente de palos" perdieron varios de estos mineros la vida, víctimas de 
         los aludes. A ellos y a sus familias mi recuerdo y admiración.
       </p>
+      </section>
 
+      <section>
       <h2>Continúa la aventura</h2>
       <p>
         Si te encuentras con fuerzas, continua arroyo arriba. <strong>"Las marmitas de gigante"</strong> te contarán 
@@ -122,77 +144,40 @@ const landmarkSchema = {
       </p>
       <p>
         Sólo me queda animarte a leer la <a href="/haeda">leyenda de "La bruja Haeda"</a>, agradecerte la visita 
-        y el respeto mostrado..... <strong>"hasta siempre"</strong>.
+        y el respeto mostrado..... <strong>“hasta siempre”</strong>.
       </p>
-
-      <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-        <h3 class="text-lg font-semibold mb-3">Planifica tu visita al Haya Fagus</h3>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <a href="/ruta/faedo-de-cinera" class="block p-3 border rounded-md hover:shadow text-sm">
-            <span class="font-medium">Ver la ruta completa</span>
-            <p class="text-gray-600 mt-1">Mapa, GPX y puntos de interés</p>
-          </a>
-          <a href="/flora-fauna" class="block p-3 border rounded-md hover:shadow text-sm">
-            <span class="font-medium">Flora y fauna del Faedo</span>
-            <p class="text-gray-600 mt-1">Descubre más especies del bosque</p>
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <aside class="space-y-4">
-      <div class="rounded-lg overflow-hidden ring-1 ring-black/5">
-        <Image
-          src={cover}
-          alt="El Haya Fagus de 500 años en el Faedo de Ciñera"
-          widths={[480, 768, 1024]}
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-      </div>
       
-      <div class="border rounded-lg p-4 bg-white">
-        <h3 class="font-semibold mb-3">Características del Haya Fagus</h3>
-        <dl class="space-y-2 text-sm">
-          <div>
-            <dt class="text-gray-600">Edad estimada</dt>
-            <dd class="font-medium">500 años</dd>
-          </div>
-          <div>
-            <dt class="text-gray-600">Perímetro del tronco</dt>
-            <dd class="font-medium">6,32 metros</dd>
-          </div>
-          <div>
-            <dt class="text-gray-600">Altura</dt>
-            <dd class="font-medium">23 metros</dd>
-          </div>
-          <div>
-            <dt class="text-gray-600">Especie</dt>
-            <dd class="font-medium">Fagus sylvatica (Haya común)</dd>
-          </div>
-          <div>
-            <dt class="text-gray-600">Reconocimiento</dt>
-            <dd class="font-medium">Uno de los 100 árboles más singulares de España</dd>
-          </div>
-        </dl>
-      </div>
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageFagus3}
+        alt="Raíces del Haya Fagus"
+      />
+      </section>
 
-      <div class="border rounded-lg p-4 bg-primary-50">
-        <h3 class="font-semibold mb-2">¿Sabías que...?</h3>
-        <ul class="text-sm space-y-2 text-gray-700">
-          <li>✓ El Haya Fagus es uno de los árboles más fotografiados de León</li>
-          <li>✓ Su forma de "copa de vino" es única entre las hayas españolas</li>
-          <li>✓ Ha sido testigo de 5 siglos de historia minera</li>
-          <li>✓ Protagoniza la <a href="/haeda" class="underline">leyenda de Haeda</a></li>
-        </ul>
-      </div>
-
-      <div class="border rounded-lg p-4 text-sm text-gray-700">
-        <p>
+      <div class="bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
+        <p class="text-gray-600">
           <strong>Cómo llegar:</strong> El Haya Fagus se encuentra en el corazón del 
           <a href="/ruta/faedo-de-cinera" class="underline">recorrido del Faedo</a>, 
           aproximadamente a 20 minutos caminando desde el inicio en Ciñera.
         </p>
       </div>
-    </aside>
-  </section>
+    </div>
+    
+    <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+      <header class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+          Explora más sobre el Faedo
+        </h3>
+        <p class="text-balance text-emerald-800 font-medium leading-6">
+          Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+        </p>
+      </header>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <Cards
+          ids={["flora-fauna", "geologia", "patrimonio-minero", "historia-naturaleza"]}
+          titleTag="h4"
+        />
+      </div>
+    </div>
+  </div>
 </Layout>

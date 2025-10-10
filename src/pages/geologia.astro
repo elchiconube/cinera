@@ -1,22 +1,22 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-4.jpg";
+import imageCaliza from "../assets/piedra-caliza.webp";
 
 const title = "Geología del Faedo de Ciñera | 400 Millones de Años de Historia";
 const description =
   "Descubre la fascinante geología del Faedo de Ciñera: 400 millones de años de historia, formaciones paleozoicas, calizas, rocas detríticas y el sustrato que alimenta al hayedo centenario.";
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
-
 <Layout title={title} description={description}>
   <Seo
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageCaliza.src}
     url={canonical}
     type="article"
   />
@@ -28,10 +28,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     ]}
   />
   
-  <section class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <article class="prose prose-slate max-w-none">
-        <h1>{title}</h1>
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Geología del Faedo de Ciñera
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
         
         <p class="lead">
           Hace unos <strong>400 millones de años</strong>, la actual comarca gordonesa constituía el fondo 
@@ -79,13 +82,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           El paisaje revela una alternancia de franjas verdes (los valles detríticos) y peñas grises (las calizas).
         </p>
 
-        <div class="not-prose bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
-          <p class="text-sm">
-            <strong>Curiosidad geológica:</strong> Un viaje en avioneta sobre el valle o una fotografía aérea 
-            permitiría observar estos enormes fragmentos alargados en dirección Este-Oeste que se repiten 
-            varias veces a lo largo del valle, resultado de antiguos choques continentales.
-          </p>
-        </div>
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageCaliza}
+          alt="Piedra Caliza del Faedo"
+        />
+        
+        <p>
+          <strong>Curiosidad geológica:</strong> Un viaje en avioneta sobre el valle o una fotografía aérea 
+          permitiría observar estos enormes fragmentos alargados en dirección Este-Oeste que se repiten 
+          varias veces a lo largo del valle, resultado de antiguos choques continentales.
+        </p>
 
         <h2>El Camino Geológico hacia el Faedo</h2>
         <p>
@@ -221,25 +228,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           sido testigo silencioso de esta historia.
         </p>
 
-        <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-          <h3 class="text-lg font-semibold mb-3">Explora más sobre el Faedo</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <a href="/flora-fauna" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Flora y Fauna</span>
-              <p class="text-gray-600 mt-1">Biodiversidad del bosque</p>
-            </a>
-            <a href="/haya-fagus" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">El Haya Fagus</span>
-              <p class="text-gray-600 mt-1">500 años de historia</p>
-            </a>
-            <a href="/ruta/faedo-de-cinera" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Planifica tu ruta</span>
-              <p class="text-gray-600 mt-1">Mapa y GPX</p>
-            </a>
-          </div>
-        </div>
-
-        <div class="not-prose bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
+        <div class="bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
           <p class="text-gray-600">
             <strong>Nota técnica:</strong> El contenido geológico está basado en el trabajo de la geóloga 
             <strong>Esperanza Fernández Martínez</strong>, experta en la geología del Alto Bernesga. 
@@ -247,7 +236,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             geología de la Cordillera Cantábrica.
           </p>
         </div>
-      </article>
+      </div>
+      
+      <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+        <header class="text-center max-w-2xl mx-auto mb-10">
+          <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+            Explora más sobre el Faedo
+          </h3>
+          <p class="text-balance text-emerald-800 font-medium leading-6">
+            Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+          </p>
+        </header>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <Cards
+            ids={["haya-fagus", "flora-fauna", "patrimonio-minero", "historia-naturaleza"]}
+            titleTag="h4"
+          />
+        </div>
+      </div>
     </div>
-  </section>
 </Layout>

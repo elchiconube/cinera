@@ -1,9 +1,10 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-3.jpg";
+import imageBruja from "../assets/bruja.webp";
 
 const title = "El cuento de Haeda del Faedo de Ciñera";
 const description =
@@ -15,7 +16,7 @@ const jsonLd = {
   name: title,
   description,
   inLanguage: "es-ES",
-  image: cover.src,
+  image: imageBruja.src,
   mainEntityOfPage: canonical,
   author: { "@type": "Person", name: "Tradición oral" },
   publisher: {
@@ -30,7 +31,7 @@ const jsonLd = {
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageBruja.src}
     url={canonical}
     type="article"
     jsonLd={jsonLd}
@@ -42,9 +43,20 @@ const jsonLd = {
       { href: "/haeda", label: "El cuento de Haeda" },
     ]}
   />
-  <section class="container py-8 grid lg:grid-cols-3 gap-8">
-    <article class="prose prose-slate max-w-none lg:col-span-2">
-      <h1>{title}</h1>
+  
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        El cuento de Haeda del Faedo de Ciñera
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
+      <p class="lead">
+        La leyenda de Haeda es un relato popular que conecta mágicamente el bosque del Faedo con el carbón de Ciñera. 
+        Una historia de sacrificio y bondad que explica de forma poética el origen del pueblo y su riqueza minera.
+      </p>
+
+      <section>
       <h2>Origen y creación del cuento</h2>
       <ul>
         <li>
@@ -60,8 +72,16 @@ const jsonLd = {
           zona.
         </li>
       </ul>
+      </section>
 
+      <section>
       <h2>La leyenda resumida</h2>
+      
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageBruja}
+        alt="La Bruja Haeda del Faedo"
+      />
       <ol>
         <li>
           <strong>Haeda, la bruja del Faedo</strong><br />
@@ -90,7 +110,9 @@ const jsonLd = {
           de carbón.
         </li>
       </ol>
+      </section>
 
+      <section>
       <h2>Significado y vínculo con Ciñera</h2>
       <ul>
         <li>
@@ -110,24 +132,32 @@ const jsonLd = {
         ¿Planeas visitarlo? <a href="/ruta/faedo-de-cinera">Consulta la ruta</a>
         o <a href="/gpx/faedo.gpx">descarga el GPX</a>.
       </p>
-    </article>
+      </section>
 
-    <aside class="space-y-4">
-      <div class="rounded-lg overflow-hidden ring-1 ring-black/5">
-        <Image
-          src={cover}
-          alt="Hayedo del Faedo de Ciñera"
-          widths={[480, 768, 1024]}
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-      </div>
-      <div class="border rounded-lg p-4 text-sm text-gray-700">
-        <p>
+      <div class="bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
+        <p class="text-gray-600">
           <strong>Nota:</strong> Este es un resumen divulgativo sin pretensión académica.
           Si conoces versiones locales, puedes compartirlas con tu grupo antes de
-          la visita.
+          la visita. La historia fue escrita por <strong>Josefina Díaz del Cuadro</strong> en 1993.
         </p>
       </div>
-    </aside>
-  </section>
+    </div>
+    
+    <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+      <header class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+          Explora más sobre el Faedo
+        </h3>
+        <p class="text-balance text-emerald-800 font-medium leading-6">
+          Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+        </p>
+      </header>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <Cards
+          ids={["haya-fagus", "geologia", "patrimonio-minero", "historia-naturaleza"]}
+          titleTag="h4"
+        />
+      </div>
+    </div>
+  </div>
 </Layout>

@@ -1,22 +1,22 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-5.jpg";
+import imageFaedo from "../assets/paseo-faedo.webp";
 
 const title = "Relatos del Faedo de Ciñera | Alfonso García Rodríguez";
 const description =
   "Textos narrativos sobre el Faedo de Ciñera por Alfonso García Rodríguez: Un Mundo Maravilloso, El Bosque Encantado, Un Puente para una Hoz. Literatura y naturaleza.";
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
-
 <Layout title={title} description={description}>
   <Seo
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageFaedo.src}
     url={canonical}
     type="article"
   />
@@ -28,10 +28,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     ]}
   />
   
-  <section class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <article class="prose prose-slate max-w-none">
-        <h1>{title}</h1>
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Relatos del Faedo de Ciñera
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
         
         <p class="lead">
           El escritor leonés <strong>Alfonso García Rodríguez</strong> ha dedicado hermosos textos al 
@@ -39,15 +42,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           centenario. Aquí reproducimos sus relatos más emblemáticos.
         </p>
 
-        <div class="not-prose bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageFaedo}
+          alt="Paseo por el Faedo de Ciñera"
+        />
+        
+        <div class="bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
           <p class="text-sm">
             <strong>Nota:</strong> Estos textos son parte del patrimonio cultural del Faedo y se reproducen 
             aquí con fines divulgativos y de preservación de la memoria literaria asociada al bosque.
           </p>
         </div>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>Un Mundo Maravilloso</h2>
         <p class="text-sm text-gray-600 italic">Por Alfonso García Rodríguez</p>
 
@@ -81,9 +89,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <p>
           Pero aún no hemos entrado en el corazón del <a href="/ruta/faedo-de-cinera">Faedo</a>.
         </p>
+        </section>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>El Bosque Encantado</h2>
         <p class="text-sm text-gray-600 italic">Por Alfonso García Rodríguez</p>
 
@@ -135,9 +143,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <p>
           Pero no acaba aquí la sorpresa.
         </p>
+        </section>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>Un Puente para una Hoz</h2>
         <p class="text-sm text-gray-600 italic">Por Alfonso García Rodríguez</p>
 
@@ -193,9 +201,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           es una sensación difícil de olvidar: el agua sigue dibujando en la roca <strong>canales, pozas, remansos, 
           pequeñas cascadas</strong> en una sinfonía llena de elegancia y serenidad.
         </p>
+        </section>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>Sugerencias para el Viaje</h2>
         <p class="text-sm text-gray-600 italic">Por Alfonso García Rodríguez</p>
 
@@ -246,9 +254,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <p>
           Y es que ciertas fórmulas de futuro empiezan por pequeños detalles.
         </p>
+        </section>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>Despedida del Narrador</h2>
         <p class="text-sm text-gray-600 italic">Por Alfonso García Rodríguez</p>
 
@@ -263,9 +271,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <p>
           <strong>Gracias por haberse decidido. Buen viaje. Y suerte.</strong>
         </p>
+        </section>
 
-        <hr class="my-8 border-gray-300">
-
+        <section>
         <h2>Sobre el Autor: Alfonso García Rodríguez</h2>
         <p>
           <strong>Alfonso García Rodríguez</strong> es un escritor y cronista leonés que ha dedicado parte de 
@@ -316,25 +324,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           <li><strong><a href="/haya-fagus">El monólogo del Haya Fagus</a>:</strong> Texto en primera persona del árbol de 500 años</li>
           <li><strong><a href="/blog/la-magia-del-faedo-de-cinera">La magia del Faedo</a>:</strong> Reflexión sobre druidas, celtas y la esencia del bosque</li>
         </ul>
-
-        <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-          <h3 class="text-lg font-semibold mb-3">Vive el Faedo que Describe Alfonso García</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <a href="/ruta/faedo-de-cinera" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Planifica tu visita</span>
-              <p class="text-gray-600 mt-1">Mapa, GPX y puntos de interés</p>
-            </a>
-            <a href="/guia-visitantes" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Itinerarios sugeridos</span>
-              <p class="text-gray-600 mt-1">Las 4 rutas de Alfonso García</p>
-            </a>
-            <a href="/eventos" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Encuentro anual</span>
-              <p class="text-gray-600 mt-1">Primer sábado de julio</p>
-            </a>
-          </div>
+        </section>
+      </div>
+      
+      <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+        <header class="text-center max-w-2xl mx-auto mb-10">
+          <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+            Explora más sobre el Faedo
+          </h3>
+          <p class="text-balance text-emerald-800 font-medium leading-6">
+            Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+          </p>
+        </header>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <Cards
+            ids={["haya-fagus", "haeda", "geologia", "historia-naturaleza"]}
+            titleTag="h4"
+          />
         </div>
-      </article>
+      </div>
     </div>
-  </section>
 </Layout>

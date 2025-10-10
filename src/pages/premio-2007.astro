@@ -1,9 +1,10 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-5.jpg";
+import imageFaedo from "../assets/faedo-de-cinera.webp";
 
 const title = "Premio 'Bosque Mejor Cuidado de España' 2007 | Faedo de Ciñera";
 const description =
@@ -16,7 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageFaedo.src}
     url={canonical}
     type="article"
   />
@@ -28,10 +29,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     ]}
   />
   
-  <section class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <article class="prose prose-slate max-w-none">
-        <h1>{title}</h1>
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Premio 'Bosque Mejor Cuidado de España' 2007
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
         
         <p class="lead">
           En el año <strong>2007</strong>, el Faedo de Ciñera fue galardonado con el premio al 
@@ -40,8 +44,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           que cambió la historia del pueblo y demostró que el trabajo colectivo puede lograr lo imposible.
         </p>
 
+        <section>
         <h2>El Comunicado Oficial de Bosques sin Fronteras</h2>
-        <div class="not-prose bg-gray-50 border-l-4 border-primary-600 p-6 my-6">
+        
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageFaedo}
+          alt="Faedo de Ciñera, Bosque Mejor Cuidado de España 2007"
+        />
+        
+        <div class="bg-gray-50 border-l-4 border-primary-600 p-6 my-6">
           <p class="text-sm italic">
             <strong>Comunicado de prensa - 2007</strong>
           </p>
@@ -60,7 +72,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             y el actor <strong>Manuel Aleixandre</strong> como padrino de esta primera edición del certamen.
           </p>
         </div>
+        </section>
 
+        <section>
         <h2>Los Ganadores del Premio 2007</h2>
         <p>
           El Faedo de Ciñera compitió con árboles y bosques de toda España en diferentes categorías. 
@@ -166,7 +180,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           para cambiar la visión negativa que en estos momentos percibe la sociedad de los árboles, presentes 
           en los medios de comunicación sólo como protagonistas de tragedias.
         </p>
+        </section>
 
+        <section>
         <h2>El Impacto del Premio en Ciñera</h2>
         <p>
           El premio al <strong>"Bosque Mejor Cuidado de España"</strong> tuvo un impacto profundo en Ciñera 
@@ -243,8 +259,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           En un mundo donde los bosques desaparecen y los pueblos se vacían, Ciñera demuestra que otra vía 
           es posible: la vía de la conservación colectiva, del trabajo en equipo, del amor por el territorio.
         </p>
+        </section>
 
-        <div class="not-prose bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
+        <div class="bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
           <p class="text-sm">
             <strong>¿Quieres formar parte de esta historia?</strong> Visita el <a href="/ruta/faedo-de-cinera">Faedo de Ciñera</a>, 
             respeta las <a href="/guia-visitantes">normas ambientales</a>, y considera asistir al 
@@ -258,24 +275,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           mantiene su web activa. El comunicado reproducido aquí es el texto oficial de la época.
         </p>
 
-        <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-          <h3 class="text-lg font-semibold mb-3">Descubre el Faedo Premiado</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <a href="/haya-fagus" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">El Haya Fagus</span>
-              <p class="text-gray-600 mt-1">500 años, símbolo del bosque</p>
-            </a>
-            <a href="/eventos" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Actividades</span>
-              <p class="text-gray-600 mt-1">Cómo participar en la conservación</p>
-            </a>
-            <a href="/ruta/faedo-de-cinera" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Visita el Faedo</span>
-              <p class="text-gray-600 mt-1">Mapa, GPX y consejos</p>
-            </a>
-          </div>
+      </div>
+      
+      <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+        <header class="text-center max-w-2xl mx-auto mb-10">
+          <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+            Explora más sobre el Faedo
+          </h3>
+          <p class="text-balance text-emerald-800 font-medium leading-6">
+            Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+          </p>
+        </header>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <Cards
+            ids={["haya-fagus", "flora-fauna", "geologia", "historia-naturaleza"]}
+            titleTag="h4"
+          />
         </div>
-      </article>
+      </div>
     </div>
-  </section>
 </Layout>

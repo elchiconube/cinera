@@ -1,22 +1,22 @@
 ---
 import Layout from "../components/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
-import cover from "../assets/blog-placeholder-4.jpg";
+import imageMineria from "../assets/pozo-ibarra.webp";
 
 const title = "Pozo Ibarra: Historia Minera del Faedo de Ciñera | Castillete 1930";
 const description =
   "Descubre la historia del Pozo Ibarra, el castillete metálico de 1930 que simboliza el patrimonio minero de Ciñera. De la Hullera Vasco-Leonesa al cierre de 1996.";
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
-
 <Layout title={title} description={description}>
   <Seo
     slot="head"
     title={title}
     description={description}
-    image={cover.src}
+    image={imageMineria.src}
     url={canonical}
     type="article"
   />
@@ -28,10 +28,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     ]}
   />
   
-  <section class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <article class="prose prose-slate max-w-none">
-        <h1>{title}</h1>
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Pozo Ibarra: Historia Minera del Faedo de Ciñera
+      </h1>
+    </header>
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
         
         <p class="lead">
           Ciñera entra en la historia de León de la mano de la minería del carbón para constituirse en un 
@@ -94,13 +97,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           para la posteridad en una fotografía a los pies del castillete.
         </p>
 
-        <div class="not-prose bg-primary-50 border-l-4 border-primary-600 p-4 my-6">
-          <p class="text-sm">
-            <strong>Dato histórico:</strong> Desde 1930 hasta su cierre en 1996, el pozo y su castillete han 
-            sido testigos mudos del paso del tiempo. Generaciones de mineros de Hullera Vasco-Leonesa se han 
-            retratado a sus pies como quien busca el cobijo de un haya centenaria.
-          </p>
-        </div>
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageMineria}
+          alt="Castillete del Pozo Ibarra"
+        />
+        
+        <p>
+          <strong>Dato histórico:</strong> Desde 1930 hasta su cierre en 1996, el pozo y su castillete han 
+          sido testigos mudos del paso del tiempo. Generaciones de mineros de Hullera Vasco-Leonesa se han 
+          retratado a sus pies como quien busca el cobijo de un haya centenaria.
+        </p>
 
         <h2>La Guerra Civil: Resistencia bajo el Fuego</h2>
         <p>
@@ -205,31 +212,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           <a href="/haya-fagus">el Haya de 500 años</a> se alza sobre el bosque.
         </p>
 
-        <div class="not-prose border-t border-gray-200 pt-6 mt-8">
-          <h3 class="text-lg font-semibold mb-3">Explora la historia completa del Faedo</h3>
-          <div class="grid sm:grid-cols-3 gap-3">
-            <a href="/haeda" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Leyenda de Haeda</span>
-              <p class="text-gray-600 mt-1">Del mito al carbón</p>
-            </a>
-            <a href="/geologia" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Geología</span>
-              <p class="text-gray-600 mt-1">El origen del carbón</p>
-            </a>
-            <a href="/ruta/faedo-de-cinera" class="block p-3 border rounded-md hover:shadow text-sm">
-              <span class="font-medium">Visita la ruta</span>
-              <p class="text-gray-600 mt-1">Ve el castillete</p>
-            </a>
-          </div>
-        </div>
-
-        <div class="not-prose bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
+        <div class="bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
           <p class="text-gray-600">
             <strong>Fuente:</strong> Contenido basado en el trabajo del historiador 
             <strong>José Andrés González Pedraza</strong>, investigador del patrimonio minero de la comarca de Gordón.
           </p>
         </div>
-      </article>
+      </div>
+      
+      <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
+        <header class="text-center max-w-2xl mx-auto mb-10">
+          <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+            Explora más sobre el Faedo
+          </h3>
+          <p class="text-balance text-emerald-800 font-medium leading-6">
+            Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+          </p>
+        </header>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <Cards
+            ids={["haya-fagus", "geologia", "flora-fauna", "historia-naturaleza"]}
+            titleTag="h4"
+          />
+        </div>
+      </div>
     </div>
-  </section>
 </Layout>
