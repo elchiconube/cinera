@@ -5,6 +5,7 @@ import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
 import imageCaliza from "../assets/piedra-caliza.webp";
+import imageMarmitas from "../assets/marmitas-2.webp";
 
 const title = "Geología del Faedo de Ciñera | 400 Millones de Años de Historia";
 const description =
@@ -176,6 +177,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           En verano, muchos visitantes las utilizan como <strong>piscinas naturales</strong>, aunque el agua 
           suele estar bastante fría incluso en los meses más cálidos.
         </p>
+        
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageMarmitas}
+          alt="Marmitas de gigante en el Faedo de Ciñera"
+        />
 
         <h2>Historia Geológica Reciente: El Modelado Glaciar</h2>
         <p>

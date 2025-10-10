@@ -5,6 +5,7 @@ import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
 import imageMineria from "../assets/pozo-ibarra.webp";
+import imagePuentePalos from "../assets/puente-palos.webp";
 
 const title = "Pozo Ibarra: Historia Minera del Faedo de Ciñera | Castillete 1930";
 const description =
@@ -145,6 +146,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           y mujeres y niños venían a hacer camino en la nieve para que, tras la jornada en la mina y la gran nevada, 
           papás y maridos pudiesen volver a casa a pasar la noche."</em>
         </p>
+        
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imagePuentePalos}
+          alt="Puente de Palos, camino histórico de los mineros"
+        />
 
         <h2>1996: El Cierre del Pozo</h2>
         <p>

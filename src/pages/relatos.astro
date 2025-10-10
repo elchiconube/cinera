@@ -5,6 +5,7 @@ import Cards from "../components/Cards.astro";
 import Seo from "../components/Seo.astro";
 import { Image } from "astro:assets";
 import imageFaedo from "../assets/paseo-faedo.webp";
+import imageEntrada from "../assets/entrada-faedo.webp";
 
 const title = "Relatos del Faedo de Ciñera | Alfonso García Rodríguez";
 const description =
@@ -89,6 +90,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         <p>
           Pero aún no hemos entrado en el corazón del <a href="/ruta/faedo-de-cinera">Faedo</a>.
         </p>
+        
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageEntrada}
+          alt="Entrada al Faedo de Ciñera"
+        />
         </section>
 
         <section>

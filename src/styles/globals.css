@@ -250,6 +250,7 @@ li strong {
   
   
   h2 {
+    margin-top: 32px;
     font-size: 1.8rem;
     margin-bottom:var(--spacing-custom);
   }
