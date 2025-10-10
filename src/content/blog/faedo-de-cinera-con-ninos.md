@@ -3,7 +3,7 @@ title: "Ruta del Faedo de Ciñera con niños: guía completa"
 excerpt: "Guía práctica para visitar el Faedo de Ciñera con niños: consejos de seguridad, qué llevar, actividades educativas y cómo hacer que la ruta sea divertida para toda la familia."
 date: 2025-10-02
 tags: ["familias", "ninos", "senderismo", "consejos"]
-coverImage: ../../assets/blog-placeholder-2.jpg
+coverImage: ../../assets/paseo-faedo.webp
 ---
 
 La ruta del **Faedo de Ciñera** es una de las mejores opciones de senderismo en León para hacer con niños. En este artículo te contamos todo lo que necesitas saber para disfrutar del **Faedo de Ciñera** en familia.

@@ -3,7 +3,7 @@ title: "Senderismo en León: el Faedo de Ciñera"
 excerpt: "Descubre por qué la Ruta del Faedo de Ciñera es uno de los paseos más recomendables de León: bosque de hayas, patrimonio minero y una ruta apta para todos."
 date: 2025-09-01
 tags: ["senderismo", "leon", "hayedo", "otono", "familias"]
-coverImage: ../../assets/blog-placeholder-5.jpg
+coverImage: ../../assets/faedo-3.webp
 ---
 
 El Faedo de Ciñera combina naturaleza y memoria minera en un recorrido corto y muy agradable. En este artículo te contamos lo esencial para planificar tu visita y aprovecharla al máximo.

@@ -3,7 +3,7 @@ title: "El Desmán Ibérico del Faedo de Ciñera: Tesoro en Peligro"
 excerpt: "Conoce al desmán ibérico, el pequeño mamífero endémico que habita los arroyos del Faedo de Ciñera. Una especie única en el mundo que indica la pureza de nuestras aguas."
 date: 2025-10-02
 tags: ["fauna", "desman-iberico", "conservacion", "especies-amenazadas"]
-coverImage: ../../assets/blog-placeholder-2.jpg
+coverImage: ../../assets/desman-iberico.webp
 ---
 
 Si madrugas durante tu visita al **Faedo de Ciñera**, puede que tengas la suerte de ver uno de los animales más singulares y amenazados de la península ibérica: el **desmán ibérico** (*Galemys pyrenaicus*), también conocido como desmán de los Pirineos o topo de río.

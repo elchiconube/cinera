@@ -13,18 +13,26 @@ interface Props {
 }
 const { title, excerpt, href, cover, date, tags = [] } = Astro.props as Props;
 ---
-<article class="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm hover:shadow transition-shadow">
+<article class="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm hover:shadow transition-shadow h-full flex flex-col">
   {cover && (
-    <div>
-      <Image src={cover} alt={title} widths={[320,480,768,1024]} sizes="(max-width: 768px) 100vw, 480px" />
+    <div class="aspect-video w-full overflow-hidden">
+      <Image 
+        src={cover} 
+        alt={title} 
+        widths={[320,480,768,1024]} 
+        sizes="(max-width: 768px) 100vw, 480px"
+        class="w-full h-full object-cover"
+      />
     </div>
   )}
-  <div class="p-4">
-    <h3 class="text-2xl font-semibold mb-2"><a href={href} class="no-underline hover:underline">{title}</a></h3>
-    {date && <p class="text-xs text-gray-500 mt-1">{new Date(date).toLocaleDateString('es-ES')}</p>}
-    <p class="mt-2 text-gray-600">{excerpt}</p>
+  <div class="p-4 flex-1 flex flex-col">
+    <div class="flex-1">
+      <h3 class="text-2xl font-semibold mb-2"><a href={href} class="no-underline hover:underline">{title}</a></h3>
+      {date && <p class="text-xs text-gray-500 mt-1">{new Date(date).toLocaleDateString('es-ES')}</p>}
+      <p class="mt-2 text-gray-600">{excerpt}</p>
+    </div>
     {tags.length > 0 && (
-      <div class="mt-3 flex flex-wrap gap-2">
+      <div class="mt-4 flex flex-wrap gap-2">
         {tags.map((t) => (
           <a 
             href={`/blog/tag/${slugifyTag(t)}`}
