@@ -15,6 +15,17 @@ const {
 
 const canonicalURL = (url ?? new URL(Astro.url.pathname, Astro.site)).toString();
 const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMAGE, Astro.site).toString();
+
+// Navegación principal
+const navItems = [
+  { href: '/', label: 'Inicio' },
+  { href: '/ruta/faedo-de-cinera', label: 'La ruta' },
+  { href: '/historia-naturaleza', label: 'Historia y naturaleza' },
+  { href: '/eventos', label: 'Eventos' },
+  { href: '/guia-visitantes', label: 'Guía' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/faq', label: 'FAQ' },
+];
 ---
 <!doctype html>
 <html lang={SITE_LOCALE}>
@@ -81,13 +92,9 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
         
         <!-- Menú desktop -->
         <ul class="hidden md:flex font-wittgenstein">
-          <li><a class="px-2 py-6 inline-block" href="/">Inicio</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/ruta/faedo-de-cinera">La ruta</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/historia-naturaleza">Historia y naturaleza</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/eventos">Eventos</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/guia-visitantes">Guía</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/blog">Blog</a></li>
-          <li><a class="px-2 py-6 inline-block" href="/faq">FAQ</a></li>
+          {navItems.map(item => (
+            <li><a class="px-2 py-6 inline-block" href={item.href}>{item.label}</a></li>
+          ))}
         </ul>
 
         <!-- Botón hamburguesa móvil -->
@@ -106,13 +113,16 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
       <!-- Menú móvil -->
       <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
         <ul class="container font-wittgenstein py-4 flex flex-col gap-3 text-center">
-          <li><a href="/" class="block py-2 border-b border-gray-100">Inicio</a></li>
-          <li><a href="/ruta/faedo-de-cinera" class="block py-2 border-b border-gray-100">La Ruta</a></li>
-          <li><a href="/historia-naturaleza" class="block py-2 border-b border-gray-100">Historia y Naturaleza</a></li>
-          <li><a href="/eventos" class="block py-2 border-b border-gray-100">Eventos</a></li>
-          <li><a href="/guia-visitantes" class="block py-2 border-b border-gray-100">Guía</a></li>
-          <li><a href="/blog" class ="block py-2 border-b border-gray-100">Blog</a></li>
-          <li><a href="/faq" class="block py-2">FAQ</a></li>
+          {navItems.map((item, index) => (
+            <li>
+              <a 
+                href={item.href} 
+                class={`block py-2 ${index < navItems.length - 1 ? 'border-b border-gray-100' : ''}`}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>
@@ -151,13 +161,9 @@ const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMA
         <p class="text-center md:text-left">&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
         <nav aria-label="Secundario">
           <ul class="md:flex md:gap-4 font-wittgenstein text-center">
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/">Inicio</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/ruta/faedo-de-cinera">La Ruta</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/historia-naturaleza">Historia y Naturaleza</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/eventos">Eventos</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/guia-visitantes">Guía</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/blog">Blog</a></li>
-            <li><a class="text-lg md:text-xs py-2 inline-block" href="/faq">FAQ</a></li>
+            {navItems.map(item => (
+              <li><a class="text-lg md:text-xs py-2 inline-block" href={item.href}>{item.label}</a></li>
+            ))}
           </ul>
         </nav>
       </div>
