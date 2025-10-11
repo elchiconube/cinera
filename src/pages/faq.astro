@@ -1,11 +1,15 @@
 ---
 import Layout from '../components/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import FAQ from '../components/FAQ.astro';
----
-<Layout title="FAQ: Faedo de Ciñera" description="Preguntas frecuentes sobre la Ruta del Faedo de Ciñera: accesibilidad, mascotas, época, meteorología, prohibiciones y más.">
-  <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/faq', label: 'FAQ' }]} />
-  <FAQ items={[
+import Seo from '../components/Seo.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Cards from '../components/Cards.astro';
+
+const title = "Preguntas Frecuentes sobre el Faedo de Ciñera";
+const description = "Preguntas frecuentes sobre la Ruta del Faedo de Ciñera: accesibilidad, mascotas, época, meteorología, prohibiciones y más.";
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const faqs = [
     { 
       question: '¿Cuál es la mejor época para visitar el Faedo de Ciñera?', 
       answer: 'La mejor época para visitar el Faedo de Ciñera es en otoño (octubre-noviembre) cuando el hayedo muestra sus colores más espectaculares. La primavera (abril-mayo) también es excelente, con temperaturas suaves y el bosque verde brillante. El Faedo de Ciñera se puede visitar todo el año, aunque en verano hace calor y en invierno puede haber hielo en las pasarelas.' 
@@ -58,6 +62,51 @@ import FAQ from '../components/FAQ.astro';
       question: '¿El Faedo de Ciñera es gratis?', 
       answer: 'Sí, visitar el Faedo de Ciñera es completamente gratuito. No hay que pagar entrada ni reservar. El aparcamiento en Ciñera también es gratuito.' 
     }
-  ]} />
+];
+---
+
+<Layout title={title} description={description}>
+  <Seo
+    slot="head"
+    title={title}
+    description={description}
+    url={canonical}
+    type="website"
+  />
+  <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/faq', label: 'FAQ' }]} />
+  
+  <div>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">{title}</h1>
+      <p class="text-base font-medium text-emerald-700">
+        Resuelve todas tus dudas sobre la visita al Faedo de Ciñera
+      </p>
+    </header>
+
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
+      <p class="lead">
+        Aquí encontrarás respuestas a las preguntas más frecuentes sobre la <strong>Ruta del Faedo de Ciñera</strong>. 
+        Si tienes alguna duda que no aparece aquí, no dudes en contactar con la Junta Vecinal de Ciñera.
+      </p>
+
+      {faqs.map((faq, index) => (
+        <section>
+          <h2>{faq.question}</h2>
+          <p>{faq.answer}</p>
+        </section>
+      ))}
+    </div>
+
+    <section class="py-5 px-4" aria-labelledby="intro">
+      <SectionHeader
+        title="Planifica tu visita"
+        description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
+      />
+      <div class="grid sm:grid-cols-4 gap-4 mx-auto max-w-7xl">
+        <Cards ids={['ruta', 'historia-naturaleza', 'guia-visitantes', 'blog']} />
+      </div>
+    </section>
+  
+  </div>
 </Layout>
 
