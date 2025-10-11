@@ -3,7 +3,7 @@ title: "¿Por Qué se Llama 'Faedo'? El Origen del Nombre"
 excerpt: "Descubre la etimología de 'Faedo de Ciñera'. Del latín 'fagus' al asturleonés: la fascinante historia lingüística detrás del nombre del bosque de hayas más famoso de León."
 date: 2025-10-01
 tags: ["etimologia", "historia", "asturleones", "linguistica"]
-coverImage: ../../assets/faedo-2.webp
+coverImage: ../../assets/faedo-5.webp
 ---
 
 Cuando visitas el **Faedo de Ciñera** por primera vez, es inevitable preguntarse: ¿por qué se llama "Faedo"? La respuesta nos lleva en un viaje fascinante a través de más de 2.000 años de historia lingüística.

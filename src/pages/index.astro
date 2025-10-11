@@ -5,6 +5,15 @@ import SectionHeader from '../components/SectionHeader.astro';
 import ScrollRevealText from '../components/ScrollRevealText.astro'
 import Cards from '../components/Cards.astro';
 import MediaGrid from '../components/MediaGrid.astro';
+import { Image } from "astro:assets";
+
+import imageFaedo from '../assets/faedo-5.webp'
+import imageCamino from '../assets/camino.webp'
+
+import imageMarmitas from '../assets/marmitas.webp'
+import imageMarmitas2 from '../assets/marmitas-2.webp'
+import imageMarmitas3 from '../assets/marmitas-3.webp'
+
 ---
 
 <Layout 
@@ -46,18 +55,65 @@ import MediaGrid from '../components/MediaGrid.astro';
   <section class="py-20">
     <ScrollRevealText 
     text="Un bosque mágico para toda la familia"
-    class="max-w-2xl text-center mx-auto px-4 font-wittgenstein text-emerald-800"
+    class="max-w-2xl text-center mx-auto px-4 mb-10 font-wittgenstein text-emerald-800"
   />
-</section>
   
-  <section class="prose prose-slate max-w-4xl mx-auto mb-10 px-4">
-    <p>
-      <strong>El Faedo de Ciñera</strong> es uno de los bosques de hayas más meridionales de Europa, ubicado en la localidad leonesa de <strong>Ciñera de Gordón</strong>. Este impresionante hayedo se extiende por las laderas de la montaña, ofreciendo un espectáculo natural único especialmente durante el otoño, cuando sus hojas adquieren tonalidades doradas y rojizas que transforman el paisaje en una auténtica postal de ensueño. El sendero que atraviesa <strong>el Faedo</strong> permite a los visitantes sumergirse en un ambiente mágico, donde los árboles centenarios crean una bóveda natural que filtra la luz del sol, y el murmullo del arroyo acompaña cada paso del recorrido. Esta joya natural representa un ecosistema de gran valor ecológico que ha sido preservado a lo largo de generaciones.
-  </p>
-  
-  <p>
-      Entre las maravillas geológicas que alberga esta zona destacan <strong>las marmitas de gigante</strong>, formaciones rocosas circulares excavadas por la fuerza erosiva del agua durante miles de años, que parecen enormes calderos tallados en la piedra por la acción constante de los remolinos fluviales. Estas curiosas formaciones, junto con <strong>el Pozo Ibarra</strong>, una profunda poza natural de aguas cristalinas que invita a la contemplación, completan un conjunto de elementos naturales que convierten la ruta del Faedo en una experiencia inolvidable. El <strong>Pozo Ibarra</strong> se ha convertido en uno de los puntos más fotografiados del recorrido, donde el agua acumulada refleja como un espejo el verdor circundante y ofrece un refrescante descanso visual en medio del bosque. Estos tesoros naturales de <strong>Ciñera</strong> demuestran la capacidad escultórica de la naturaleza y el valor patrimonial de este rincón de la provincia de León.
-  </p>
+  <div class="prose prose-slate max-w-4xl mx-auto px-4">
+    <p>El <strong>Faedo de Ciñera</strong> es uno de los hayedos más <strong>meridionales de Europa</strong> y, sin duda, uno de los más especiales de León. Se encuentra en el pequeño pueblo de <strong>Ciñera de Gordón</strong>, rodeado por las montañas del Alto Bernesga y cobijado por un silencio que solo rompen el viento y el agua.</p>
+        
+    <p>Sus hayas centenarias —algunas con más de <strong>500 años de vida</strong>— se alzan sobre las laderas formando una bóveda natural que filtra la luz del sol y crea un ambiente casi de cuento. El sendero que lo recorre, cómodo y bien acondicionado, invita a caminar despacio, a escuchar el <strong>murmullo del Arroyo Villar</strong> y a dejarse envolver por los tonos cambiantes del bosque.</p>
+    
+    <p>En <strong>otoño</strong>, el Faedo se tiñe de dorados, naranjas y rojizos, transformando el paisaje en una postal viva; en <strong>primavera</strong>, el verde joven de las hojas anuncia el renacer de la montaña. Cada paso es un descubrimiento: el olor a tierra húmeda, la textura del musgo, los rayos de sol que se cuelan entre las ramas… un escenario perfecto para disfrutar en familia, con niños o en pareja, sin prisas.</p>
+
+    <div class="grid md:grid-cols-3 gap-4 my-8">
+      <Image
+            class="col-span-2 w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={imageFaedo}
+            alt="Pozo Ibarra"
+            loading="lazy"
+          />
+          <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+          src={imageCamino}
+          alt="Pasarela de madera del Faedo de Ciñera"
+          loading="lazy"
+        />
+       
+      
+    </div>
+    
+    <p>El bosque no solo es belleza: también es historia. A lo largo del camino, el visitante se encuentra con vestigios del <strong>pasado minero</strong> de Ciñera, testigos de un tiempo en que los mineros cruzaban este mismo sendero rumbo a las galerías. Hoy, esos lugares se han integrado en la naturaleza como parte de un <strong>patrimonio vivo</strong>, donde la memoria y el paisaje caminan juntos.</p>
+    
+    <p>Entre las joyas naturales del recorrido destacan las <strong>Marmitas de Gigante</strong>, pozas y remolinos esculpidos por el agua a lo largo de miles de años. Estas formaciones circulares, creadas por la erosión del arroyo sobre la roca caliza, parecen enormes calderos donde la naturaleza ha dejado su firma.</p>
+
+    <div class="grid md:grid-cols-3 gap-4 my-8">
+      <Image
+            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+            src={imageMarmitas}
+            alt="Pozo Ibarra"
+            loading="lazy"
+          />
+          <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+          src={imageMarmitas2}
+          alt="Pasarela de madera del Faedo de Ciñera"
+          loading="lazy" />
+
+          <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25"
+          src={imageMarmitas3}
+          alt="Pasarela de madera del Faedo de Ciñera"
+          loading="lazy"
+        />
+       
+      
+    </div>
+
+    
+    <p>Después de disfrutar del hayedo, el camino de regreso permite ascender por la <strong>antigua escombrera</strong> hasta el <strong>Pozo Ibarra</strong>, un espacio emblemático que forma parte de la historia minera de Ciñera. Allí se alza el <strong>castillete del Pozo Ibarra</strong>, símbolo del esfuerzo y la memoria colectiva de un pueblo. Este conjunto industrial fue declarado en 2011 <strong>Bien de Interés Cultural con categoría de Conjunto Etnográfico</strong>, reconocimiento que subraya su valor patrimonial y emocional para toda la comarca.</p>
+    
+    <p>El <strong>Faedo de Ciñera</strong> es mucho más que una ruta de senderismo: es un viaje sensorial por un bosque mágico donde naturaleza, historia y emoción se entrelazan. Un lugar que no solo se visita, sino que se siente.</p>
+    </div>
   </section>
 
 
