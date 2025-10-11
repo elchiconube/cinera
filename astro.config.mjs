@@ -9,6 +9,18 @@ export default defineConfig({
   site: 'https://faedo.es',
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': '/src',
+        '@components': '/src/components',
+        '@layouts': '/src/layouts',
+        '@assets': '/src/assets',
+        '@utils': '/src/utils',
+        '@data': '/src/data',
+        '@content': '/src/content',
+        '@styles': '/src/styles',
+      },
+    },
   },
   integrations: [
     mdx(),
