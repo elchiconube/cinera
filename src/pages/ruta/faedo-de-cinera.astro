@@ -76,7 +76,7 @@ const attractionLd = {
 <Layout title={`La Ruta: ${data.title}`} description={data.summary}>
   <Seo
     slot="head"
-    title={`La Ruta: ${data.title}`}
+    title={`La ruta: ${data.title}`}
     description={data.summary}
     type="place"
     jsonLd={[hikingTrailLd, attractionLd]}
@@ -88,301 +88,294 @@ const attractionLd = {
     ]}
   />
 
-  <section>
-    <div>
-      <article>
-        <header class="text-center max-w-2xl mx-auto mt-5">
-          <h1 class="mb-2 text-emerald-800 text-balance">
-            Ruta del Faedo de Ciñera
-          </h1>
-          <p>
-            El Faedo de Ciñera es un hayedo centenario en León con senderismo
-            fácil ideal para familias.
-          </p>
-        </header>
+  <article>
+    <header class="text-center max-w-2xl mx-auto mt-5">
+      <h1 class="mb-2 text-emerald-800 text-balance">
+        Ruta del Faedo de Ciñera
+      </h1>
+      <p>
+        El Faedo de Ciñera es un hayedo centenario en León con senderismo fácil
+        ideal para familias.
+      </p>
+    </header>
 
-        <section aria-labelledby="mapa" class="max-w-7xl mx-auto px-4">
-          <MapLeaflet
-            lat={data.start_coords.lat}
-            lng={data.start_coords.lng}
-            zoom={14}
-            height="380px"
-          />
-          <p class="text-sm">
-            Descarga el GPX: <a href="/gpx/faedo.gpx" download>faedo.gpx</a>
-          </p>
-        </section>
-        <aside class="grid sm:grid-cols-3 gap-4 max-w-7xl mx-auto py-8 px-4">
-          <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
-            <div class="mb-4 text-center">
-              <span class="inline-block text-emerald-300">
-                <svg
-                  width="32"
-                  height="32"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                  ><path
-                    d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"
-                  ></path></svg
-                ></span
-              >
-              <h3 class="text-2xl text-emerald-800">Cómo llegar</h3>
-            </div>
-            <ul>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/SdQxtZvE2ud87h938"
-                  target="_blank"
-                  rel="noopener noreferrer">Punto de comienzo de la ruta</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
-            <div class="mb-4 text-center">
-              <span class="inline-block text-emerald-300">
-                <svg
-                  width="32"
-                  height="32"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                  ><path
-                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-136H104a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V152h24a36,36,0,0,0,0-72Zm0,56H112V96h24a20,20,0,0,1,0,40Z"
-                  ></path></svg
-                ></span
-              >
-              <h3 class="text-2xl text-emerald-800">Dónde aparcar</h3>
-            </div>
-            <ul>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/qbqp7HGWuW4A6T2Z7"
-                  target="_blank"
-                  rel="noopener noreferrer">Campo de fútbol</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/a4fEvAas4gp5V6dT7"
-                  target="_blank"
-                  rel="noopener noreferrer">Bolera</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/iGxsmdMxtnaBsDecA"
-                  target="_blank"
-                  rel="noopener noreferrer">Calle principal</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/DngiLUueFj7EnYqo8"
-                  target="_blank"
-                  rel="noopener noreferrer">Casa de la Cultura</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
-            <div class="mb-4 text-center">
-              <span class="inline-block text-emerald-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                  ><path
-                    d="M120,103.2V176a8,8,0,0,0,16,0V103.2a40,40,0,1,0-16,0ZM128,40a24,24,0,1,1-24,24A24,24,0,0,1,128,40ZM240,176c0,31.18-57.71,48-112,48S16,207.18,16,176c0-7.74,3.81-19.13,22-29.41,12.26-6.94,29.12-12.27,48.77-15.42A8,8,0,1,1,89.27,147c-17.54,2.82-33,7.63-43.42,13.55C37.05,165.5,32,171.14,32,176c0,13.36,36.52,32,96,32s96-18.64,96-32c0-4.86-5.05-10.5-13.85-15.49-10.46-5.92-25.88-10.73-43.42-13.55a8,8,0,1,1,2.54-15.79c19.65,3.15,36.51,8.48,48.77,15.42C236.19,156.87,240,168.26,240,176Z"
-                  ></path></svg
-                ></span
-              >
-              <h3 class="text-2xl text-emerald-800">Zonas de interés</h3>
-            </div>
-            <ul>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/CNydGugH1VYSGBEfA"
-                  target="_blank"
-                  rel="noopener noreferrer">Zona de bares</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/H7pgHyxRtLc8VKzNA"
-                  target="_blank"
-                  rel="noopener noreferrer">Farmacia</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/RJH6qe6EgW6LSr63A"
-                  target="_blank"
-                  rel="noopener noreferrer">Supermercado</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://maps.app.goo.gl/CKuw7rJpNAViLjus5"
-                  target="_blank"
-                  rel="noopener noreferrer">Lavandería autoservicio</a
-                >
-              </li>
-            </ul>
-          </div>
-        </aside>
-
-        <div class="prose max-w-4xl mx-auto py-8 px-4">
-          <h2>El Recorrido paso a paso</h2>
-          <p>
-            El <strong>Faedo de Ciñera</strong> es uno de esos lugares que no se
-            visitan, se viven. Situado en la vertiente sur de la <strong
-              >Cordillera Cantábrica</strong
-            >, dentro de la <strong
-              >Reserva de la Biosfera del Alto Bernesga</strong
-            > (UNESCO, 2005), este pequeño hayedo ha sido reconocido como el Bosque
-            mejor cuidado de España (2007) y forma parte del alma de Ciñera de Gordón
-          </p>
-
-          <p>
-            La ruta, de unos <strong>5 kilómetros ida y vuelta</strong>,
-            comienza en la <strong>plaza de la iglesia</strong>. Desde allí, el
-            camino avanza dejando atrás la bolera y el cementerio, donde ya se
-            siente el rumor del <strong>Arroyo Villar</strong>, guía natural de
-            este recorrido. El sendero es cómodo y llano, adecuado para toda la
-            familia.
-          </p>
-
-          <p>
-            A unos dos kilómetros del inicio, aparece la <strong
-              >bocamina</strong
-            >, rehabilitada por los vecinos con un cariño que se nota en cada
-            detalle. En su interior, convertida en museo, se conservan
-            herramientas y recuerdos.
-          </p>
-
-          <Image
-            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-            src={imageBocamina}
-            alt="Bocamina"
-            loading="lazy"
-          />
-
-          <p>
-            Un poco más adelante, el paisaje cambia. Se levanta la antigua <strong
-              >escombrera</strong
-            >, hoy restaurada y cubierta de vegetación. Desde allí, se alcanza
-            el <strong>puente artesanal</strong> construido por algunos mineros del
-            pueblo, que permite cruzar el arroyo para más adelante llegar a una zona
-            de prado y calma: el <strong>merendero</strong>, con mesas de madera
-            y sombra generosa, donde el aire huele a hierba recién cortada y a
-            paz.
-          </p>
-
-          <Image
-            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-            src={imagePuente}
-            alt="Puente artesanal hecho por mineros de l zona"
-            loading="lazy"
-          />
-
-          <p>
-            A medida que el sendero continúa, la luz se tamiza y el bosque
-            empieza a abrazarte. Es la entrada al Faedo, un hayedo pequeño pero
-            de belleza desbordante, donde cada árbol parece tener alma. Las
-            hayas, crean un techo de hojas que cambia de color con las
-            estaciones. En otoño, el bosque se tiñe de oro y cobre; en
-            primavera, todo se vuelve verde y nuevo.
-          </p>
-
-          <p>
-            Dentro del hayedo, los carteles hablan de leyendas de <strong
-              >hadas y brujas buenas</strong
-            > que habitan entre las raíces. Es fácil creerlo: el silencio es distinto,
-            profundo, lleno de vida. En el corazón del bosque se encuentra <strong
-              >Fagus</strong
-            >, una haya de unos <strong>500 años</strong> y más de <strong
-              >6 metros de perímetro</strong
-            >, considerada una de las 100 más singulares de España.
-          </p>
-
-          <Image
-            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-            src={imageFagus}
-            alt="Fagus el Haya de 500 años"
-            loading="lazy"
-          />
-
-          <p>
-            Más allá, el camino se estrecha y se transforma en roca. El arroyo
-            ha tallado durante siglos las Hoces del Villar, un desfiladero
-            imponente que une Ciñera con <strong>Villar del Puerto</strong>. Una
-            pasarela de madera y acero, construida en 2005, permite recorrer
-            este tramo con seguridad, suspendidos sobre el agua. La vista desde
-            aquí es pura emoción: cascadas, pozas y el sonido constante del agua
-            entre las piedras, desde donde se pueden apreciar las <strong
-              >Marmitas de Gigante</strong
-            >, formaciones naturales creadas por la fuerza del arroyo al chocar
-            contra la piedra caliza. En los días cálidos, el reflejo del sol
-            sobre el agua convierte este rincón en un espectáculo de luz. Aquí
-            muchos visitantes deciden detenerse y regresar por el mismo camino,
-            aunque también es posible continuar hasta <strong
-              >Valporquero</strong
-            > o <strong>Villar del Puerto</strong>, siguiendo la senda que
-            antaño recorrían los mineros.
-          </p>
-
-          <Image
-            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-            src={imageMarmitas}
-            alt="Marmitas de Gigante"
-            loading="lazy"
-          />
-
-          <p>
-            De vuelta, el camino nos invita a mirar con otros ojos lo ya visto.
-            En la zona de la escombrera, un desvío conduce al <strong
-              >mirador del Beso</strong
-            >, desde donde se puede contemplar el valle en toda su amplitud. Un
-            poco más arriba, se levanta el castillete del <strong
-              >Pozo Ibarra</strong
-            >, símbolo del pasado industrial de Ciñera. Este conjunto fue
-            declarado en 2011 <strong>Bien de Interés Cultural</strong> (BIC) con
-            la categoría de <strong>Conjunto Etnográfico</strong>, en
-            reconocimiento a su valor histórico y humano.
-          </p>
-
-          <Image
-            class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-            src={imagePozoIbarra2}
-            alt="Pozo Ibarra"
-            loading="lazy"
-          />
-
-          <p>
-            Desde allí, solo queda dejarse llevar cuesta abajo, hasta regresar a <strong
-              >Ciñera de Gordón</strong
-            >, al punto donde comenzó el viaje.
-          </p>
-
-          <p>
-            Y aunque el recorrido termine, el Faedo sigue contigo. Porque este
-            bosque —pequeño, frágil y eterno— no solo se recorre con los pies,
-            sino con el alma. Quien entra en él, siempre vuelve.
-          </p>
-      </div>
-      </article>
-      
-      <Gallery />
-
-      <SectionHeader
-        title="Puntos de Interés Destacados"
-        description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
+    <section aria-labelledby="mapa" class="max-w-7xl mx-auto px-4">
+      <MapLeaflet
+        lat={data.start_coords.lat}
+        lng={data.start_coords.lng}
+        zoom={14}
+        height="380px"
       />
-      <div class="grid sm:grid-cols-4 gap-4 mx-auto max-w-7xl px-4">
-        <Cards ids={["marmitas", "bocamina", "puente", "fagus"]} />
+      <p class="text-sm">
+        Descarga el GPX: <a href="/gpx/faedo.gpx" download>faedo.gpx</a>
+      </p>
+    </section>
+    <aside class="grid sm:grid-cols-3 gap-4 max-w-7xl mx-auto py-8 px-4">
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300">
+            <svg
+              width="32"
+              height="32"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+              ><path
+                d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"
+              ></path></svg
+            ></span
+          >
+          <h3 class="text-2xl text-emerald-800">Cómo llegar</h3>
+        </div>
+        <ul>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/SdQxtZvE2ud87h938"
+              target="_blank"
+              rel="noopener noreferrer">Punto de comienzo de la ruta</a
+            >
+          </li>
+        </ul>
       </div>
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300">
+            <svg
+              width="32"
+              height="32"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+              ><path
+                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-136H104a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V152h24a36,36,0,0,0,0-72Zm0,56H112V96h24a20,20,0,0,1,0,40Z"
+              ></path></svg
+            ></span
+          >
+          <h3 class="text-2xl text-emerald-800">Dónde aparcar</h3>
+        </div>
+        <ul>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/qbqp7HGWuW4A6T2Z7"
+              target="_blank"
+              rel="noopener noreferrer">Campo de fútbol</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/a4fEvAas4gp5V6dT7"
+              target="_blank"
+              rel="noopener noreferrer">Bolera</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/iGxsmdMxtnaBsDecA"
+              target="_blank"
+              rel="noopener noreferrer">Calle principal</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/DngiLUueFj7EnYqo8"
+              target="_blank"
+              rel="noopener noreferrer">Casa de la Cultura</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="min-h-[200px] border border-neutral-400 rounded-lg p-4">
+        <div class="mb-4 text-center">
+          <span class="inline-block text-emerald-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+              ><path
+                d="M120,103.2V176a8,8,0,0,0,16,0V103.2a40,40,0,1,0-16,0ZM128,40a24,24,0,1,1-24,24A24,24,0,0,1,128,40ZM240,176c0,31.18-57.71,48-112,48S16,207.18,16,176c0-7.74,3.81-19.13,22-29.41,12.26-6.94,29.12-12.27,48.77-15.42A8,8,0,1,1,89.27,147c-17.54,2.82-33,7.63-43.42,13.55C37.05,165.5,32,171.14,32,176c0,13.36,36.52,32,96,32s96-18.64,96-32c0-4.86-5.05-10.5-13.85-15.49-10.46-5.92-25.88-10.73-43.42-13.55a8,8,0,1,1,2.54-15.79c19.65,3.15,36.51,8.48,48.77,15.42C236.19,156.87,240,168.26,240,176Z"
+              ></path></svg
+            ></span
+          >
+          <h3 class="text-2xl text-emerald-800">Zonas de interés</h3>
+        </div>
+        <ul>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/CNydGugH1VYSGBEfA"
+              target="_blank"
+              rel="noopener noreferrer">Zona de bares</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/H7pgHyxRtLc8VKzNA"
+              target="_blank"
+              rel="noopener noreferrer">Farmacia</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/RJH6qe6EgW6LSr63A"
+              target="_blank"
+              rel="noopener noreferrer">Supermercado</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/CKuw7rJpNAViLjus5"
+              target="_blank"
+              rel="noopener noreferrer">Lavandería autoservicio</a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="prose max-w-4xl mx-auto py-8 px-4">
+      <h2>El Recorrido paso a paso</h2>
+      <p>
+        El <strong>Faedo de Ciñera</strong> es uno de esos lugares que no se visitan,
+        se viven. Situado en la vertiente sur de la <strong
+          >Cordillera Cantábrica</strong
+        >, dentro de la <strong>Reserva de la Biosfera del Alto Bernesga</strong
+        > (UNESCO, 2005), este pequeño hayedo ha sido reconocido como el Bosque mejor
+        cuidado de España (2007) y forma parte del alma de Ciñera de Gordón
+      </p>
+
+      <p>
+        La ruta, de unos <strong>5 kilómetros ida y vuelta</strong>, comienza en
+        la <strong>plaza de la iglesia</strong>. Desde allí, el camino avanza
+        dejando atrás la bolera y el cementerio, donde ya se siente el rumor del <strong
+          >Arroyo Villar</strong
+        >, guía natural de este recorrido. El sendero es cómodo y llano,
+        adecuado para toda la familia.
+      </p>
+
+      <p>
+        A unos dos kilómetros del inicio, aparece la <strong>bocamina</strong>,
+        rehabilitada por los vecinos con un cariño que se nota en cada detalle.
+        En su interior, convertida en museo, se conservan herramientas y
+        recuerdos.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageBocamina}
+        alt="Bocamina"
+        loading="lazy"
+      />
+
+      <p>
+        Un poco más adelante, el paisaje cambia. Se levanta la antigua <strong
+          >escombrera</strong
+        >, hoy restaurada y cubierta de vegetación. Desde allí, se alcanza el <strong
+          >puente artesanal</strong
+        > construido por algunos mineros del pueblo, que permite cruzar el arroyo
+        para más adelante llegar a una zona de prado y calma: el <strong
+          >merendero</strong
+        >, con mesas de madera y sombra generosa, donde el aire huele a hierba
+        recién cortada y a paz.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imagePuente}
+        alt="Puente artesanal hecho por mineros de l zona"
+        loading="lazy"
+      />
+
+      <p>
+        A medida que el sendero continúa, la luz se tamiza y el bosque empieza a
+        abrazarte. Es la entrada al Faedo, un hayedo pequeño pero de belleza
+        desbordante, donde cada árbol parece tener alma. Las hayas, crean un
+        techo de hojas que cambia de color con las estaciones. En otoño, el
+        bosque se tiñe de oro y cobre; en primavera, todo se vuelve verde y
+        nuevo.
+      </p>
+
+      <p>
+        Dentro del hayedo, los carteles hablan de leyendas de <strong
+          >hadas y brujas buenas</strong
+        > que habitan entre las raíces. Es fácil creerlo: el silencio es distinto,
+        profundo, lleno de vida. En el corazón del bosque se encuentra <strong
+          >Fagus</strong
+        >, una haya de unos <strong>500 años</strong> y más de <strong
+          >6 metros de perímetro</strong
+        >, considerada una de las 100 más singulares de España.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageFagus}
+        alt="Fagus el Haya de 500 años"
+        loading="lazy"
+      />
+
+      <p>
+        Más allá, el camino se estrecha y se transforma en roca. El arroyo ha
+        tallado durante siglos las Hoces del Villar, un desfiladero imponente
+        que une Ciñera con <strong>Villar del Puerto</strong>. Una pasarela de
+        madera y acero, construida en 2005, permite recorrer este tramo con
+        seguridad, suspendidos sobre el agua. La vista desde aquí es pura
+        emoción: cascadas, pozas y el sonido constante del agua entre las
+        piedras, desde donde se pueden apreciar las <strong
+          >Marmitas de Gigante</strong
+        >, formaciones naturales creadas por la fuerza del arroyo al chocar
+        contra la piedra caliza. En los días cálidos, el reflejo del sol sobre
+        el agua convierte este rincón en un espectáculo de luz. Aquí muchos
+        visitantes deciden detenerse y regresar por el mismo camino, aunque
+        también es posible continuar hasta <strong>Valporquero</strong> o <strong
+          >Villar del Puerto</strong
+        >, siguiendo la senda que antaño recorrían los mineros.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imageMarmitas}
+        alt="Marmitas de Gigante"
+        loading="lazy"
+      />
+
+      <p>
+        De vuelta, el camino nos invita a mirar con otros ojos lo ya visto. En
+        la zona de la escombrera, un desvío conduce al <strong
+          >mirador del Beso</strong
+        >, desde donde se puede contemplar el valle en toda su amplitud. Un poco
+        más arriba, se levanta el castillete del <strong>Pozo Ibarra</strong>,
+        símbolo del pasado industrial de Ciñera. Este conjunto fue declarado en
+        2011 <strong>Bien de Interés Cultural</strong> (BIC) con la categoría de
+        <strong>Conjunto Etnográfico</strong>, en reconocimiento a su valor
+        histórico y humano.
+      </p>
+
+      <Image
+        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+        src={imagePozoIbarra2}
+        alt="Pozo Ibarra"
+        loading="lazy"
+      />
+
+      <p>
+        Desde allí, solo queda dejarse llevar cuesta abajo, hasta regresar a <strong
+          >Ciñera de Gordón</strong
+        >, al punto donde comenzó el viaje.
+      </p>
+
+      <p>
+        Y aunque el recorrido termine, el Faedo sigue contigo. Porque este
+        bosque —pequeño, frágil y eterno— no solo se recorre con los pies, sino
+        con el alma. Quien entra en él, siempre vuelve.
+      </p>
     </div>
-  </section>
+  </article>
+
+  <Gallery />
+
+  <SectionHeader
+    title="Puntos de Interés Destacados"
+    description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
+  />
+  <div class="grid sm:grid-cols-4 gap-4 mx-auto max-w-7xl px-4">
+    <Cards ids={["marmitas", "bocamina", "puente", "fagus"]} />
+  </div>
 </Layout>

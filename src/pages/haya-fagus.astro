@@ -17,19 +17,20 @@ const landmarkSchema = {
   "@context": "https://schema.org",
   "@type": "LandmarksOrHistoricalBuildings",
   name: "Haya Fagus de Ciñera",
-  description: "Árbol centenario de 500 años, uno de los 100 árboles más singulares de España",
+  description:
+    "Árbol centenario de 500 años, uno de los 100 árboles más singulares de España",
   image: imageFagus.src,
   geo: {
     "@type": "GeoCoordinates",
     latitude: 42.8862,
-    longitude: -5.6113
+    longitude: -5.6113,
   },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Ciñera de Gordón",
     addressRegion: "León",
-    addressCountry: "ES"
-  }
+    addressCountry: "ES",
+  },
 };
 ---
 
@@ -50,7 +51,7 @@ const landmarkSchema = {
       { href: "/haya-fagus", label: "El Haya Fagus" },
     ]}
   />
-  
+
   <div>
     <header class="text-center max-w-2xl mx-auto mt-5">
       <h1 class="mb-2 text-emerald-800 text-balance">
@@ -59,122 +60,150 @@ const landmarkSchema = {
     </header>
     <div class="prose max-w-4xl mx-auto py-8 px-4">
       <p class="lead">
-        Me llamo <strong>Fagus</strong> y tengo 500 años. Soy una de las hayas más ancianas de España, 
-        con 6,32m de perímetro y 23m de altura. Incluido en "Árboles, Leyendas Vivas" como uno de los 
-        100 árboles más singulares de España.
+        Me llamo <strong>Fagus</strong> y tengo 500 años. Soy una de las hayas más
+        ancianas de España, con 6,32m de perímetro y 23m de altura. Incluido en "Árboles,
+        Leyendas Vivas" como uno de los 100 árboles más singulares de España.
       </p>
 
       <section>
-      <h2>Bienvenidos al Haya más antigua del Faedo</h2>
-      <p>
-        También soy peculiar por mi forma, me dicen. Tengo un perímetro de 6,32m en mi base y mido 23m de altura. 
-        Lo normal es que mis hermanas, las hayas, sean árboles grandes, imponentes, hasta de 30m. Con las copas anchas 
-        y abombadas, la mía tiene forma de copa de vino. No recuerdo, pero es probable que alguna tormenta me arrancase 
-        la guía, o.... ¡quizás algún vecino!.
-      </p>
-      
-      <Image
-        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-        src={imageFagus}
-        alt="El Haya Fagus de 500 años"
-      />
+        <h2>Bienvenidos al Haya más antigua del Faedo</h2>
+        <p>
+          También soy peculiar por mi forma, me dicen. Tengo un perímetro de
+          6,32m en mi base y mido 23m de altura. Lo normal es que mis hermanas,
+          las hayas, sean árboles grandes, imponentes, hasta de 30m. Con las
+          copas anchas y abombadas, la mía tiene forma de copa de vino. No
+          recuerdo, pero es probable que alguna tormenta me arrancase la guía,
+          o.... ¡quizás algún vecino!.
+        </p>
+
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageFagus}
+          alt="El Haya Fagus de 500 años"
+        />
       </section>
 
       <section>
-      <h2>Un árbol singular reconocido en toda España</h2>
-      <p>
-        Estas características y la <a href="/haeda">leyenda de "La bruja Haeda"</a> hacen que me encuentre incluida 
-        en una selección de 100 árboles, los más singulares de España, en el libro 
-        <strong>"Árboles, leyendas vivas"</strong> editado por la Obra Social de Caja Madrid.
-      </p>
-      <p>
-        Mirad a vuestro entorno ¡El Faedo!, aquí vivo. Un bosque en el que se respira magia. Este suelo calizo y 
-        la materia orgánica hacen que nuestros hayucos, los frutos del haya, germinen fácilmente.
-      </p>
+        <h2>Un árbol singular reconocido en toda España</h2>
+        <p>
+          Estas características y la <a href="/haeda"
+            >leyenda de "La bruja Haeda"</a
+          > hacen que me encuentre incluida en una selección de 100 árboles, los
+          más singulares de España, en el libro
+          <strong>"Árboles, leyendas vivas"</strong> editado por la Obra Social de
+          Caja Madrid.
+        </p>
+        <p>
+          Mirad a vuestro entorno ¡El Faedo!, aquí vivo. Un bosque en el que se
+          respira magia. Este suelo calizo y la materia orgánica hacen que
+          nuestros hayucos, los frutos del haya, germinen fácilmente.
+        </p>
       </section>
 
       <section>
-      <h2>La vida en el bosque</h2>
-      <p>
-        Los animales que aquí viven esconden nuestros frutos en huecos y grietas, olvidándolas luego, por ello, 
-        hay hayas que aparecen incrustadas en las rocas literalmente. El arroyo de Ciñera nos refresca y humedece 
-        a la vez que produce esta mágica música, que te hace sentir "Paz".
-      </p>
-      <p>
-        Muchos animalillos comparten con nosotras, las hayas, este paraje, aunque no se dejan ver fácilmente por 
-        el hombre ruidoso: <strong>lirones, trepadores, carboneros, agateadores y herrerillos</strong> hacen de los 
-        huecos de nuestros troncos y ramas su hogar. Nuestros hayucos sirven de alimento a <strong>corzos y jabalíes</strong> 
-        durante el invierno. ¡Anímate a madrugar la próxima vez! Disfrutarás al ver al 
-        <a href="/flora-fauna#desman">desmán de los pirineos</a> en su baño matutino.
-      </p>
-      
-      <Image
-        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-        src={imageFagus2}
-        alt="Detalle del Haya Fagus"
-      />
+        <h2>La vida en el bosque</h2>
+        <p>
+          Los animales que aquí viven esconden nuestros frutos en huecos y
+          grietas, olvidándolas luego, por ello, hay hayas que aparecen
+          incrustadas en las rocas literalmente. El arroyo de Ciñera nos
+          refresca y humedece a la vez que produce esta mágica música, que te
+          hace sentir "Paz".
+        </p>
+        <p>
+          Muchos animalillos comparten con nosotras, las hayas, este paraje,
+          aunque no se dejan ver fácilmente por el hombre ruidoso: <strong
+            >lirones, trepadores, carboneros, agateadores y herrerillos</strong
+          > hacen de los huecos de nuestros troncos y ramas su hogar. Nuestros hayucos
+          sirven de alimento a <strong>corzos y jabalíes</strong>
+          durante el invierno. ¡Anímate a madrugar la próxima vez! Disfrutarás al
+          ver al
+          <a href="/flora-fauna#desman">desmán de los pirineos</a> en su baño matutino.
+        </p>
+
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageFagus2}
+          alt="Detalle del Haya Fagus"
+        />
       </section>
 
       <section>
-      <h2>Testigo de la historia minera</h2>
-      <p>
-        Paraje especial sin duda, aquí se respira vida. Hace unos 150 años los hombres de Villar del Puerto y 
-        Valle de Vegacervera, pasaban por aquí diariamente. Su camino, duro en cualquier época del año, terminaba 
-        en la mina. Su sudor regó nuestro bosque durante años.
-      </p>
-      <p>
-        En honor a ellos nuestros troncos y raíces crecen tortuosos en vez de rectos y altivos. Recuerdo el sonar 
-        de las campanas de los pueblos vecinos tocando a "hacendera" y mujeres y niños venían a hacer camino en la 
-        nieve para que, tras la jornada en la mina y la gran nevada, papás y maridos pudiesen volver a casa a pasar 
-        la noche.
-      </p>
-      <p>
-        Un poco más arriba en el antiguo "puente de palos" perdieron varios de estos mineros la vida, víctimas de 
-        los aludes. A ellos y a sus familias mi recuerdo y admiración.
-      </p>
+        <h2>Testigo de la historia minera</h2>
+        <p>
+          Paraje especial sin duda, aquí se respira vida. Hace unos 150 años los
+          hombres de Villar del Puerto y Valle de Vegacervera, pasaban por aquí
+          diariamente. Su camino, duro en cualquier época del año, terminaba en
+          la mina. Su sudor regó nuestro bosque durante años.
+        </p>
+        <p>
+          En honor a ellos nuestros troncos y raíces crecen tortuosos en vez de
+          rectos y altivos. Recuerdo el sonar de las campanas de los pueblos
+          vecinos tocando a "hacendera" y mujeres y niños venían a hacer camino
+          en la nieve para que, tras la jornada en la mina y la gran nevada,
+          papás y maridos pudiesen volver a casa a pasar la noche.
+        </p>
+        <p>
+          Un poco más arriba en el antiguo "puente de palos" perdieron varios de
+          estos mineros la vida, víctimas de los aludes. A ellos y a sus
+          familias mi recuerdo y admiración.
+        </p>
       </section>
 
       <section>
-      <h2>Continúa la aventura</h2>
-      <p>
-        Si te encuentras con fuerzas, continua arroyo arriba. <strong>"Las marmitas de gigante"</strong> te contarán 
-        historias de amores y desengaños. Muchos niños y algún adulto valiente, las utilizan como bañeras relajantes. 
-        Más arriba y como a hora y media de camino de aquí, encontrarás las <strong>Cuevas de Valporquero</strong>, 
-        pero eso ya es otra cosa.
-      </p>
-      <p>
-        Sólo me queda animarte a leer la <a href="/haeda">leyenda de "La bruja Haeda"</a>, agradecerte la visita 
-        y el respeto mostrado..... <strong>“hasta siempre”</strong>.
-      </p>
-      
-      <Image
-        class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
-        src={imageFagus3}
-        alt="Raíces del Haya Fagus"
-      />
+        <h2>Continúa la aventura</h2>
+        <p>
+          Si te encuentras con fuerzas, continua arroyo arriba. <strong
+            >"Las marmitas de gigante"</strong
+          > te contarán historias de amores y desengaños. Muchos niños y algún adulto
+          valiente, las utilizan como bañeras relajantes. Más arriba y como a hora
+          y media de camino de aquí, encontrarás las <strong
+            >Cuevas de Valporquero</strong
+          >, pero eso ya es otra cosa.
+        </p>
+        <p>
+          Sólo me queda animarte a leer la <a href="/haeda"
+            >leyenda de "La bruja Haeda"</a
+          >, agradecerte la visita y el respeto mostrado..... <strong
+            >“hasta siempre”</strong
+          >.
+        </p>
+
+        <Image
+          class="w-full h-full rounded-2xl object-cover object-center shadow-lg shadow-black/25 my-8"
+          src={imageFagus3}
+          alt="Raíces del Haya Fagus"
+        />
       </section>
 
       <div class="bg-gray-50 border rounded-lg p-4 mt-6 text-sm">
         <p class="text-gray-600">
-          <strong>Cómo llegar:</strong> El Haya Fagus se encuentra en el corazón del 
-          <a href="/ruta/faedo-de-cinera" class="underline">recorrido del Faedo</a>, 
-          aproximadamente a 20 minutos caminando desde el inicio en Ciñera.
+          <strong>Cómo llegar:</strong> El Haya Fagus se encuentra en el corazón
+          del
+          <a href="/ruta/faedo-de-cinera" class="underline"
+            >recorrido del Faedo</a
+          >, aproximadamente a 20 minutos caminando desde el inicio en Ciñera.
         </p>
       </div>
     </div>
-    
+
     <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
       <header class="text-center max-w-2xl mx-auto mb-10">
         <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
           Explora más sobre el Faedo
         </h3>
         <p class="text-balance text-emerald-800 font-medium leading-6">
-          Descubre más sobre el Faedo de Ciñera y su fascinante historia natural.
+          Descubre más sobre el Faedo de Ciñera y su fascinante historia
+          natural.
         </p>
       </header>
       <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Cards
-          ids={["flora-fauna", "geologia", "patrimonio-minero", "historia-naturaleza"]}
+          ids={[
+            "flora-fauna",
+            "geologia",
+            "patrimonio-minero",
+            "historia-naturaleza",
+          ]}
           titleTag="h4"
         />
       </div>

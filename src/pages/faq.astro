@@ -1,67 +1,81 @@
 ---
-import Layout from '../components/Layout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import Seo from '../components/Seo.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import Cards from '../components/Cards.astro';
+import Layout from "../components/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Seo from "../components/Seo.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Cards from "../components/Cards.astro";
 
 const title = "Preguntas Frecuentes sobre el Faedo de Ciñera";
-const description = "Preguntas frecuentes sobre la Ruta del Faedo de Ciñera: accesibilidad, mascotas, época, meteorología, prohibiciones y más.";
+const description =
+  "Preguntas frecuentes sobre la Ruta del Faedo de Ciñera: accesibilidad, mascotas, época, meteorología, prohibiciones y más.";
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
 const faqs = [
-    { 
-      question: '¿Cuál es la mejor época para visitar el Faedo de Ciñera?', 
-      answer: 'La mejor época para visitar el Faedo de Ciñera es en otoño (octubre-noviembre) cuando el hayedo muestra sus colores más espectaculares. La primavera (abril-mayo) también es excelente, con temperaturas suaves y el bosque verde brillante. El Faedo de Ciñera se puede visitar todo el año, aunque en verano hace calor y en invierno puede haber hielo en las pasarelas.' 
-    },
-    { 
-      question: '¿Cómo llegar al Faedo de Ciñera desde León?', 
-      answer: 'Para llegar al Faedo de Ciñera desde León, toma la A-66 dirección Oviedo y sal en La Robla/Ciñera (unos 35 km, 30 minutos). También puedes llegar en autobús ALSA hasta Ciñera o en tren FEVE hasta La Robla y luego taxi. El inicio de la ruta del Faedo de Ciñera está en el pueblo de Ciñera, junto a la iglesia.' 
-    },
-    { 
-      question: '¿Dónde aparcar en el Faedo de Ciñera?', 
-      answer: 'Hay un aparcamiento señalizado gratuito en Ciñera, junto al inicio de la ruta del Faedo de Ciñera. En temporada alta (otoño) puede llenarse pronto, se recomienda llegar temprano. El aparcamiento está a pocos metros del comienzo del sendero.' 
-    },
-    { 
-      question: '¿La ruta del Faedo de Ciñera es apta para niños?', 
-      answer: 'Sí, la ruta del Faedo de Ciñera es perfecta para niños. Es un sendero corto (4,5 km), fácil y con pasarelas de madera que lo hacen seguro. Hay que vigilar cerca del arroyo y en algunos tramos con desnivel. Es una de las mejores rutas de senderismo en León para hacer en familia.' 
-    },
-    { 
-      question: '¿Se puede ir con perros al Faedo de Ciñera?', 
-      answer: 'Sí, se puede ir con perros al Faedo de Ciñera, pero deben ir siempre atados con correa. Es importante recoger los excrementos y respetar a otros visitantes y la fauna del hayedo.' 
-    },
-    { 
-      question: '¿Cuánto dura la ruta del Faedo de Ciñera?', 
-      answer: 'La ruta del Faedo de Ciñera dura entre 1,5 y 2 horas, dependiendo de tu ritmo y las paradas que hagas. Son 4,5 km circulares con 120 metros de desnivel acumulado. Si vas con niños o quieres hacer fotos, calcula unas 2 horas.' 
-    },
-    { 
-      question: '¿Dónde descargar el GPX del Faedo de Ciñera?', 
-      answer: 'Puedes descargar el track GPX del Faedo de Ciñera en la página de la ruta. El archivo incluye los 108 puntos GPS reales del recorrido circular, puntos de interés y datos de elevación.' 
-    },
-    { 
-      question: '¿Qué llevar para la ruta del Faedo de Ciñera?', 
-      answer: 'Para la ruta del Faedo de Ciñera lleva: calzado cómodo e impermeable (las pasarelas pueden estar húmedas), agua, chubasquero, protección solar, cámara de fotos y el track GPX descargado. En otoño, lleva ropa de abrigo por capas.' 
-    },
-    { 
-      question: '¿Hay restaurantes cerca del Faedo de Ciñera?', 
-      answer: 'Sí, en Ciñera, La Robla y Pola de Gordón hay varios restaurantes con cocina tradicional leonesa. Se recomienda reservar en fines de semana y festivos, especialmente en otoño cuando el Faedo de Ciñera recibe más visitantes.' 
-    },
-    { 
-      question: '¿Está permitido hacer fuego en el Faedo de Ciñera?', 
-      answer: 'No, está totalmente prohibido hacer fuego en el Faedo de Ciñera y sus alrededores. Es un espacio natural protegido y el riesgo de incendio es alto. Tampoco se permite acampar.' 
-    },
-    { 
-      question: '¿Hay cobertura móvil en el Faedo de Ciñera?', 
-      answer: 'La cobertura móvil en el Faedo de Ciñera es variable. En el pueblo de Ciñera hay cobertura, pero dentro del hayedo puede ser intermitente. Descarga el mapa y el GPX antes de empezar la ruta.' 
-    },
-    { 
-      question: '¿Cuánto mide la ruta del Faedo de Ciñera?', 
-      answer: 'La ruta del Faedo de Ciñera es un sendero circular de 4,5 kilómetros con 120 metros de desnivel acumulado. Es una ruta corta y fácil que se completa en 1,5-2 horas.' 
-    },
-    { 
-      question: '¿El Faedo de Ciñera es gratis?', 
-      answer: 'Sí, visitar el Faedo de Ciñera es completamente gratuito. No hay que pagar entrada ni reservar. El aparcamiento en Ciñera también es gratuito.' 
-    }
+  {
+    question: "¿Cuál es la mejor época para visitar el Faedo de Ciñera?",
+    answer:
+      "La mejor época para visitar el Faedo de Ciñera es en otoño (octubre-noviembre) cuando el hayedo muestra sus colores más espectaculares. La primavera (abril-mayo) también es excelente, con temperaturas suaves y el bosque verde brillante. El Faedo de Ciñera se puede visitar todo el año, aunque en verano hace calor y en invierno puede haber hielo en las pasarelas.",
+  },
+  {
+    question: "¿Cómo llegar al Faedo de Ciñera desde León?",
+    answer:
+      "Para llegar al Faedo de Ciñera desde León, toma la A-66 dirección Oviedo y sal en La Robla/Ciñera (unos 35 km, 30 minutos). También puedes llegar en autobús ALSA hasta Ciñera o en tren FEVE hasta La Robla y luego taxi. El inicio de la ruta del Faedo de Ciñera está en el pueblo de Ciñera, junto a la iglesia.",
+  },
+  {
+    question: "¿Dónde aparcar en el Faedo de Ciñera?",
+    answer:
+      "Hay un aparcamiento señalizado gratuito en Ciñera, junto al inicio de la ruta del Faedo de Ciñera. En temporada alta (otoño) puede llenarse pronto, se recomienda llegar temprano. El aparcamiento está a pocos metros del comienzo del sendero.",
+  },
+  {
+    question: "¿La ruta del Faedo de Ciñera es apta para niños?",
+    answer:
+      "Sí, la ruta del Faedo de Ciñera es perfecta para niños. Es un sendero corto (4,5 km), fácil y con pasarelas de madera que lo hacen seguro. Hay que vigilar cerca del arroyo y en algunos tramos con desnivel. Es una de las mejores rutas de senderismo en León para hacer en familia.",
+  },
+  {
+    question: "¿Se puede ir con perros al Faedo de Ciñera?",
+    answer:
+      "Sí, se puede ir con perros al Faedo de Ciñera, pero deben ir siempre atados con correa. Es importante recoger los excrementos y respetar a otros visitantes y la fauna del hayedo.",
+  },
+  {
+    question: "¿Cuánto dura la ruta del Faedo de Ciñera?",
+    answer:
+      "La ruta del Faedo de Ciñera dura entre 1,5 y 2 horas, dependiendo de tu ritmo y las paradas que hagas. Son 4,5 km circulares con 120 metros de desnivel acumulado. Si vas con niños o quieres hacer fotos, calcula unas 2 horas.",
+  },
+  {
+    question: "¿Dónde descargar el GPX del Faedo de Ciñera?",
+    answer:
+      "Puedes descargar el track GPX del Faedo de Ciñera en la página de la ruta. El archivo incluye los 108 puntos GPS reales del recorrido circular, puntos de interés y datos de elevación.",
+  },
+  {
+    question: "¿Qué llevar para la ruta del Faedo de Ciñera?",
+    answer:
+      "Para la ruta del Faedo de Ciñera lleva: calzado cómodo e impermeable (las pasarelas pueden estar húmedas), agua, chubasquero, protección solar, cámara de fotos y el track GPX descargado. En otoño, lleva ropa de abrigo por capas.",
+  },
+  {
+    question: "¿Hay restaurantes cerca del Faedo de Ciñera?",
+    answer:
+      "Sí, en Ciñera, La Robla y Pola de Gordón hay varios restaurantes con cocina tradicional leonesa. Se recomienda reservar en fines de semana y festivos, especialmente en otoño cuando el Faedo de Ciñera recibe más visitantes.",
+  },
+  {
+    question: "¿Está permitido hacer fuego en el Faedo de Ciñera?",
+    answer:
+      "No, está totalmente prohibido hacer fuego en el Faedo de Ciñera y sus alrededores. Es un espacio natural protegido y el riesgo de incendio es alto. Tampoco se permite acampar.",
+  },
+  {
+    question: "¿Hay cobertura móvil en el Faedo de Ciñera?",
+    answer:
+      "La cobertura móvil en el Faedo de Ciñera es variable. En el pueblo de Ciñera hay cobertura, pero dentro del hayedo puede ser intermitente. Descarga el mapa y el GPX antes de empezar la ruta.",
+  },
+  {
+    question: "¿Cuánto mide la ruta del Faedo de Ciñera?",
+    answer:
+      "La ruta del Faedo de Ciñera es un sendero circular de 4,5 kilómetros con 120 metros de desnivel acumulado. Es una ruta corta y fácil que se completa en 1,5-2 horas.",
+  },
+  {
+    question: "¿El Faedo de Ciñera es gratis?",
+    answer:
+      "Sí, visitar el Faedo de Ciñera es completamente gratuito. No hay que pagar entrada ni reservar. El aparcamiento en Ciñera también es gratuito.",
+  },
 ];
 ---
 
@@ -73,8 +87,13 @@ const faqs = [
     url={canonical}
     type="website"
   />
-  <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/faq', label: 'FAQ' }]} />
-  
+  <Breadcrumbs
+    items={[
+      { href: "/", label: "Inicio" },
+      { href: "/faq", label: "FAQ" },
+    ]}
+  />
+
   <div>
     <header class="text-center max-w-2xl mx-auto mt-5">
       <h1 class="mb-2 text-emerald-800 text-balance">{title}</h1>
@@ -85,16 +104,20 @@ const faqs = [
 
     <div class="prose max-w-4xl mx-auto py-8 px-4">
       <p class="lead">
-        Aquí encontrarás respuestas a las preguntas más frecuentes sobre la <strong>Ruta del Faedo de Ciñera</strong>. 
-        Si tienes alguna duda que no aparece aquí, no dudes en contactar con la Junta Vecinal de Ciñera.
+        Aquí encontrarás respuestas a las preguntas más frecuentes sobre la <strong
+          >Ruta del Faedo de Ciñera</strong
+        >. Si tienes alguna duda que no aparece aquí, no dudes en contactar con
+        la Junta Vecinal de Ciñera.
       </p>
 
-      {faqs.map((faq, index) => (
-        <section>
-          <h2>{faq.question}</h2>
-          <p>{faq.answer}</p>
-        </section>
-      ))}
+      {
+        faqs.map((faq, index) => (
+          <section>
+            <h2>{faq.question}</h2>
+            <p>{faq.answer}</p>
+          </section>
+        ))
+      }
     </div>
 
     <section class="py-5 px-4" aria-labelledby="intro">
@@ -103,10 +126,10 @@ const faqs = [
         description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
       />
       <div class="grid sm:grid-cols-4 gap-4 mx-auto max-w-7xl">
-        <Cards ids={['ruta', 'historia-naturaleza', 'guia-visitantes', 'blog']} />
+        <Cards
+          ids={["ruta", "historia-naturaleza", "guia-visitantes", "blog"]}
+        />
       </div>
     </section>
-  
   </div>
 </Layout>
-
