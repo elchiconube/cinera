@@ -1,88 +1,132 @@
 ---
-import Layout from '../../components/Layout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import Seo from '../../components/Seo.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-import { SITE_LOGO, SITE_URL } from '../../consts';
+import Layout from "../../components/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Seo from "../../components/Seo.astro";
+import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { SITE_LOGO, SITE_URL } from "../../consts";
 
-interface Props { params: { slug: string } }
-const { slug } = Astro.params as Props['params'];
-const post = (await getCollection('blog')).find((p) => p.slug === slug);
-if (!post) throw new Error('Post no encontrado');
+interface Props {
+  params: { slug: string };
+}
+const { slug } = Astro.params as Props["params"];
+const post = (await getCollection("blog")).find((p) => p.slug === slug);
+if (!post) throw new Error("Post no encontrado");
 const data = post.data;
 const { Content } = await post.render();
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const blogLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
   headline: data.title,
   description: data.excerpt,
   datePublished: data.date.toISOString(),
   dateModified: data.date.toISOString(),
   mainEntityOfPage: canonical,
-  image: data.coverImage?.src ? new URL(data.coverImage.src, Astro.site).toString() : undefined,
+  image: data.coverImage?.src
+    ? new URL(data.coverImage.src, Astro.site).toString()
+    : undefined,
   author: {
-    '@type': 'Organization',
-    name: 'Faedo de Ciñera',
-    url: SITE_URL
+    "@type": "Organization",
+    name: "Faedo de Ciñera",
+    url: SITE_URL,
   },
   publisher: {
-    '@type': 'Organization',
-    name: 'Faedo de Ciñera',
+    "@type": "Organization",
+    name: "Faedo de Ciñera",
     url: SITE_URL,
     logo: {
-      '@type': 'ImageObject',
-      url: new URL(SITE_LOGO, Astro.site).toString()
-    }
-  }
+      "@type": "ImageObject",
+      url: new URL(SITE_LOGO, Astro.site).toString(),
+    },
+  },
 };
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
   return posts.map((p) => ({ params: { slug: p.slug } }));
 }
 ---
+
 <Layout title={data.title} description={data.excerpt}>
-  <Seo slot="head" title={data.title} description={data.excerpt} type="article" jsonLd={blogLd} />
-  <Breadcrumbs items={[{ href: '/', label: 'Inicio' }, { href: '/blog', label: 'Blog' }, { href: `/blog/${slug}`, label: data.title }]} />
+  <Seo
+    slot="head"
+    title={data.title}
+    description={data.excerpt}
+    type="article"
+    jsonLd={blogLd}
+  />
+  <Breadcrumbs
+    items={[
+      { href: "/", label: "Inicio" },
+      { href: "/blog", label: "Blog" },
+      { href: `/blog/${slug}`, label: data.title },
+    ]}
+  />
   <article class="max-w-4xl mx-auto py-8 md:py-12 px-4">
+    {
+      data.coverImage && (
+        <div class="max-w-4xl max-h-96 mx-auto mb-8 md:mb-12 -mx-4 sm:mx-0">
+          <div class="overflow-hidden sm:rounded-2xl shadow-2xl">
+            <Image
+              src={data.coverImage}
+              alt={data.title}
+              class="w-full max-h-[350px] object-cover"
+              widths={[400, 768, 1024, 1280]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
+            />
+          </div>
+        </div>
+      )
+    }
     <div class="max-w-xl mx-auto">
       <div class="text-center md:text-balance">
-        <p class="text-xs relative font-semibold uppercase tracking-wide text-gray-600">
+        <p
+          class="text-xs relative font-semibold uppercase tracking-wide text-gray-600"
+        >
           <time datetime={data.date.toISOString()}>
-            {data.date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {
+              data.date.toLocaleDateString("es-ES", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
           </time>
         </p>
-        <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 font-semibold tracking-tight text-emerald-900">
+        <h1
+          class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 font-semibold tracking-tight text-emerald-900"
+        >
           {data.title}
         </h1>
         <p class="text-base mt-2 font-medium text-emerald-700">
           {data.excerpt}
         </p>
       </div>
-      {data.author && (
-        <div class="flex items-center justify-center mt-6 gap-2">
-          {data.author.avatar && (
-            <div>
-              <img
-                class="inline-block rounded-full size-9"
-                src={data.author.avatar}
-                alt={data.author.name}
-              />
-            </div>
-          )}
-          <div>
-            <p class="text-xs relative font-semibold uppercase tracking-wide text-emerald-600">
-              {data.author.name}
-            </p>
-            {data.author.handle && (
-              <p class="text-xs font-medium text-emerald-500">
-                {data.author.handle}
-              </p>
+      {
+        data.author && (
+          <div class="flex items-center justify-center mt-6 gap-2">
+            {data.author.avatar && (
+              <div>
+                <img
+                  class="inline-block rounded-full size-9"
+                  src={data.author.avatar}
+                  alt={data.author.name}
+                />
+              </div>
             )}
+            <div>
+              <p class="text-xs relative font-semibold uppercase tracking-wide text-emerald-600">
+                {data.author.name}
+              </p>
+              {data.author.handle && (
+                <p class="text-xs font-medium text-emerald-500">
+                  {data.author.handle}
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </div>
     <div class="pt-12 mx-auto mt-12 border-t prose max-w-none border-gray-200">
       <Content />

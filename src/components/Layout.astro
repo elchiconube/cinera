@@ -4,6 +4,7 @@ import GoogleAnalytics from './GoogleAnalytics.astro';
 import GoogleSiteVerification from './GoogleSiteVerification.astro';
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/globals.css';
+import Guia from './Guia.astro';
 
 const {
   title = SITE_TITLE,
@@ -156,6 +157,9 @@ const navItems = [
     <main class="flex-1">
       <slot />
     </main>
+
+      <Guia />
+
     <footer class="border-t border-gray-100" transition:persist>
       <div class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <p class="text-center md:text-left">&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
