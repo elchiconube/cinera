@@ -1,33 +1,45 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME, SITE_LOCALE, SITE_URL, SITE_IMAGE } from '../consts';
-import GoogleAnalytics from './GoogleAnalytics.astro';
-import GoogleSiteVerification from './GoogleSiteVerification.astro';
-import { ViewTransitions } from 'astro:transitions';
-import '../styles/globals.css';
-import Guia from './Guia.astro';
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_LOCALE,
+  SITE_URL,
+  SITE_IMAGE,
+} from "../consts";
+import GoogleAnalytics from "./GoogleAnalytics.astro";
+import GoogleSiteVerification from "./GoogleSiteVerification.astro";
+import { ViewTransitions } from "astro:transitions";
+import "../styles/globals.css";
+import Guia from "./Guia.astro";
 
 const {
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
   url = undefined,
   image = undefined,
-  type = 'website',
+  type = "website",
 } = Astro.props;
 
-const canonicalURL = (url ?? new URL(Astro.url.pathname, Astro.site)).toString();
-const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE_IMAGE, Astro.site).toString();
+const canonicalURL = (
+  url ?? new URL(Astro.url.pathname, Astro.site)
+).toString();
+const ogImage = image
+  ? new URL(image, Astro.site).toString()
+  : new URL(SITE_IMAGE, Astro.site).toString();
 
 // Navegación principal
 const navItems = [
-  { href: '/', label: 'Inicio' },
-  { href: '/ruta/faedo-de-cinera', label: 'La ruta' },
-  { href: '/historia-naturaleza', label: 'Historia y naturaleza' },
-  { href: '/eventos', label: 'Eventos' },
-  { href: '/guia-visitantes', label: 'Guía' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/faq', label: 'FAQ' },
+  { href: "/", label: "Inicio" },
+  { href: "/ruta/faedo-de-cinera", label: "La ruta" },
+  { href: "/historia-naturaleza", label: "Historia y naturaleza" },
+  { href: "/eventos", label: "Eventos" },
+  { href: "/guia-visitantes", label: "Guía" },
+  { href: "/blog", label: "Blog" },
+  { href: "/faq", label: "FAQ" },
 ];
 ---
+
 <!doctype html>
 <html lang={SITE_LOCALE}>
   <head>
@@ -37,9 +49,12 @@ const navItems = [
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={SITE_LOCALE} href={canonicalURL} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Faedo de Ciñera, senderismo León, rutas León, hayedo, Pola de Gordón, naturaleza León, rutas familias" />
+    <meta
+      name="keywords"
+      content="Faedo de Ciñera, senderismo León, rutas León, hayedo, Pola de Gordón, naturaleza León, rutas familias"
+    />
     <title>{title}</title>
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:type" content={type} />
@@ -50,36 +65,53 @@ const navItems = [
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={SITE_LOCALE} />
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Faedo" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE_TITLE}
+      href="/rss.xml"
+    />
     <!-- Google Fonts - Wittgenstein & Figtree -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: SITE_NAME,
-      description: SITE_DESCRIPTION,
-      url: Astro.site?.toString(),
-      inLanguage: SITE_LOCALE,
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${Astro.site}?q={search_term_string}`
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        url: Astro.site?.toString(),
+        inLanguage: SITE_LOCALE,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${Astro.site}?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
         },
-        'query-input': 'required name=search_term_string'
-      }
-    })} />
+      })}
+    />
     <slot name="head" />
     <GoogleSiteVerification />
     <GoogleAnalytics />
@@ -87,70 +119,99 @@ const navItems = [
   </head>
   <body class="min-h-screen flex flex-col">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <header class="border-b border-gray-300 sticky top-0 bg-white/80 backdrop-blur-sm z-50" transition:persist>
-      <nav class="container flex items-center justify-between" aria-label="Principal">
-        <a href="/" class="font-wittgenstein text-xl text-primary-700 no-underline">{SITE_NAME}</a>
-        
+    <header
+      class="border-b border-gray-300 sticky top-0 bg-white/80 backdrop-blur-sm z-50"
+      transition:persist
+    >
+      <nav
+        class="container flex items-center justify-between"
+        aria-label="Principal"
+      >
+        <a
+          href="/"
+          class="font-wittgenstein text-xl text-primary-700 no-underline"
+          >{SITE_NAME}</a
+        >
+
         <!-- Menú desktop -->
         <ul class="hidden md:flex font-wittgenstein">
-          {navItems.map(item => (
-            <li><a class="px-2 py-6 inline-block" href={item.href}>{item.label}</a></li>
-          ))}
+          {
+            navItems.map((item) => (
+              <li>
+                <a class="px-2 py-6 inline-block" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
 
         <!-- Botón hamburguesa móvil -->
-        <button 
-          id="menu-toggle" 
+        <button
+          id="menu-toggle"
           class="md:hidden my-4 p-2 text-gray-700 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
           aria-label="Abrir menú"
           aria-expanded="false"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </nav>
 
       <!-- Menú móvil -->
       <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
-        <ul class="container font-wittgenstein py-4 flex flex-col gap-3 text-center">
-          {navItems.map((item, index) => (
-            <li>
-              <a 
-                href={item.href} 
-                class={`block py-2 ${index < navItems.length - 1 ? 'border-b border-gray-100' : ''}`}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+        <ul
+          class="container font-wittgenstein py-4 flex flex-col gap-3 text-center"
+        >
+          {
+            navItems.map((item, index) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={`block py-2 ${index < navItems.length - 1 ? "border-b border-gray-100" : ""}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </header>
 
     <script>
       // Toggle menú móvil
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      menuToggle?.addEventListener('click', () => {
-        const isOpen = mobileMenu?.classList.toggle('hidden');
-        menuToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle?.addEventListener("click", () => {
+        const isOpen = mobileMenu?.classList.toggle("hidden");
+        menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
       });
 
       // Cerrar menú al hacer clic en un enlace
-      mobileMenu?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          menuToggle?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuToggle?.setAttribute("aria-expanded", "false");
         });
       });
 
       // Cerrar menú al cambiar de tamaño a desktop
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         if (window.innerWidth >= 768) {
-          mobileMenu?.classList.add('hidden');
-          menuToggle?.setAttribute('aria-expanded', 'false');
+          mobileMenu?.classList.add("hidden");
+          menuToggle?.setAttribute("aria-expanded", "false");
         }
       });
     </script>
@@ -158,22 +219,39 @@ const navItems = [
       <slot />
     </main>
 
-      <Guia />
+    <Guia />
 
     <footer class="border-t border-gray-100" transition:persist>
-      <div class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <p class="text-center md:text-left">&copy; {new Date().getFullYear()} {SITE_NAME} · Proyecto informativo sin ánimo de lucro.</p>
+      <div
+        class="container py-8 text-sm flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
+      >
+        <p class="text-center md:text-left">
+          &copy; {new Date().getFullYear()}
+          {SITE_NAME} · Proyecto informativo sin ánimo de lucro.
+        </p>
         <nav aria-label="Secundario">
           <ul class="md:flex md:gap-4 font-wittgenstein text-center">
-            {navItems.map(item => (
-              <li><a class="text-lg md:text-xs py-2 inline-block" href={item.href}>{item.label}</a></li>
-            ))}
+            {
+              navItems.map((item) => (
+                <li>
+                  <a
+                    class="text-lg md:text-xs py-2 inline-block"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </nav>
       </div>
-      <p class="text-center text-sm">Sitio web creado por <a href="https://faedodigital.com" target="_blank" rel="noopener noreferrer">Faedo Digital</a></p>
-
+      <p class="text-center text-sm">
+        Sitio web creado por <a
+          href="https://faedodigital.com"
+          target="_blank"
+          rel="noopener noreferrer">Faedo Digital</a>
+      </p>
     </footer>
   </body>
-  
 </html>

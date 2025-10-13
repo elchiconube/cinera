@@ -26,7 +26,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 - ✅ **Mapas interactivos**: Leaflet (npm) con ortofoto PNOA del IGN
 - ✅ **Content Collections**: Tipado estricto con Zod
 - ✅ **Sitemap**: Generación automática con prioridades
-- ✅ **PWA Ready**: Meta theme-color, manifest.webmanifest
+- ✅ **PWA Ready**: Meta theme-color, site.webmanifest
 
 ## 🚀 Estructura del Proyecto
 
@@ -36,7 +36,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 │   ├── images/           # Imágenes estáticas
 │   ├── fonts/            # Fuentes web
 │   ├── robots.txt
-│   └── manifest.webmanifest
+│   └── site.webmanifest
 ├── src/
 │   ├── assets/           # Imágenes optimizadas por Astro
 │   ├── components/       # Componentes reutilizables

@@ -225,7 +225,7 @@ npm run build
 ### Mejoras Técnicas
 - [ ] Implementar PWA completa (service worker)
 - [ ] Añadir loading states al mapa
-- [ ] Optimizar manifest.webmanifest
+- [ ] Optimizar site.webmanifest
 
 ---
 
