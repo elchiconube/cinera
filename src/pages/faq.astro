@@ -10,6 +10,13 @@ const description =
   "Preguntas frecuentes sobre la Ruta del Faedo de Ciñera: accesibilidad, mascotas, época, meteorología, prohibiciones y más.";
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
+// Schema FAQPage para rich snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [] as any[]
+};
+
 const faqs = [
   {
     question: "¿Cuál es la mejor época para visitar el Faedo de Ciñera?",
@@ -77,6 +84,16 @@ const faqs = [
       "Sí, visitar el Faedo de Ciñera es completamente gratuito. No hay que pagar entrada ni reservar. El aparcamiento en Ciñera también es gratuito.",
   },
 ];
+
+// Generar schema de cada pregunta
+faqSchema.mainEntity = faqs.map(faq => ({
+  "@type": "Question",
+  name: faq.question,
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: faq.answer
+  }
+}));
 ---
 
 <Layout title={title} description={description}>
@@ -86,6 +103,7 @@ const faqs = [
     description={description}
     url={canonical}
     type="website"
+    jsonLd={faqSchema}
   />
   <Breadcrumbs
     items={[

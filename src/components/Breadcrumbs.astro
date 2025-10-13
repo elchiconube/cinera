@@ -19,15 +19,22 @@ const breadcrumbSchema = {
 ---
 <nav aria-label="Migas de pan" class="max-w-4xl mx-auto py-2 px-4 text-sm" item-scope item-type="https://schema.org/BreadcrumbList">
   <ol class="flex flex-wrap gap-1 text-emerald-700">
-    {items.map((item: Crumb, index: number) => (
-      <li item-prop="itemListElement" item-scope item-type="https://schema.org/ListItem" class="flex items-center gap-1">
-        <a href={item.href} item-prop="item" class="hover:underline">
-          <span class="font-semibold" item-prop="name">{item.label}</span>
-        </a>
-        <meta item-prop="position" content={String(index + 1)} />
-        {index < items.length - 1 && <span aria-hidden="true" class="mx-1">/</span>}
-      </li>
-    ))}
+    {items.map((item: Crumb, index: number) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li item-prop="itemListElement" item-scope item-type="https://schema.org/ListItem" class="flex items-center gap-1">
+          {isLast ? (
+            <span class="font-semibold" item-prop="name" aria-current="page">{item.label}</span>
+          ) : (
+            <a href={item.href} item-prop="item" class="hover:underline">
+              <span class="font-semibold" item-prop="name">{item.label}</span>
+            </a>
+          )}
+          <meta item-prop="position" content={String(index + 1)} />
+          {!isLast && <span aria-hidden="true" class="mx-1">/</span>}
+        </li>
+      );
+    })}
   </ol>
 </nav>
 
