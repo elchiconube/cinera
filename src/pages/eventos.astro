@@ -2,7 +2,7 @@
 import Layout from "@components/Layout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Seo from "@components/Seo.astro";
-import { Image } from "astro:assets";
+import Cards from "@components/Cards.astro";
 import cover from "@assets/visitantes.webp";
 
 const title = "Eventos y Actividades en el Faedo de Ciñera";
@@ -23,7 +23,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
   <Breadcrumbs
     items={[
       { href: "/", label: "Inicio" },
-      { href: "/eventos", label: "Eventos" },
     ]}
   />
 
@@ -294,29 +293,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     </div>
 
     <div class="not-prose border-t border-gray-200 mt-8 py-10 px-4">
-      <h3 class="text-lg font-semibold mb-3">Más sobre el Faedo de Ciñera</h3>
-      <div class="grid sm:grid-cols-3 gap-3">
-        <a
-          href="/premio-2007"
-          class="block p-3 border rounded-md hover:shadow text-sm"
-        >
-          <span class="font-medium">Premio 2007</span>
-          <p class="text-gray-600 mt-1">Bosque mejor cuidado de España</p>
-        </a>
-        <a
-          href="/ruta/faedo-de-cinera"
-          class="block p-3 border rounded-md hover:shadow text-sm"
-        >
-          <span class="font-medium">Planifica tu visita</span>
-          <p class="text-gray-600 mt-1">Mapa, GPX y puntos de interés</p>
-        </a>
-        <a
-          href="/guia-visitantes"
-          class="block p-3 border rounded-md hover:shadow text-sm"
-        >
-          <span class="font-medium">Normas y consejos</span>
-          <p class="text-gray-600 mt-1">Respeta el bosque</p>
-        </a>
+      <header class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="mb-2 text-3xl text-emerald-800 text-balance">
+          Explora más sobre el Faedo
+        </h3>
+        <p class="text-balance text-emerald-800 font-medium leading-6">
+          Descubre más sobre el Faedo de Ciñera y su fascinante historia
+          natural.
+        </p>
+      </header>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <Cards
+          ids={[
+            "fagus",
+            "premio",
+            "patrimonio-minero",
+            "historia-naturaleza",
+          ]}
+          titleTag="h4"
+        />
       </div>
     </div>
   </div>
