@@ -7,7 +7,7 @@ const shouldLoadGA = GA_MEASUREMENT_ID && GA_MEASUREMENT_ID.startsWith('G-');
 
 {shouldLoadGA && (
   <>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - Optimizado para performance -->
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
     <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
@@ -15,7 +15,13 @@ const shouldLoadGA = GA_MEASUREMENT_ID && GA_MEASUREMENT_ID.startsWith('G-');
       gtag('js', new Date());
       gtag('config', GA_MEASUREMENT_ID, {
         anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
+        cookie_flags: 'SameSite=None;Secure',
+        // Reducir impacto en performance
+        send_page_view: false
+      });
+      // Enviar pageview después de que la página cargue
+      window.addEventListener('load', function() {
+        gtag('event', 'page_view');
       });
     </script>
   </>

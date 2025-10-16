@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import imageElefante from "@assets/elefante.webp";
 import imageCamino from "@assets/camino.webp";
 import imageValle from "@assets/valle.webp";
@@ -30,11 +31,14 @@ import videoPuente from "@assets/puente.mp4";
           >
             <source src={videoFaedo} type="video/mp4" />
           </video>
-          <img
-            src={imageElefante.src}
-            alt="Video placeholder"
+          <Image
+            src={imageElefante}
+            alt="Bosque del Faedo de Ciñera"
             class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
+            widths={[380, 760]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            quality={75}
+            loading="lazy"
           />
         </div>
       </div>
@@ -52,11 +56,14 @@ import videoPuente from "@assets/puente.mp4";
           >
             <source src={videoPuente} type="video/mp4" />
           </video>
-          <img
-            src={imageValle.src}
-            alt="Video placeholder"
+          <Image
+            src={imageValle}
+            alt="Valle de Ciñera"
             class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
+            widths={[380, 760]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            quality={75}
+            loading="lazy"
           />
         </div>
       </div>
@@ -74,11 +81,14 @@ import videoPuente from "@assets/puente.mp4";
           >
             <source src={videoMarmitas} type="video/mp4" />
           </video>
-          <img
-            src={imageCamino.src}
-            alt="Video placeholder"
+          <Image
+            src={imageCamino}
+            alt="Camino del Faedo"
             class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
+            widths={[380, 760]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            quality={75}
+            loading="lazy"
           />
         </div>
       </div>
@@ -96,11 +106,14 @@ import videoPuente from "@assets/puente.mp4";
           >
             <source src={videoCaminando} type="video/mp4" />
           </video>
-          <img
-            src={imageCamino.src}
-            alt="Video placeholder"
+          <Image
+            src={imageCamino}
+            alt="Camino del Faedo"
             class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
+            widths={[380, 760]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            quality={75}
+            loading="lazy"
           />
         </div>
       </div>
@@ -118,11 +131,14 @@ import videoPuente from "@assets/puente.mp4";
           >
             <source src={videoPozo} type="video/mp4" />
           </video>
-          <img
-            src={imageCamino.src}
-            alt="Video placeholder"
+          <Image
+            src={imageCamino}
+            alt="Camino del Faedo"
             class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
+            widths={[380, 760]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            quality={75}
+            loading="lazy"
           />
         </div>
       </div>

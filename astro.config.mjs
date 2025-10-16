@@ -6,6 +6,17 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://faedo.es',
+  image: {
+    // Optimización de imágenes
+    domains: ['faedo.es'],
+    remotePatterns: [{ protocol: 'https' }],
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false,
+      },
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
     resolve: {
