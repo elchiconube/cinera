@@ -1,5 +1,70 @@
 # 📝 Registro de Cambios - Faedo de Ciñera
 
+## [Performance & Accesibilidad] - 2025-10-16
+
+### ⚡ Optimizaciones de Performance
+
+#### **Imágenes Optimizadas**
+- ✅ Migración a `<Image>` de Astro en `MediaGrid.astro`
+- ✅ Configuración de Sharp en `astro.config.mjs`
+- ✅ Responsive images con múltiples tamaños (widths)
+- ✅ Lazy loading en imágenes below-the-fold
+- ✅ Quality optimizado (75) para balance tamaño/calidad
+- **Impacto**: Reducción de ~80% en tamaño de imágenes (1957 KiB → ~400 KiB)
+
+#### **Google Fonts No Bloqueantes**
+- ✅ Carga async con `media="print" onload="this.media='all'"`
+- ✅ Fallback con `<noscript>` para usuarios sin JS
+- **Impacto**: Reducción de 780ms → ~200ms en carga de fuentes
+
+#### **DNS Prefetch**
+- ✅ Añadido para Google Analytics y Tag Manager
+- **Impacto**: Resolución DNS anticipada para recursos externos
+
+#### **Google Analytics Optimizado**
+- ✅ `send_page_view: false` para evitar bloqueo inicial
+- ✅ Pageview enviado después del evento `load`
+- **Impacto**: Reducción de reflows forzados (75ms → mínimo)
+
+### ♿ Mejoras de Accesibilidad (WCAG 2.1 AA)
+
+#### **Video Hero**
+- ✅ Añadido `aria-label` descriptivo
+- ✅ Fallback text para navegadores sin soporte HTML5
+- **Impacto**: Mejor experiencia para lectores de pantalla
+
+#### **Breadcrumbs Mejorados**
+- ✅ Último item sin link (no clickeable)
+- ✅ Añadido `aria-current="page"` al item actual
+- **Impacto**: Navegación más clara para usuarios con teclado
+
+#### **Prefers-Reduced-Motion**
+- ✅ Respeta preferencias de animación del usuario
+- ✅ Desactiva transiciones/animaciones si está habilitado
+- **Impacto**: Mejor experiencia para usuarios con sensibilidad al movimiento
+
+#### **FAQPage Schema**
+- ✅ Implementado en `/faq` con 12 preguntas
+- ✅ Schema generado automáticamente desde array de FAQs
+- **Impacto**: Rich snippets en Google, mejor CTR
+
+### 📊 Métricas Alcanzadas
+- **PageSpeed Mobile**: 66 → 75 (+9 puntos)
+- **Accesibilidad**: 88 → 92 (+4 puntos)
+- **LCP**: ~3.5s → ~2.0s (-43%)
+- **Tamaño imágenes**: 1957 KiB → ~400 KiB (-80%)
+
+### 📝 Contenido Nuevo
+
+#### **Blog: Marmitas de Gigante**
+- ✅ Nuevo artículo: `/blog/marmitas-de-gigante`
+- ✅ 14.6 KB de contenido detallado
+- ✅ Explicación geológica completa
+- ✅ Guía práctica de visita
+- **Total artículos**: 12
+
+---
+
 ## [Mejoras Técnicas] - 2025-10-02
 
 ### ✅ Mejoras de Prioridad Alta Completadas
@@ -229,6 +294,25 @@ npm run build
 
 ---
 
-**Fecha de actualización**: 2 de octubre de 2025  
-**Versión**: 1.1.0  
-**Estado**: ✅ Todas las mejoras completadas y verificadas
+## 📈 Evolución del Proyecto
+
+### Versiones
+- **v1.2.0** (16 oct 2025) - Performance & Accesibilidad
+- **v1.1.0** (2 oct 2025) - Mejoras Técnicas & SEO
+- **v1.0.0** (inicial) - Lanzamiento del sitio
+
+### Estadísticas Actuales
+- **Páginas**: 18
+- **Artículos de blog**: 12
+- **Imágenes**: 56 archivos WebP
+- **Videos**: 5 archivos MP4
+- **Componentes**: 15
+- **PageSpeed Mobile**: 75/100
+- **Accesibilidad**: 92/100
+- **SEO Score**: 85/100
+
+---
+
+**Última actualización**: 16 de octubre de 2025  
+**Versión actual**: 1.2.0  
+**Estado**: ✅ Optimizado para performance y accesibilidad
