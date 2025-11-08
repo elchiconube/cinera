@@ -2,7 +2,7 @@
 
 Sitio web informativo sobre la ruta de senderismo del **Faedo de Ciñera** en León, España. Construido con Astro para máximo rendimiento y SEO.
 
-🌐 **URL**: [https://faedo.es](https://faedo.es)
+🌐 **URL**: [https://ciñera.es](https://ciñera.es)
 
 ## 📋 Descripción
 
@@ -23,6 +23,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 ## ✨ Características Técnicas
 
 ### Performance & SEO
+
 - ✅ **Rendimiento**: Astro con generación estática (SSG)
 - ✅ **PageSpeed Score**: 75/100 móvil, 90+/100 desktop
 - ✅ **Optimización de imágenes**: Sharp + Astro Image (WebP, responsive, lazy loading)
@@ -32,6 +33,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 - ✅ **Google Fonts async**: Carga no bloqueante
 
 ### Accesibilidad & UX
+
 - ✅ **WCAG 2.1 AA**: 92/100 en auditoría de accesibilidad
 - ✅ **ARIA labels**: Navegación semántica completa
 - ✅ **Skip links**: Navegación por teclado optimizada
@@ -40,6 +42,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 - ✅ **Breadcrumbs**: Con schema y aria-current
 
 ### Tecnología
+
 - ✅ **Responsive**: TailwindCSS v4 con diseño mobile-first
 - ✅ **Mapas interactivos**: Leaflet v1.9.4 con ortofoto PNOA del IGN
 - ✅ **Content Collections**: Tipado estricto con Zod
@@ -131,17 +134,18 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| **[Astro](https://astro.build)** | v5.13.4 | Framework principal (SSG) |
-| **[TailwindCSS](https://tailwindcss.com)** | v4.1.14 | Estilos y diseño responsive |
-| **[Leaflet](https://leafletjs.com)** | v1.9.4 | Mapas interactivos |
-| **[Sharp](https://sharp.pixelplumbing.com/)** | v0.34.2 | Optimización de imágenes |
-| **[MDX](https://mdxjs.com/)** | v4.3.4 | Contenido enriquecido |
-| **TypeScript** | Strict | Tipado estático |
-| **Google Analytics** | GA4 | Analítica web |
+| Tecnología                                    | Versión | Propósito                   |
+| --------------------------------------------- | ------- | --------------------------- |
+| **[Astro](https://astro.build)**              | v5.13.4 | Framework principal (SSG)   |
+| **[TailwindCSS](https://tailwindcss.com)**    | v4.1.14 | Estilos y diseño responsive |
+| **[Leaflet](https://leafletjs.com)**          | v1.9.4  | Mapas interactivos          |
+| **[Sharp](https://sharp.pixelplumbing.com/)** | v0.34.2 | Optimización de imágenes    |
+| **[MDX](https://mdxjs.com/)**                 | v4.3.4  | Contenido enriquecido       |
+| **TypeScript**                                | Strict  | Tipado estático             |
+| **Google Analytics**                          | GA4     | Analítica web               |
 
 ### Fuentes
+
 - **[Wittgenstein](https://fonts.google.com/specimen/Wittgenstein)** - Headings (serif)
 - **[Figtree](https://fonts.google.com/specimen/Figtree)** - Body text (sans-serif)
 
@@ -149,14 +153,14 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 
 Todos los comandos se ejecutan desde la raíz del proyecto:
 
-| Comando                   | Acción                                              |
-| :------------------------ | :-------------------------------------------------- |
-| `npm install`             | Instala las dependencias                            |
-| `npm run dev`             | Inicia servidor de desarrollo en `localhost:4321`   |
-| `npm run build`           | Genera el sitio estático en `./dist/`               |
-| `npm run preview`         | Previsualiza el build localmente                    |
-| `npm run check`           | Verifica tipos TypeScript                           |
-| `npm run astro ...`       | Ejecuta comandos CLI de Astro                       |
+| Comando             | Acción                                            |
+| :------------------ | :------------------------------------------------ |
+| `npm install`       | Instala las dependencias                          |
+| `npm run dev`       | Inicia servidor de desarrollo en `localhost:4321` |
+| `npm run build`     | Genera el sitio estático en `./dist/`             |
+| `npm run preview`   | Previsualiza el build localmente                  |
+| `npm run check`     | Verifica tipos TypeScript                         |
+| `npm run astro ...` | Ejecuta comandos CLI de Astro                     |
 
 ## 📦 Instalación y Desarrollo
 
@@ -185,6 +189,7 @@ npm run preview
 ## 📊 Contenido del Sitio
 
 ### Páginas Principales (18)
+
 - **Inicio** (`/`) - Hero con video, galería multimedia, secciones destacadas
 - **La Ruta** (`/ruta/faedo-de-cinera`) - Mapa interactivo, GPX, datos técnicos
 - **Historia y Naturaleza** (`/historia-naturaleza`) - Contexto histórico y natural
@@ -201,6 +206,7 @@ npm run preview
 - **Blog** (`/blog`) - 12 artículos especializados
 
 ### Blog (12 artículos)
+
 1. **Árboles del Faedo de Ciñera** - Especies arbóreas
 2. **Bocamina Menos 50** - Patrimonio minero
 3. **Cómo llegar al Faedo de Ciñera** - Guía de acceso
@@ -217,12 +223,14 @@ npm run preview
 ## 🗺️ Mapa Interactivo
 
 El mapa utiliza:
+
 - **Capa base**: PNOA Máxima Actualidad (ortofoto del IGN)
 - **Capa superpuesta**: IGN Base Orto (nombres y etiquetas)
 - **Track GPS**: 108 puntos reales del GPX de la ruta circular (4.5 km)
 - **Puntos de interés**: Entrada al Faedo, Corazón del Faedo, Mirador del Beso, Pozo Ibarra
 
 ### Características del mapa
+
 - ✅ Zoom interactivo
 - ✅ Control de capas
 - ✅ Marcadores personalizados
@@ -233,6 +241,7 @@ El mapa utiliza:
 ## 🎨 Diseño y Estilo
 
 ### Paleta de Colores
+
 ```css
 /* Primary (Emerald/Verde) */
 --color-primary-500: #349981;
@@ -240,12 +249,13 @@ El mapa utiliza:
 --color-primary-800: #1f4d44;
 
 /* Tipografía */
---font-heading: 'Wittgenstein', serif;
---font-body: 'Figtree', sans-serif;
+--font-heading: "Wittgenstein", serif;
+--font-body: "Figtree", sans-serif;
 --font-size-base: 19px;
 ```
 
 ### Características de diseño
+
 - ✅ **Mobile-first**: Diseño optimizado para móviles
 - ✅ **Dark overlay**: Hero con video y overlay oscuro
 - ✅ **Smooth scroll**: Navegación fluida
@@ -256,6 +266,7 @@ El mapa utiliza:
 ## 🔍 SEO y Schemas
 
 ### Schemas implementados
+
 - ✅ **WebSite** - Schema principal del sitio
 - ✅ **HikingTrail** - Ruta de senderismo
 - ✅ **TouristAttraction** - Atracción turística
@@ -265,6 +276,7 @@ El mapa utiliza:
 - ✅ **LandmarksOrHistoricalBuildings** - Haya Fagus
 
 ### Optimizaciones SEO
+
 - ✅ Títulos únicos por página (50-60 caracteres)
 - ✅ Meta descriptions únicas (150-160 caracteres)
 - ✅ URLs semánticas y limpias
@@ -277,6 +289,7 @@ El mapa utiliza:
 ## ⚡ Performance
 
 ### Optimizaciones aplicadas
+
 - ✅ **Imágenes WebP**: Formato moderno optimizado
 - ✅ **Responsive images**: Múltiples tamaños según viewport
 - ✅ **Lazy loading**: Carga diferida de imágenes
@@ -286,6 +299,7 @@ El mapa utiliza:
 - ✅ **View Transitions**: Navegación instantánea
 
 ### Métricas actuales
+
 - 📱 **Mobile**: 75/100 PageSpeed
 - 💻 **Desktop**: 90+/100 PageSpeed
 - ⚡ **LCP**: ~2.0s
@@ -303,6 +317,7 @@ Las contribuciones son bienvenidas. Por favor, abre un issue primero para discut
 ## 📞 Contacto
 
 Para tours guiados al Faedo de Ciñera:
+
 - 📱 WhatsApp: [+34 649 131 791](https://wa.me/34649131791)
 
 ---

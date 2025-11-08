@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://faedo.es/sitemap-index.xml
+Sitemap: https://ciñera.es/sitemap-index.xml
 

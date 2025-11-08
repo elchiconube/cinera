@@ -16,6 +16,7 @@ npm install
 ### Google Analytics 4
 
 1. **Obtén tu ID de Google Analytics:**
+
    - Ve a [Google Analytics](https://analytics.google.com/)
    - Crea una propiedad GA4 si no la tienes
    - Copia tu ID de medición (formato: `G-XXXXXXXXXX`)
@@ -38,16 +39,19 @@ PUBLIC_GA_MEASUREMENT_ID=G-TU-ID-AQUI
 ### Variables de Entorno en Producción
 
 #### Vercel
+
 ```bash
 vercel env add PUBLIC_GA_MEASUREMENT_ID
 ```
 
 #### Netlify
+
 ```bash
 # En el dashboard: Site settings > Build & deploy > Environment > Environment variables
 ```
 
 #### Cloudflare Pages
+
 ```bash
 # En el dashboard: Settings > Environment variables
 ```
@@ -55,6 +59,7 @@ vercel env add PUBLIC_GA_MEASUREMENT_ID
 ## 🗺️ Configuración del Mapa
 
 El mapa usa Leaflet instalado como dependencia npm. La configuración está en:
+
 - **Componente**: `src/components/MapLeaflet.astro`
 - **Capas**: PNOA (ortofoto) + IGN Base (etiquetas)
 - **Track GPS**: 108 puntos reales del GPX
@@ -110,7 +115,7 @@ season: "Todo el año"
 start_coords:
   lat: 42.8205
   lng: -5.6335
-gpx_url: "https://faedo.es/gpx/tu-ruta.gpx"
+gpx_url: "https://ciñera.es/gpx/tu-ruta.gpx"
 access: "Cómo llegar en coche/bus/tren"
 parking: "Información sobre aparcamiento"
 family_friendly: true
@@ -180,6 +185,7 @@ npm run astro check
 ### Verificar Schemas
 
 Usa estas herramientas:
+
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema.org Validator](https://validator.schema.org/)
 
@@ -191,8 +197,8 @@ Puedes añadir eventos personalizados en cualquier componente:
 
 ```javascript
 // Ejemplo: tracking de descarga de GPX
-<a 
-  href="/gpx/faedo.gpx" 
+<a
+  href="/gpx/faedo.gpx"
   onclick="gtag('event', 'download', { 'file_name': 'faedo.gpx' })"
 >
   Descargar GPX
