@@ -1,0 +1,99 @@
+---
+import Layout from "@components/Layout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import Camera from "@components/Camera.astro";
+import Weather from "@/components/Weather.astro";
+---
+
+<Layout
+  title="Webcam en directo de Ciñera de Gordón · León"
+  description="Cámara en directo de Ciñera de Gordón, en el valle de Gordón. Vista del pueblo desde la calle El Otero, en la Montaña Central Leonesa."
+>
+  <section class="container py-12 md:py-16">
+    <SectionHeader
+      title="Webcam en directo"
+      description="Ciñera de Gordón, ahora mismo. El pueblo visto desde la calle El Otero."
+    />
+
+    <div class="max-w-4xl mx-auto mt-8 space-y-4">
+      <!-- Indicador de directo + reloj -->
+      <div class="flex items-center justify-between text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"
+          ></span>
+          <span class="font-medium text-slate-700">En directo</span>
+        </div>
+        <time id="reloj" datetime="" class="tabular-nums"></time>
+      </div>
+
+      <!-- Componente de cámara -->
+      <Camera />
+
+      <!-- Contexto bajo la cámara -->
+      <p class="text-sm text-slate-500 text-center">
+        Cámara ubicada en la <strong>calle El Otero</strong> · Ciñera de Gordón ·
+        Valle de Gordón · León
+      </p>
+
+      <Weather />
+    </div>
+
+    <!-- Contenido SEO y contexto -->
+    <div class="prose prose-slate max-w-3xl mx-auto mt-12">
+      <h2>Qué estás viendo</h2>
+      <p>
+        Esta cámara ofrece una vista en tiempo real de <strong
+          >Ciñera de Gordón</strong
+        >
+        desde la calle El Otero, mostrando el núcleo del pueblo enclavado en el valle
+        de Gordón, en plena Montaña Central Leonesa.
+      </p>
+      <p>
+        Desde este ángulo puedes ver cómo cambia el pueblo con las estaciones:
+        la nieve cubriendo los tejados en invierno, la luz dorada del otoño
+        sobre las laderas, o los días largos y claros del verano en la montaña.
+      </p>
+      <h2>Ciñera de Gordón, un pueblo con historia</h2>
+      <p>
+        Lo que muestra la cámara es un pueblo que vivió décadas de intensa
+        actividad minera. Las viviendas que se ven —los antiguos
+        <em>cuarteles</em> construidos por la <strong
+          >Hullera Vasco-Leonesa</strong
+        >
+        para los mineros y sus familias— son parte del patrimonio arquitectónico de
+        la cuenca minera leonesa.
+      </p>
+      <p>
+        Hoy Ciñera es también la puerta de entrada al
+        <strong>Faedo de Ciñera</strong>, el hayedo premiado como bosque mejor
+        cuidado de España en 2007, y punto de partida del Camino del Carbón.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function actualizarReloj() {
+    const reloj = document.getElementById("reloj");
+    if (!reloj) return;
+
+    const ahora = new Date();
+    const opciones: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Europe/Madrid",
+    };
+
+    const texto = ahora.toLocaleString("es-ES", opciones);
+    reloj.textContent = texto;
+    reloj.setAttribute("datetime", ahora.toISOString());
+  }
+
+  actualizarReloj();
+  setInterval(actualizarReloj, 1000);
+</script>

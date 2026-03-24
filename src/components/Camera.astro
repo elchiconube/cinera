@@ -1,0 +1,185 @@
+<div class="camara-wrapper">
+  <!-- Estado: cargando -->
+  <div id="estado-cargando" class="camara-estado">
+    <span class="spinner"></span>
+    <p>Conectando con la cámara…</p>
+  </div>
+
+  <!-- Estado: error -->
+  <div id="estado-error" class="camara-estado oculto">
+    <p class="error-icono">📡</p>
+    <p>La cámara no está disponible en este momento.</p>
+    <button id="btn-reintentar">Reintentar</button>
+  </div>
+
+  <video
+    id="camara-vivo"
+    autoplay
+    muted
+    playsinline
+    webkit-playsinline
+    class="oculto"></video>
+</div>
+
+<script>
+  import Hls from "hls.js";
+
+  const video = document.getElementById("camara-vivo") as HTMLVideoElement;
+  const elCargando = document.getElementById("estado-cargando")!;
+  const elError = document.getElementById("estado-error")!;
+  const btnReintentar = document.getElementById("btn-reintentar")!;
+  const url = "https://stream.faedodigital.com/cam/index.m3u8";
+
+  const MAX_REINTENTOS = 3;
+  const DELAY_REINTENTO_MS = 4000;
+  let reintentos = 0;
+  let hls: Hls | null = null;
+  let timeoutReintento: ReturnType<typeof setTimeout> | null = null;
+
+  function mostrar(estado: "cargando" | "error" | "video") {
+    elCargando.classList.toggle("oculto", estado !== "cargando");
+    elError.classList.toggle("oculto", estado !== "error");
+    video.classList.toggle("oculto", estado !== "video");
+  }
+
+  function destruirHls() {
+    if (hls) {
+      hls.destroy();
+      hls = null;
+    }
+    if (timeoutReintento) {
+      clearTimeout(timeoutReintento);
+      timeoutReintento = null;
+    }
+  }
+
+  function onError() {
+    destruirHls();
+    if (reintentos < MAX_REINTENTOS) {
+      reintentos++;
+      timeoutReintento = setTimeout(iniciarStream, DELAY_REINTENTO_MS);
+    } else {
+      mostrar("error");
+    }
+  }
+
+  function iniciarStream() {
+    destruirHls();
+    mostrar("cargando");
+
+    if (Hls.isSupported()) {
+      hls = new Hls({
+        lowLatencyMode: true,
+        backBufferLength: 0,
+        maxBufferLength: 10,
+      });
+
+      hls.loadSource(url);
+      hls.attachMedia(video);
+
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => {});
+        mostrar("video");
+        reintentos = 0;
+      });
+
+      hls.on(Hls.Events.ERROR, (_event, data) => {
+        if (data.fatal) onError();
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // Safari / iOS — HLS nativo
+      video.src = url;
+      video.load();
+
+      video.addEventListener(
+        "canplay",
+        () => {
+          video.play().catch(() => {});
+          mostrar("video");
+          reintentos = 0;
+        },
+        { once: true },
+      );
+
+      video.addEventListener("error", onError, { once: true });
+    } else {
+      mostrar("error");
+    }
+  }
+
+  btnReintentar.addEventListener("click", () => {
+    reintentos = 0;
+    iniciarStream();
+  });
+
+  iniciarStream();
+</script>
+
+<style>
+  .camara-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-emerald-950);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .camara-estado {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--color-emerald-400);
+    font-size: 0.9rem;
+  }
+
+  .oculto {
+    display: none;
+  }
+
+  .error-icono {
+    font-size: 2rem;
+  }
+
+  #btn-reintentar {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--color-emerald-800);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--color-emerald-200);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  #btn-reintentar:hover {
+    background: var(--color-emerald-900);
+  }
+
+  /* Spinner */
+  .spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-emerald-800);
+    border-top-color: var(--color-emerald-300);
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+  }
+
+  @keyframes girar {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

@@ -1,14 +1,35 @@
-import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ciñera.es",
+  site: "https://cinera.es",
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Figtree",
+      cssVariable: "--font-figtree",
+      weights: ["300 900"],
+      styles: ["normal", "italic"],
+      subsets: ["latin", "latin-ext"],
+      fallbacks: ["sans-serif"],
+      display: "swap",
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Fraunces",
+      cssVariable: "--font-fraunces",
+      weights: ["300 900"],
+      styles: ["normal", "italic"],
+      subsets: ["latin", "latin-ext"],
+      fallbacks: ["serif"],
+      display: "swap",
+    },
+  ],
   image: {
     // Optimización de imágenes
-    domains: ["ciñera.es"],
+    domains: ["cinera.es"],
     remotePatterns: [{ protocol: "https" }],
     service: {
       entrypoint: "astro/assets/services/sharp",
@@ -33,7 +54,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    mdx(),
     sitemap({
       i18n: {
         defaultLocale: "es",
@@ -42,26 +62,10 @@ export default defineConfig({
         },
       },
       serialize(item) {
-        // Prioridades optimizadas para SEO
-        if (item.url === "https://ciñera.es/") {
+        if (item.url === "https://cinera.es/") {
           return { ...item, priority: 1.0, changefreq: "weekly" };
         }
-        if (item.url.includes("/ruta/faedo-de-cinera")) {
-          return { ...item, priority: 0.9, changefreq: "weekly" };
-        }
-        if (item.url.includes("/blog/") && !item.url.endsWith("/blog/")) {
-          return { ...item, priority: 0.7, changefreq: "monthly" };
-        }
-        if (item.url.endsWith("/blog/")) {
-          return { ...item, priority: 0.8, changefreq: "weekly" };
-        }
-        if (
-          item.url.includes("/guia-visitantes") ||
-          item.url.includes("/historia-naturaleza")
-        ) {
-          return { ...item, priority: 0.8, changefreq: "monthly" };
-        }
-        return { ...item, priority: 0.6, changefreq: "monthly" };
+        return { ...item, priority: 0.5, changefreq: "monthly" };
       },
     }),
   ],

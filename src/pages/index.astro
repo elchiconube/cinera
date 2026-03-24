@@ -3,7 +3,6 @@ import Layout from "@components/Layout.astro";
 import Hero from "@components/Hero.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import ScrollRevealText from "@components/ScrollRevealText.astro";
-import Cards from "@components/Cards.astro";
 import MediaGrid from "@components/MediaGrid.astro";
 import { Image } from "astro:assets";
 
@@ -18,7 +17,7 @@ import Button from "@/components/Button.astro";
 >
   <Hero />
 
-  <section class="container py-10">
+  <section id="descubre-cinera" class="container py-10">
     <SectionHeader
       title="Descubre Ciñera"
       description="Tu próxima visita a un hermoso pueblo de la montaña central de León"
@@ -46,7 +45,7 @@ import Button from "@/components/Button.astro";
   <section class="py-20">
     <ScrollRevealText
       text="Adéntrate en el bosque más mágico de León"
-      class="max-w-2xl text-center mx-auto px-4 mb-10 font-wittgenstein text-emerald-800"
+      class="max-w-2xl text-center mx-auto px-4 mb-10 font-fraunces text-emerald-800"
     />
 
     <div class="prose prose-slate max-w-4xl mx-auto px-4">
@@ -89,17 +88,5 @@ import Button from "@/components/Button.astro";
         rel="noopener noreferrer"
       />
     </div>
-
-    <section class="py-5 px-4" aria-labelledby="intro">
-      <SectionHeader
-        title="Planifica tu visita"
-        description="En esta sección encontrarás toda la información necesaria para planificar tu visita al Faedo de Ciñera."
-      />
-      <div class="grid sm:grid-cols-4 gap-4 mx-auto max-w-7xl">
-        <Cards
-          ids={["ruta", "historia-naturaleza", "guia-visitantes", "haeda"]}
-        />
-      </div>
-    </section>
   </section>
 </Layout>

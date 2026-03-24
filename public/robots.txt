@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://ciñera.es/sitemap-index.xml
+Sitemap: https://cinera.es/sitemap-index.xml
 

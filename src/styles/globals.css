@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
-/* Variables CSS globales */
+/* Alias semánticos (Astro inyecta --font-fraunces / --font-figtree en Layout) */
 :root {
-  /* Fuentes personalizadas */
-  --font-heading: 'Wittgenstein', serif;
-  --font-body: 'Figtree', sans-serif;
-  --font-size-base: 19px;
+  --font-heading: var(--font-fraunces);
+  --font-body: var(--font-figtree);
 }
 
 /* Tema personalizado - Tailwind v4 */
@@ -21,16 +19,16 @@
   --color-primary-700: #225f54;
   --color-primary-800: #1f4d44;
   --color-primary-900: #1b413a;
-  
-  /* Variables personalizadas */
+
+  /* Acentos de contenido (.prose); equivalentes a emerald-800 / emerald-900 de Tailwind */
+  --color-prose-heading: #065f46;
+  --color-prose-strong: #064e3b;
+
   --container: 1200px;
   --spacing-custom: 10px;
-  
-  /* Font families para Tailwind */
-  --font-family-heading: 'Wittgenstein', serif;
-  --font-family-body: 'Figtree', sans-serif;
-  
-  /* Font size base */
+
+  --font-family-heading: var(--font-fraunces);
+  --font-family-body: var(--font-figtree);
   --font-size-base: 19px;
 }
 
@@ -84,11 +82,17 @@ p a:focus-visible {
   outline-offset: 2px;
 }
 
-.prose > section {
-  margin-bottom: 32px;
-
+.prose {
   h3, h2 {
-    color: var(--color-emerald-800);  
+    color: var(--color-prose-heading);
+  }
+
+  > section {
+    margin-bottom: 32px;
+  
+    h3, h2 {
+      color: var(--color-prose-heading);
+    }
   }
 }
 
@@ -136,8 +140,8 @@ p a:focus-visible {
     font-family: var(--font-body);
   }
   
-  /* Clases de peso para Wittgenstein */
-  .font-wittgenstein {
+  /* Display / UI con la misma familia que los títulos (Fraunces) */
+  .font-fraunces {
     font-family: var(--font-heading);
     font-weight: 400;
   }
@@ -195,7 +199,7 @@ p a:focus-visible {
   height: auto;
   padding: .5rem 1rem;
   background: #fff;
-  border: 2px solid rgb(52 153 129);
+  border: 2px solid var(--color-primary-500);
   border-radius: .25rem;
   z-index: 50;
 }
@@ -248,7 +252,7 @@ p {
 
 p strong,
 li strong {
-  color: var(--color-emerald-900);
+  color: var(--color-prose-strong);
 }
 
 .prose {
@@ -262,7 +266,7 @@ li strong {
   h2 {
     margin-top: 32px;
     font-size: 1.8rem;
-    margin-bottom:var(--spacing-custom);
+    margin-bottom: var(--spacing-custom);
   }
 }
 

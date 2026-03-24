@@ -5,10 +5,15 @@ import {
   SITE_NAME,
   SITE_LOCALE,
   SITE_IMAGE,
+  SITE_LOGO,
+  PLACE_LATITUDE,
+  PLACE_LONGITUDE,
+  PLACE_ADDRESS_REGION,
+  PLACE_ADDRESS_COUNTRY,
 } from "../consts";
-import GoogleAnalytics from "./GoogleAnalytics.astro";
 import GoogleSiteVerification from "./GoogleSiteVerification.astro";
-import { ViewTransitions } from "astro:transitions";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
 import "../styles/globals.css";
 import Guia from "./Guia.astro";
 
@@ -27,14 +32,53 @@ const ogImage = image
   ? new URL(image, Astro.site).toString()
   : new URL(SITE_IMAGE, Astro.site).toString();
 
-// Navegación principal
-const navItems = [
-  { href: "/cosas-para-hacer", label: "Cosas para hacer" },
-  { href: "/comer-beber", label: "Comer / Beber" },
-  { href: "/estancias", label: "Estancias" },
-  { href: "/historia-naturaleza", label: "Historia y naturaleza" },
-  { href: "/eventos", label: "Eventos" },
-  { href: "/blog", label: "Blog" },
+const siteUrl = Astro.site?.href.replace(/\/+$/, "") ?? "";
+const logoUrl = Astro.site ? new URL(SITE_LOGO, Astro.site).href : SITE_LOGO;
+const jsonLd =
+  siteUrl &&
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        url: `${siteUrl}/`,
+        inLanguage: SITE_LOCALE,
+        publisher: { "@id": `${siteUrl}/#organization` },
+        about: { "@id": `${siteUrl}/#place` },
+      },
+      {
+        "@type": ["City", "Place"],
+        "@id": `${siteUrl}/#place`,
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: PLACE_LATITUDE,
+          longitude: PLACE_LONGITUDE,
+        },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: SITE_NAME,
+          addressRegion: PLACE_ADDRESS_REGION,
+          addressCountry: PLACE_ADDRESS_COUNTRY,
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: SITE_NAME,
+        url: `${siteUrl}/`,
+        logo: logoUrl,
+      },
+    ],
+  });
+
+const navItems: { href: string; label: string }[] = [
+  { href: "/historia", label: "Historia" },
+  { href: "/directo", label: "Directo" },
 ];
 ---
 
@@ -68,61 +112,21 @@ const navItems = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/bandera.webp" type="image/webp" />
+    <link rel="apple-touch-icon" href="/bandera.webp" />
     <meta name="apple-mobile-web-app-title" content="Faedo" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- DNS Prefetch para recursos externos -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={SITE_TITLE}
-      href="/rss.xml"
-    />
-    <!-- Google Fonts - Wittgenstein & Figtree -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: SITE_NAME,
-        description: SITE_DESCRIPTION,
-        url: Astro.site?.toString(),
-        inLanguage: SITE_LOCALE,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${Astro.site}?q={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
-      })}
-    />
+    <Font cssVariable="--font-figtree" preload />
+    <Font cssVariable="--font-fraunces" preload />
+    {
+      jsonLd && (
+        <script type="application/ld+json" set:html={jsonLd} />
+      )
+    }
     <slot name="head" />
     <GoogleSiteVerification />
-    <GoogleAnalytics />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -136,92 +140,103 @@ const navItems = [
       >
         <a
           href="/"
-          class="font-wittgenstein text-xl text-primary-700 no-underline"
-          >{SITE_NAME}</a
+          class="font-fraunces text-xl text-primary-700 no-underline inline-flex items-center gap-2"
         >
+          <img
+            src="/bandera.webp"
+            alt="Escudo de Ciñera"
+            width="50"
+            height="50"
+            class="shrink-0 object-contain"
+            decoding="async"
+          />
+          {SITE_NAME}
+        </a>
 
-        <!-- Menú desktop -->
-        <ul class="hidden md:flex font-wittgenstein">
-          {
-            navItems.map((item) => (
-              <li>
-                <a class="px-2 py-6 inline-block" href={item.href}>
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-
-        <!-- Botón hamburguesa móvil -->
-        <button
-          id="menu-toggle"
-          class="md:hidden my-4 p-2 text-gray-700 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+        {
+          navItems.length > 0 && (
+            <>
+              <ul class="hidden md:flex font-fraunces text-prose-heading">
+                {navItems.map((item) => (
+                  <li>
+                    <a class="px-2 py-6 inline-block no-underline hover:opacity-90" href={item.href}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <button
+                id="menu-toggle"
+                class="md:hidden my-4 p-2 text-prose-heading hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </>
+          )
+        }
       </nav>
 
-      <!-- Menú móvil -->
-      <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
-        <ul
-          class="container font-wittgenstein py-4 flex flex-col gap-3 text-center"
-        >
-          {
-            navItems.map((item, index) => (
-              <li>
-                <a
-                  href={item.href}
-                  class={`block py-2 ${index < navItems.length - 1 ? "border-b border-gray-100" : ""}`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      {
+        navItems.length > 0 && (
+          <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
+            <ul class="container font-fraunces py-4 flex flex-col gap-3 text-center text-prose-heading">
+              {navItems.map((item, index) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class={`block py-2 no-underline hover:opacity-90 ${index < navItems.length - 1 ? "border-b border-gray-100" : ""}`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
     </header>
 
-    <script>
-      // Toggle menú móvil
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
+    {
+      navItems.length > 0 && (
+        <script>
+          const menuToggle = document.getElementById("menu-toggle");
+          const mobileMenu = document.getElementById("mobile-menu");
 
-      menuToggle?.addEventListener("click", () => {
-        const isOpen = mobileMenu?.classList.toggle("hidden");
-        menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
-      });
+          menuToggle?.addEventListener("click", () => {
+            const isOpen = mobileMenu?.classList.toggle("hidden");
+            menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+          });
 
-      // Cerrar menú al hacer clic en un enlace
-      mobileMenu?.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          menuToggle?.setAttribute("aria-expanded", "false");
-        });
-      });
+          mobileMenu?.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+              menuToggle?.setAttribute("aria-expanded", "false");
+            });
+          });
 
-      // Cerrar menú al cambiar de tamaño a desktop
-      window.addEventListener("resize", () => {
-        if (window.innerWidth >= 768) {
-          mobileMenu?.classList.add("hidden");
-          menuToggle?.setAttribute("aria-expanded", "false");
-        }
-      });
-    </script>
+          window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768) {
+              mobileMenu?.classList.add("hidden");
+              menuToggle?.setAttribute("aria-expanded", "false");
+            }
+          });
+        </script>
+      )
+    }
     <main class="flex-1">
       <slot />
     </main>
@@ -236,22 +251,24 @@ const navItems = [
           &copy; {new Date().getFullYear()}
           {SITE_NAME} · Proyecto informativo sin ánimo de lucro.
         </p>
-        <nav aria-label="Secundario">
-          <ul class="md:flex md:gap-4 font-wittgenstein text-center">
-            {
-              navItems.map((item) => (
-                <li>
-                  <a
-                    class="text-lg md:text-xs py-2 inline-block"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
+        {
+          navItems.length > 0 && (
+            <nav aria-label="Secundario">
+              <ul class="md:flex md:gap-4 font-fraunces text-center">
+                {navItems.map((item) => (
+                  <li>
+                    <a
+                      class="text-lg md:text-xs py-2 inline-block"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
       </div>
       <p class="text-center text-sm">
         Sitio web creado por <a

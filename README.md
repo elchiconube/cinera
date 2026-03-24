@@ -2,7 +2,7 @@
 
 Sitio web informativo sobre la ruta de senderismo del **Faedo de Ciñera** en León, España. Construido con Astro para máximo rendimiento y SEO.
 
-🌐 **URL**: [https://ciñera.es](https://ciñera.es)
+🌐 **URL**: [https://cinera.es](https://cinera.es)
 
 ## 📋 Descripción
 
@@ -146,7 +146,7 @@ Guía completa de senderismo del Faedo de Ciñera que incluye:
 
 ### Fuentes
 
-- **[Wittgenstein](https://fonts.google.com/specimen/Wittgenstein)** - Headings (serif)
+- **[Fraunces](https://fonts.google.com/specimen/Fraunces)** - Headings (serif)
 - **[Figtree](https://fonts.google.com/specimen/Figtree)** - Body text (sans-serif)
 
 ## 🧞 Comandos
@@ -249,7 +249,7 @@ El mapa utiliza:
 --color-primary-800: #1f4d44;
 
 /* Tipografía */
---font-heading: "Wittgenstein", serif;
+--font-heading: "Fraunces", serif;
 --font-body: "Figtree", sans-serif;
 --font-size-base: 19px;
 ```
