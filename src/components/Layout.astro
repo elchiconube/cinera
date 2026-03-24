@@ -16,6 +16,7 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import "../styles/globals.css";
 import Guia from "./Guia.astro";
+import MiniWeather from "./MiniWeather.astro";
 
 const {
   title = SITE_TITLE,
@@ -155,16 +156,20 @@ const navItems: { href: string; label: string }[] = [
 
         {
           navItems.length > 0 && (
-            <>
-              <ul class="hidden md:flex font-fraunces text-prose-heading">
-                {navItems.map((item) => (
-                  <li>
-                    <a class="px-2 py-6 inline-block no-underline hover:opacity-90" href={item.href}>
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            
+              <div class="flex items-center gap-2">
+                <ul class="hidden md:flex font-fraunces text-prose-heading">
+                  {navItems.map((item) => (
+                    <li>
+                      <a class="px-2 py-6 inline-block no-underline hover:opacity-90" href={item.href}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <MiniWeather />
+              
+
               <button
                 id="menu-toggle"
                 class="md:hidden my-4 p-2 text-prose-heading hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-400 rounded"
@@ -185,7 +190,8 @@ const navItems: { href: string; label: string }[] = [
                   />
                 </svg>
               </button>
-            </>
+            </div>
+            
           )
         }
       </nav>
