@@ -1,0 +1,310 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "@components/Layout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+
+const allFotos = await getCollection("memoria");
+
+// Ordenar por décadas y dentro de cada una por `order`
+const fotosSorted = allFotos.sort((a, b) => {
+  if (a.data.decada < b.data.decada) return -1;
+  if (a.data.decada > b.data.decada) return 1;
+  return a.data.order - b.data.order;
+});
+
+// Agrupar por décadas manteniendo el orden
+const decadasMap = new Map<
+  string,
+  { label: string; uncertain: boolean; fotos: typeof allFotos }
+>();
+
+for (const foto of fotosSorted) {
+  const key = foto.data.decada;
+  if (!decadasMap.has(key)) {
+    decadasMap.set(key, {
+      label: foto.data.decadaLabel,
+      uncertain: key === "desconocida",
+      fotos: [],
+    });
+  }
+  decadasMap.get(key)!.fotos.push(foto);
+}
+
+const decadas = Array.from(decadasMap.values());
+
+const WA_NUMBER = "34649131791";
+const WA_MSG = encodeURIComponent(
+  "Hola, quiero aportar información sobre las fotos antiguas de Ciñera."
+);
+const waUrl = `https://wa.me/${WA_NUMBER}?text=${WA_MSG}`;
+---
+
+<Layout
+  title="Memoria fotográfica · Ciñera"
+  description="Un archivo vivo de fotografías históricas de Ciñera de Gordón. Ayúdanos a identificarlas y a completar este legado."
+>
+  <section class="container py-12 md:py-16">
+    <SectionHeader
+      title="Memoria de Ciñera"
+      description="Un archivo vivo de fotografías históricas. Cada imagen es un fragmento de lo que fuimos. Ayúdanos a completarlo."
+    />
+
+    <div class="relative mt-12 max-w-3xl mx-auto">
+
+      <!-- Línea vertical central (solo desktop) -->
+      <div
+        class="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block"
+        aria-hidden="true"
+      ></div>
+
+      {decadas.map((decada) => (
+        <div class="mb-16">
+
+          <!-- Etiqueta de década -->
+          <div class="relative flex justify-center mb-8">
+            <span
+              class:list={[
+                "relative z-10 bg-white px-4 py-1 text-xs tracking-widest text-slate-500 font-medium uppercase border border-slate-300",
+                decada.uncertain && "border-dashed italic",
+              ]}
+            >
+              {decada.label}
+            </span>
+          </div>
+
+          <!-- Fotos alternadas -->
+          <div class="space-y-10">
+            {decada.fotos.map((foto, i) => (
+              <div
+                class:list={[
+                  "flex gap-6 md:gap-10",
+                  i % 2 === 0
+                    ? "flex-col md:flex-row"
+                    : "flex-col md:flex-row-reverse",
+                ]}
+              >
+                <!-- Imagen optimizada con astro:assets -->
+                <div class="md:w-1/2">
+                  <button
+                    type="button"
+                    class="w-full bg-slate-100 border border-slate-200 rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-white"
+                    aria-label={`Ver foto: ${foto.data.alt}`}
+                    data-memoria-modal-trigger
+                    data-memoria-alt={foto.data.alt}
+                    data-memoria-descripcion={foto.data.descripcion}
+                    data-memoria-year={foto.data.year ?? ""}
+                  >
+                    <Image
+                      src={foto.data.src}
+                      alt={foto.data.alt}
+                      widths={[380, 760, 1080]}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      class="w-full h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </button>
+                </div>
+
+                <!-- Meta -->
+                <div class="md:w-1/2 flex flex-col justify-center py-2">
+                  {(foto.data.year || foto.data.lugar) && (
+                    <p class="text-xs text-slate-400 italic mb-1">
+                      {foto.data.year && <span>{foto.data.year}</span>}
+                      {foto.data.year && foto.data.lugar && <span> · </span>}
+                      {foto.data.lugar && <span>{foto.data.lugar}</span>}
+                    </p>
+                  )}
+
+                  <p class="text-slate-700 text-sm leading-relaxed mb-3">
+                    {foto.data.descripcion}
+                  </p>
+
+                  {foto.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1 mb-3">
+                      {foto.data.tags.map((tag) => (
+                        <span class="text-[10px] px-2 py-0.5 border border-slate-200 text-slate-400 italic">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {!foto.data.yearCertain && (
+                    <div class="flex items-center gap-1.5 mt-1">
+                      <span
+                        class="inline-block w-2 h-2 rounded-full border border-dashed border-slate-400"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="text-[11px] text-slate-400 italic">
+                        Pendiente de identificar
+                      </span>
+                    </div>
+                  )}
+
+                  {foto.data.aportadaPor && (
+                    <p class="text-[10px] text-slate-300 mt-2">
+                      Foto aportada por {foto.data.aportadaPor}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Modal de foto -->
+    <div
+      id="memoria-modal-overlay"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
+      role="presentation"
+    >
+      <div
+        class="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="memoria-modal-description"
+      >
+        <div class="flex items-start justify-between gap-4 p-4 border-b border-slate-200">
+          <p id="memoria-modal-title" class="text-sm text-slate-500"></p>
+
+          <button
+            id="memoria-modal-close"
+            type="button"
+            class="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 hover:bg-slate-50"
+            aria-label="Cerrar"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <div class="p-4">
+          <img
+            id="memoria-modal-img"
+            alt=""
+            class="w-full max-h-[75vh] object-contain bg-slate-100 rounded-xl"
+          />
+
+          <div class="mt-4">
+            <p
+              id="memoria-modal-description"
+              class="text-slate-800 text-sm leading-relaxed"
+            ></p>
+            <p id="memoria-modal-year" class="text-slate-500 text-xs mt-2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA WhatsApp -->
+    <div class="max-w-xl mx-auto mt-8 border border-slate-200 p-8 text-center">
+      <p class="text-xs tracking-widest uppercase text-slate-400 mb-3">
+        ¿Reconoces alguna foto?
+      </p>
+      <p class="text-slate-600 text-sm leading-relaxed mb-6">
+        Si sabes cuándo fue tomada, quiénes aparecen, o tienes fotografías
+        antiguas de Ciñera que quieras compartir, escríbenos. Cada dato
+        ayuda a preservar este legado.
+      </p>
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 border border-slate-300 px-6 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-green-600"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <script>
+    const overlay = document.getElementById("memoria-modal-overlay") as
+      | HTMLDivElement
+      | null;
+    const modalImg = document.getElementById("memoria-modal-img") as
+      | HTMLImageElement
+      | null;
+    const titleEl = document.getElementById("memoria-modal-title") as
+      | HTMLParagraphElement
+      | null;
+    const descEl = document.getElementById("memoria-modal-description") as
+      | HTMLParagraphElement
+      | null;
+    const yearEl = document.getElementById("memoria-modal-year") as
+      | HTMLParagraphElement
+      | null;
+    const closeBtn = document.getElementById("memoria-modal-close") as
+      | HTMLButtonElement
+      | null;
+
+    let lastTrigger: HTMLButtonElement | null = null;
+
+    function openModal(trigger: HTMLButtonElement) {
+      lastTrigger = trigger;
+
+      const dataAlt = trigger.getAttribute("data-memoria-alt") || "";
+      const dataDescripcion = trigger.getAttribute("data-memoria-descripcion") || "";
+      const dataYear = trigger.getAttribute("data-memoria-year") || "";
+
+      const thumbImg = trigger.querySelector("img") as HTMLImageElement | null;
+      const src = thumbImg?.getAttribute("src") || "";
+      const srcset = thumbImg?.getAttribute("srcset") || "";
+
+      if (!overlay || !modalImg) return;
+
+      if (overlay.classList.contains("hidden")) {
+        overlay.classList.remove("hidden");
+      }
+      if (!overlay.classList.contains("flex")) {
+        overlay.classList.add("flex");
+      }
+
+      modalImg.alt = dataAlt;
+      if (srcset) modalImg.setAttribute("srcset", srcset);
+      if (src) modalImg.src = src;
+
+      if (titleEl) titleEl.textContent = dataAlt;
+      if (descEl) descEl.textContent = dataDescripcion;
+      if (yearEl) yearEl.textContent = dataYear ? dataYear : "";
+
+      document.body.style.overflow = "hidden";
+      closeBtn?.focus();
+    }
+
+    function closeModal() {
+      if (overlay) {
+        overlay.classList.add("hidden");
+        overlay.classList.remove("flex");
+      }
+      document.body.style.overflow = "";
+      lastTrigger?.focus?.();
+    }
+
+    document
+      .querySelectorAll("[data-memoria-modal-trigger]")
+      .forEach((trigger) => {
+        const btn = trigger as HTMLButtonElement;
+        btn.addEventListener("click", () => openModal(btn));
+      });
+
+    overlay?.addEventListener("click", (event) => {
+      if (event.target === overlay) closeModal();
+    });
+
+    closeBtn?.addEventListener("click", closeModal);
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  </script>
+</Layout>
