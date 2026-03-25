@@ -128,6 +128,11 @@ const navItems: { href: string; label: string }[] = [
     <slot name="head" />
     <GoogleSiteVerification />
     <ClientRouter />
+    <script
+      defer
+      src="https://umami.faedodigital.com/script.js"
+      data-website-id="08672708-577d-4cc5-a14f-fc2d89400616"
+    ></script>
   </head>
   <body class="min-h-screen flex flex-col">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -264,7 +269,7 @@ const navItems: { href: string; label: string }[] = [
                 {navItems.map((item) => (
                   <li>
                     <a
-                      class="text-lg md:text-xs py-2 inline-block"
+                      class="text-lg py-2 inline-block"
                       href={item.href}
                     >
                       {item.label}
