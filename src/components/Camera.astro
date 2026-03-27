@@ -20,6 +20,11 @@
     webkit-playsinline
     class="oculto"></video>
 </div>
+<details id="debug-panel" class="debug-panel oculto" open>
+  <summary>Diagnóstico de reproducción</summary>
+  <div id="debug-info" class="debug-info"></div>
+  <pre id="debug-log" class="debug-log"></pre>
+</details>
 
 <script>
   import Hls from "hls.js";
@@ -35,15 +40,58 @@
   let reintentos = 0;
   let hls: Hls | null = null;
   let timeoutReintento: ReturnType<typeof setTimeout> | null = null;
+  const MAX_LOGS = 30;
+  const logs: string[] = [];
+  const params = new URLSearchParams(window.location.search);
+  const debugEnabled = params.get("debugCam") === "1";
+  const debugLog = document.getElementById("debug-log");
+  const debugInfo = document.getElementById("debug-info");
+  const debugPanel = document.getElementById("debug-panel");
+
+  if (debugPanel && debugEnabled) {
+    debugPanel.classList.remove("oculto");
+  }
+
+  function logDebug(message: string) {
+    if (!debugEnabled) return;
+    const stamp = new Date().toLocaleTimeString("es-ES", {
+      hour12: false,
+      timeZone: "Europe/Madrid",
+    });
+    logs.unshift(`[${stamp}] ${message}`);
+    if (logs.length > MAX_LOGS) logs.length = MAX_LOGS;
+    if (debugLog) debugLog.textContent = logs.join("\n");
+  }
+
+  function renderInfo(extra = "") {
+    if (!debugEnabled) return;
+    if (!debugInfo) return;
+    const mediaSourceOk = typeof window.MediaSource !== "undefined";
+    const nativeHls = video.canPlayType("application/vnd.apple.mpegurl") || "no";
+    const hlsJsSupport = Hls.isSupported();
+    const lines = [
+      `UA: ${navigator.userAgent}`,
+      `MSE: ${mediaSourceOk ? "si" : "no"}`,
+      `hls.js soportado: ${hlsJsSupport ? "si" : "no"}`,
+      `HLS nativo: ${nativeHls}`,
+      `stream: ${url}`,
+      `reintentos: ${reintentos}/${MAX_REINTENTOS}`,
+    ];
+    if (extra) lines.push(extra);
+    debugInfo.textContent = lines.join("\n");
+  }
 
   function mostrar(estado: "cargando" | "error" | "video") {
     elCargando.classList.toggle("oculto", estado !== "cargando");
     elError.classList.toggle("oculto", estado !== "error");
     video.classList.toggle("oculto", estado !== "video");
+    logDebug(`estado UI -> ${estado}`);
+    renderInfo(`estado_actual: ${estado}`);
   }
 
   function destruirHls() {
     if (hls) {
+      logDebug("destruyendo instancia hls.js");
       hls.destroy();
       hls = null;
     }
@@ -54,11 +102,16 @@
   }
 
   function onError() {
+    logDebug("error fatal de reproducción");
     destruirHls();
     if (reintentos < MAX_REINTENTOS) {
       reintentos++;
+      logDebug(
+        `reintentando en ${DELAY_REINTENTO_MS}ms (${reintentos}/${MAX_REINTENTOS})`,
+      );
       timeoutReintento = setTimeout(iniciarStream, DELAY_REINTENTO_MS);
     } else {
+      logDebug("sin más reintentos, mostrando estado de error");
       mostrar("error");
     }
   }
@@ -66,8 +119,11 @@
   function iniciarStream() {
     destruirHls();
     mostrar("cargando");
+    renderInfo();
+    logDebug("iniciando stream");
 
     if (Hls.isSupported()) {
+      logDebug("ruta hls.js (MSE)");
       hls = new Hls({
         lowLatencyMode: true,
         backBufferLength: 0,
@@ -78,22 +134,28 @@
       hls.attachMedia(video);
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        logDebug("manifest parseado correctamente");
         video.play().catch(() => {});
         mostrar("video");
         reintentos = 0;
       });
 
       hls.on(Hls.Events.ERROR, (_event, data) => {
+        const details = `${data.type} / ${data.details} / fatal=${data.fatal ? "si" : "no"}`;
+        logDebug(`hls.js error -> ${details}`);
+        renderInfo(`ultimo_error: ${details}`);
         if (data.fatal) onError();
       });
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       // Safari / iOS — HLS nativo
+      logDebug("ruta HLS nativo");
       video.src = url;
       video.load();
 
       video.addEventListener(
         "canplay",
         () => {
+          logDebug("video canplay en HLS nativo");
           video.play().catch(() => {});
           mostrar("video");
           reintentos = 0;
@@ -101,17 +163,32 @@
         { once: true },
       );
 
-      video.addEventListener("error", onError, { once: true });
+      video.addEventListener(
+        "error",
+        () => {
+          const mediaError = video.error;
+          const details = mediaError
+            ? `code=${mediaError.code}, message=${mediaError.message || "sin mensaje"}`
+            : "error nativo sin detalle";
+          logDebug(`video error nativo -> ${details}`);
+          renderInfo(`ultimo_error: ${details}`);
+          onError();
+        },
+        { once: true },
+      );
     } else {
+      logDebug("navegador sin soporte HLS");
       mostrar("error");
     }
   }
 
   btnReintentar.addEventListener("click", () => {
+    logDebug("click en reintentar");
     reintentos = 0;
     iniciarStream();
   });
 
+  renderInfo("esperando inicio");
   iniciarStream();
 </script>
 
@@ -165,6 +242,41 @@
 
   #btn-reintentar:hover {
     background: var(--color-emerald-900);
+  }
+
+  .debug-panel {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-emerald-900);
+    border-radius: 0.5rem;
+    background: var(--color-emerald-950);
+    color: var(--color-emerald-200);
+    font-size: 0.8rem;
+  }
+
+  .debug-panel summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-emerald-300);
+  }
+
+  .debug-info {
+    margin-top: 0.75rem;
+    white-space: pre-wrap;
+    line-height: 1.4;
+  }
+
+  .debug-log {
+    margin-top: 0.75rem;
+    max-height: 12rem;
+    overflow: auto;
+    border: 1px solid var(--color-emerald-900);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    background: #04110e;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.35;
   }
 
   /* Spinner */
