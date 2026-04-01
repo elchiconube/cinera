@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import whatsappBanner from "@assets/banners/whatsapp.webp";
+
+const CHANNEL_URL = "https://whatsapp.com/channel/0029Vb7oNxlLY6d20IZFly03";
+---
+
+<div class="flex w-full justify-center px-4 py-6">
+  <a
+    href={CHANNEL_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-block max-w-full shadow-md shadow-black/25 transition-opacity hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
+    aria-label="Únete el canal de WhatsApp de Ciñera"
+    title="Únete el canal de WhatsApp de Ciñera"
+  >
+    <Image
+      src={whatsappBanner}
+      alt="Canal de WhatsApp — Ciñera"
+      class="h-auto w-full max-w-[600px]"
+      loading="lazy"
+      widths={[400, 480, 600]}
+      sizes="(max-width: 600px) 100vw, 600px"
+    />
+  </a>
+</div>
