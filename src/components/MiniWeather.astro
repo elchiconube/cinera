@@ -1,14 +1,7 @@
 ---
-import { PLACE_LATITUDE, PLACE_LONGITUDE } from "../consts";
-const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${PLACE_LATITUDE}&longitude=${PLACE_LONGITUDE}&current=temperature_2m,weather_code,is_day&timezone=Europe%2FMadrid`;
+import { getLiveCollection } from "astro:content";
 
-type WeatherData = {
-  current: {
-    temperature_2m: number;
-    weather_code: number;
-    is_day: 0 | 1;
-  };
-};
+export const prerender = false;
 
 function weatherIcon(code: number, isDay: boolean): string {
   if (code === 0) return isDay ? "☀️" : "🌙";
@@ -22,20 +15,15 @@ function weatherIcon(code: number, isDay: boolean): string {
   return "🌡️";
 }
 
-let weather: WeatherData | null = null;
-
-try {
-  const res = await fetch(API_URL);
-  if (res.ok) weather = await res.json();
-} catch {}
-
-const isDay = weather ? weather.current.is_day === 1 : true;
-const icon = weather ? weatherIcon(weather.current.weather_code, isDay) : null;
-const temp = weather ? `${weather.current.temperature_2m}°C` : null;
+const { entries } = await getLiveCollection("weather");
+const current = entries?.[0]?.data;
+const isDay = current?.is_day === 1 ?? true;
+const icon = current ? weatherIcon(current.weather_code, isDay) : null;
+const temp = current ? `${current.temperature_2m}°C` : null;
 ---
 
 {
-  weather && (
+  current && (
     <a
       href="/directo"
       class="weather-chip"
