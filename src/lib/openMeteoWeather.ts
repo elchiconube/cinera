@@ -14,6 +14,29 @@ export type OpenMeteoForecastResponse = {
   current: OpenMeteoForecastCurrent;
 };
 
+/** Respuesta mínima para el chip del header */
+export type OpenMeteoMiniCurrent = {
+  temperature_2m: number;
+  weather_code: number;
+  is_day: 0 | 1;
+};
+
+export type OpenMeteoMiniResponse = {
+  current: OpenMeteoMiniCurrent;
+};
+
+export function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export function escapeAttr(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
 export const OPEN_METEO_CARD_URL = `https://api.open-meteo.com/v1/forecast?latitude=${PLACE_LATITUDE}&longitude=${PLACE_LONGITUDE}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code,is_day&timezone=Europe%2FMadrid&wind_speed_unit=ms`;
 
 export const OPEN_METEO_MINI_URL = `https://api.open-meteo.com/v1/forecast?latitude=${PLACE_LATITUDE}&longitude=${PLACE_LONGITUDE}&current=temperature_2m,weather_code,is_day&timezone=Europe%2FMadrid`;

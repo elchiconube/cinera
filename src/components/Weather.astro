@@ -11,6 +11,7 @@
 <script>
   import {
     OPEN_METEO_CARD_URL,
+    escapeHtml,
     weatherLabel,
     type OpenMeteoForecastResponse,
   } from "../lib/openMeteoWeather";
@@ -24,14 +25,6 @@
       minute: "2-digit",
       timeZone: "Europe/Madrid",
     });
-  }
-
-  function escapeHtml(s: string) {
-    return s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
   }
 
   async function run() {

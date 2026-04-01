@@ -1,22 +1,24 @@
 ---
 ---
 
-<span id="mini-weather-root" class="mini-weather-host"></span>
+<span
+  id="mini-weather-root"
+  class="mini-weather-host"
+  aria-live="polite"
+>
+  <span class="mini-weather-loading" aria-busy="true">
+    <span class="mini-weather-skeleton" aria-hidden="true"></span>
+    <span class="sr-only">Cargando tiempo…</span>
+  </span>
+</span>
 
 <script>
-  import { OPEN_METEO_MINI_URL, weatherIcon } from "../lib/openMeteoWeather";
-
-  type MiniResponse = {
-    current: {
-      temperature_2m: number;
-      weather_code: number;
-      is_day: 0 | 1;
-    };
-  };
-
-  function escapeAttr(s: string) {
-    return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-  }
+  import {
+    OPEN_METEO_MINI_URL,
+    escapeAttr,
+    weatherIcon,
+    type OpenMeteoMiniResponse,
+  } from "../lib/openMeteoWeather";
 
   async function run() {
     const root = document.getElementById("mini-weather-root");
@@ -24,17 +26,19 @@
 
     try {
       const res = await fetch(OPEN_METEO_MINI_URL);
-      if (!res.ok) return;
-      const data: MiniResponse = await res.json();
+      if (!res.ok) throw new Error("bad status");
+      const data: OpenMeteoMiniResponse = await res.json();
       const c = data.current;
       const isDay = c.is_day === 1;
       const icon = weatherIcon(c.weather_code, isDay);
       const temp = `${c.temperature_2m}°C`;
-      const aria = escapeAttr(`Tiempo en Ciñera: ${temp}. Ver cámara en directo.`);
+      const aria = escapeAttr(
+        `Tiempo en Ciñera: ${temp}. Ver cámara en directo.`,
+      );
 
       root.innerHTML = `<a href="/directo" class="weather-chip" aria-label="${aria}"><span class="weather-icon">${icon}</span><span class="weather-temp">${c.temperature_2m}°C</span></a>`;
     } catch {
-      /* sin chip si falla */
+      root.innerHTML = "";
     }
   }
 
@@ -42,6 +46,45 @@
 </script>
 
 <style>
+  .mini-weather-host {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    vertical-align: middle;
+  }
+
+  .mini-weather-loading {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .mini-weather-skeleton {
+    display: inline-block;
+    width: 4.75rem;
+    height: 32px;
+    border-radius: 999px;
+    background: color-mix(in srgb, currentColor 10%, transparent);
+    animation: mini-weather-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes mini-weather-pulse {
+    50% {
+      opacity: 0.55;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
   .mini-weather-host :global(.weather-chip) {
     display: inline-flex;
     align-items: center;
