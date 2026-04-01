@@ -2,8 +2,12 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
+  adapter: cloudflare(),
+  output: "hybrid",
   site: "https://cinera.es",
   fonts: [
     {
@@ -32,7 +36,7 @@ export default defineConfig({
     domains: ["cinera.es"],
     remotePatterns: [{ protocol: "https" }],
     service: {
-      entrypoint: "astro/assets/services/sharp",
+      entrypoint: "astro/assets/services/compile", // ← cambia sharp por compile
       config: {
         limitInputPixels: false,
       },
