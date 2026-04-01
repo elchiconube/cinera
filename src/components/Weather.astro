@@ -1,105 +1,83 @@
 ---
-import { PLACE_LATITUDE, PLACE_LONGITUDE } from "../consts";
-
-const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${PLACE_LATITUDE}&longitude=${PLACE_LONGITUDE}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code,is_day&timezone=Europe%2FMadrid&wind_speed_unit=ms`;
-
-type WeatherData = {
-  current: {
-    temperature_2m: number;
-    relative_humidity_2m: number;
-    precipitation: number;
-    wind_speed_10m: number;
-    weather_code: number;
-    is_day: 0 | 1;
-  };
-};
-
-function weatherLabel(
-  code: number,
-  isDay: boolean,
-): { label: string; icon: string } {
-  if (code === 0) return { label: "Despejado", icon: isDay ? "☀️" : "🌙" };
-  if (code <= 2)
-    return { label: "Parcialmente nublado", icon: isDay ? "⛅" : "🌤️" };
-  if (code === 3) return { label: "Nublado", icon: "☁️" };
-  if (code <= 49) return { label: "Niebla", icon: "🌫️" };
-  if (code <= 59) return { label: "Llovizna", icon: "🌦️" };
-  if (code <= 69) return { label: "Lluvia", icon: "🌧️" };
-  if (code <= 79) return { label: "Nieve", icon: "❄️" };
-  if (code <= 82) return { label: "Chubascos", icon: "🌧️" };
-  if (code <= 99) return { label: "Tormenta", icon: "⛈️" };
-  return { label: "Variable", icon: "🌡️" };
-}
-
-let weather: WeatherData | null = null;
-let error = false;
-
-try {
-  const res = await fetch(API_URL);
-  if (res.ok) weather = await res.json();
-  else error = true;
-} catch {
-  error = true;
-}
-
-const isDay = weather ? weather.current.is_day === 1 : true;
-const { label, icon } = weather
-  ? weatherLabel(weather.current.weather_code, isDay)
-  : { label: "—", icon: "—" };
-
-const now = new Date().toLocaleString("es-ES", {
-  weekday: "long",
-  day: "numeric",
-  month: "long",
-  hour: "2-digit",
-  minute: "2-digit",
-  timeZone: "Europe/Madrid",
-});
 ---
 
 <div
+  id="weather-root"
   class="mx-auto rounded-xl border border-emerald-800 bg-emerald-900 p-4 shadow-sm max-w-sm"
 >
-  {
-    error ? (
-      <p class="text-sm text-emerald-400">No se pudo cargar el tiempo.</p>
-    ) : weather ? (
-      <>
-        <p class="text-xs font-medium uppercase tracking-wide text-emerald-500">
-          Ciñera · {now}
-        </p>
+  <p class="text-sm text-emerald-400 animate-pulse">Cargando el tiempo…</p>
+</div>
 
+<script>
+  import {
+    OPEN_METEO_CARD_URL,
+    weatherLabel,
+    type OpenMeteoForecastResponse,
+  } from "../lib/openMeteoWeather";
+
+  function formatNow() {
+    return new Date().toLocaleString("es-ES", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Europe/Madrid",
+    });
+  }
+
+  function escapeHtml(s: string) {
+    return s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  async function run() {
+    const root = document.getElementById("weather-root");
+    if (!root) return;
+
+    try {
+      const res = await fetch(OPEN_METEO_CARD_URL);
+      if (!res.ok) throw new Error("bad status");
+      const data: OpenMeteoForecastResponse = await res.json();
+      const c = data.current;
+      const isDay = c.is_day === 1;
+      const { label, icon } = weatherLabel(c.weather_code, isDay);
+      const now = formatNow();
+
+      const headline = escapeHtml(`Ciñera · ${now}`);
+      const labelEsc = escapeHtml(label);
+
+      root.innerHTML = `
+        <p class="text-xs font-medium uppercase tracking-wide text-emerald-500">${headline}</p>
         <div class="mt-3 flex items-center justify-between">
           <div class="flex items-end gap-3">
-            <span class="text-5xl font-semibold text-emerald-100 leading-none">
-              {weather.current.temperature_2m}°C
-            </span>
-            <span class="text-2xl leading-none mb-0.5">{icon}</span>
+            <span class="text-5xl font-semibold text-emerald-100 leading-none">${c.temperature_2m}°C</span>
+            <span class="text-2xl leading-none mb-0.5" aria-hidden="true">${icon}</span>
           </div>
-          <span class="text-sm text-emerald-400">{label}</span>
+          <span class="text-sm text-emerald-400">${labelEsc}</span>
         </div>
-
         <dl class="mt-4 grid grid-cols-3 gap-2 border-t border-emerald-800 pt-3">
           <div>
             <dt class="text-xs text-emerald-500">Humedad</dt>
-            <dd class="mt-0.5 text-sm font-medium text-emerald-300">
-              {weather.current.relative_humidity_2m}%
-            </dd>
+            <dd class="mt-0.5 text-sm font-medium text-emerald-300">${c.relative_humidity_2m}%</dd>
           </div>
           <div>
             <dt class="text-xs text-emerald-500">Viento</dt>
-            <dd class="mt-0.5 text-sm font-medium text-emerald-300">
-              {weather.current.wind_speed_10m} m/s
-            </dd>
+            <dd class="mt-0.5 text-sm font-medium text-emerald-300">${c.wind_speed_10m} m/s</dd>
           </div>
           <div>
             <dt class="text-xs text-emerald-500">Precipitación</dt>
-            <dd class="mt-0.5 text-sm font-medium text-emerald-300">
-              {weather.current.precipitation} mm
-            </dd>
+            <dd class="mt-0.5 text-sm font-medium text-emerald-300">${c.precipitation} mm</dd>
           </div>
-        </dl>
-      </>
-    ) : null
+        </dl>`;
+    } catch {
+      root.innerHTML =
+        '<p class="text-sm text-emerald-400">No se pudo cargar el tiempo.</p>';
+    }
   }
-</div>
+
+  run();
+</script>

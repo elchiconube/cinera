@@ -1,54 +1,48 @@
 ---
-import { PLACE_LATITUDE, PLACE_LONGITUDE } from "../consts";
-const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${PLACE_LATITUDE}&longitude=${PLACE_LONGITUDE}&current=temperature_2m,weather_code,is_day&timezone=Europe%2FMadrid`;
-
-type WeatherData = {
-  current: {
-    temperature_2m: number;
-    weather_code: number;
-    is_day: 0 | 1;
-  };
-};
-
-function weatherIcon(code: number, isDay: boolean): string {
-  if (code === 0) return isDay ? "☀️" : "🌙";
-  if (code <= 2) return isDay ? "⛅" : "🌤️";
-  if (code === 3) return "☁️";
-  if (code <= 49) return "🌫️";
-  if (code <= 69) return "🌧️";
-  if (code <= 79) return "❄️";
-  if (code <= 82) return "🌧️";
-  if (code <= 99) return "⛈️";
-  return "🌡️";
-}
-
-let weather: WeatherData | null = null;
-
-try {
-  const res = await fetch(API_URL);
-  if (res.ok) weather = await res.json();
-} catch {}
-
-const isDay = weather ? weather.current.is_day === 1 : true;
-const icon = weather ? weatherIcon(weather.current.weather_code, isDay) : null;
-const temp = weather ? `${weather.current.temperature_2m}°C` : null;
 ---
 
-{
-  weather && (
-    <a
-      href="/directo"
-      class="weather-chip"
-      aria-label={`Tiempo en Ciñera: ${temp}. Ver cámara en directo.`}
-    >
-      <span class="weather-icon">{icon}</span>
-      <span class="weather-temp">{temp}</span>
-    </a>
-  )
-}
+<span id="mini-weather-root" class="mini-weather-host"></span>
+
+<script>
+  import { OPEN_METEO_MINI_URL, weatherIcon } from "../lib/openMeteoWeather";
+
+  type MiniResponse = {
+    current: {
+      temperature_2m: number;
+      weather_code: number;
+      is_day: 0 | 1;
+    };
+  };
+
+  function escapeAttr(s: string) {
+    return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  }
+
+  async function run() {
+    const root = document.getElementById("mini-weather-root");
+    if (!root) return;
+
+    try {
+      const res = await fetch(OPEN_METEO_MINI_URL);
+      if (!res.ok) return;
+      const data: MiniResponse = await res.json();
+      const c = data.current;
+      const isDay = c.is_day === 1;
+      const icon = weatherIcon(c.weather_code, isDay);
+      const temp = `${c.temperature_2m}°C`;
+      const aria = escapeAttr(`Tiempo en Ciñera: ${temp}. Ver cámara en directo.`);
+
+      root.innerHTML = `<a href="/directo" class="weather-chip" aria-label="${aria}"><span class="weather-icon">${icon}</span><span class="weather-temp">${c.temperature_2m}°C</span></a>`;
+    } catch {
+      /* sin chip si falla */
+    }
+  }
+
+  run();
+</script>
 
 <style>
-  .weather-chip {
+  .mini-weather-host :global(.weather-chip) {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -67,17 +61,17 @@ const temp = weather ? `${weather.current.temperature_2m}°C` : null;
       border-color 0.15s;
   }
 
-  .weather-chip:hover {
+  .mini-weather-host :global(.weather-chip:hover) {
     background: color-mix(in srgb, currentColor 12%, transparent);
     border-color: color-mix(in srgb, currentColor 25%, transparent);
   }
 
-  .weather-icon {
+  .mini-weather-host :global(.weather-icon) {
     font-size: 0.95rem;
     line-height: 1;
   }
 
-  .weather-temp {
+  .mini-weather-host :global(.weather-temp) {
     line-height: 1;
   }
 </style>
