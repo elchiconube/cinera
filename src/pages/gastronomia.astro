@@ -1,15 +1,66 @@
 ---
+import SectionHeader from "@/components/SectionHeader.astro";
 import Layout from "@components/Layout.astro";
+import {
+  formatSpainPhoneForDisplay,
+  gastronomiaCallTitle,
+  gastronomiaMapLinkTitle,
+  GASTRONOMIA_PLACES,
+} from "@data/gastronomia";
 ---
 
 <Layout
   title="Gastronomía | Ciñera"
-  description="Sección de gastronomía de Ciñera. Próximamente."
+  description="Comer en Ciñera: restaurantes, bares y lugares donde disfrutar de la gastronomía local."
 >
-  <section class="container py-20 text-center">
-    <h1 class="font-fraunces text-4xl md:text-5xl text-primary-700">Gastronomía</h1>
-    <p class="mt-4 text-lg text-prose">
-      Esta sección está en construcción. Muy pronto compartiremos contenido gastronómico de Ciñera.
-    </p>
+  <section class="container py-12 md:py-16">
+    <SectionHeader
+      title="Comer en Ciñera"
+      description="Restaurantes, bares y lugares donde disfrutar de la gastronomía local."
+    />
+    <div class="prose prose-slate max-w-3xl mx-auto mt-8">
+      <p>
+        En Ciñera puedes disfrutar de la gastronomía local en los mejores
+        restaurantes y bares de la zona. Muchas personas se desplazan a Ciñera
+        para disfrutar de la gastronomía local porque es muy buena.
+      </p>
+      <p>
+        Es bastante común que las personas que visitan Ciñera para visitar el
+        Faedo de Ciñera también disfruten de una buena comida en la zona.
+      </p>
+      <p>
+        Ya sea un buen desayuno, como unos vinos con buena tapa o una agradable
+        comida o cena en Ciñera puedes encontrar varios lugares donde disfrutar
+        de la gastronomía local:
+      </p>
+      <ul>
+        {
+          GASTRONOMIA_PLACES.map((place) => (
+            <li>
+              <h3>
+                <a
+                  href={place.mapsUrl}
+                  target="_blank"
+                  title={gastronomiaMapLinkTitle(place.name)}
+                  rel="noopener noreferrer"
+                >
+                  {place.name}
+                </a>
+              </h3>
+              <p>{place.description}</p>
+              <p>
+                Teléfono:{" "}
+                <a
+                  href={`tel:${place.phoneTel}`}
+                  title={gastronomiaCallTitle(place.name)}
+                >
+                  {formatSpainPhoneForDisplay(place.phoneTel)}
+                </a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 </Layout>
