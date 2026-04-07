@@ -1,4 +1,4 @@
-<div class="camara-wrapper">
+<div id="camara-wrapper" class="camara-wrapper">
   <!-- Estado: cargando -->
   <div id="estado-cargando" class="camara-estado">
     <span class="spinner"></span>
@@ -19,6 +19,21 @@
     playsinline
     webkit-playsinline
     class="oculto"></video>
+
+  <button
+    type="button"
+    id="btn-fullscreen"
+    class="btn-fullscreen oculto"
+    aria-label="Pantalla completa"
+    aria-pressed="false"
+  >
+    <span class="icono-fs-expandir" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    </span>
+    <span class="icono-fs-contraer oculto" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+    </span>
+  </button>
 </div>
 <details id="debug-panel" class="debug-panel oculto" open>
   <summary>Diagnóstico de reproducción</summary>
@@ -30,10 +45,101 @@
   import Hls from "hls.js";
 
   const video = document.getElementById("camara-vivo") as HTMLVideoElement;
+  const wrapper = document.getElementById("camara-wrapper")!;
   const elCargando = document.getElementById("estado-cargando")!;
   const elError = document.getElementById("estado-error")!;
   const btnReintentar = document.getElementById("btn-reintentar")!;
+  const btnFullscreen = document.getElementById("btn-fullscreen")!;
+  const iconoExpandir = btnFullscreen.querySelector(".icono-fs-expandir")!;
+  const iconoContraer = btnFullscreen.querySelector(".icono-fs-contraer")!;
   const url = "https://stream.faedodigital.com/cam/index.m3u8";
+
+  function fullscreenElementActual(): Element | null {
+    return (
+      document.fullscreenElement ??
+      (document as Document & { webkitFullscreenElement?: Element | null })
+        .webkitFullscreenElement ??
+      null
+    );
+  }
+
+  function syncUiFullscreen() {
+    const fs = fullscreenElementActual();
+    const activo = fs === wrapper || fs === video;
+    btnFullscreen.setAttribute("aria-pressed", activo ? "true" : "false");
+    btnFullscreen.setAttribute(
+      "aria-label",
+      activo ? "Salir de pantalla completa" : "Pantalla completa",
+    );
+    iconoExpandir.classList.toggle("oculto", activo);
+    iconoContraer.classList.toggle("oculto", !activo);
+  }
+
+  async function salirFullscreen() {
+    const doc = document as Document & {
+      webkitExitFullscreen?: () => void;
+    };
+    if (document.exitFullscreen) {
+      await document.exitFullscreen().catch(() => {});
+    } else if (doc.webkitExitFullscreen) {
+      doc.webkitExitFullscreen();
+    }
+  }
+
+  async function entrarFullscreen() {
+    const w = wrapper as HTMLElement & {
+      webkitRequestFullscreen?: () => void;
+    };
+    const v = video as HTMLVideoElement & {
+      webkitRequestFullscreen?: () => void;
+      webkitEnterFullscreen?: () => void;
+    };
+
+    const intentar = async (el: HTMLElement) => {
+      if (el.requestFullscreen) {
+        await el.requestFullscreen();
+        return;
+      }
+      const webkit = (
+        el as HTMLElement & { webkitRequestFullscreen?: () => void }
+      ).webkitRequestFullscreen;
+      if (webkit) {
+        webkit.call(el);
+        return;
+      }
+      throw new Error("sin fullscreen");
+    };
+
+    try {
+      await intentar(wrapper);
+    } catch {
+      try {
+        await intentar(video);
+      } catch {
+        if (v.webkitEnterFullscreen) {
+          v.webkitEnterFullscreen();
+        }
+      }
+    }
+  }
+
+  async function toggleFullscreen() {
+    if (fullscreenElementActual()) {
+      await salirFullscreen();
+    } else {
+      await entrarFullscreen();
+    }
+  }
+
+  btnFullscreen.addEventListener("click", () => {
+    toggleFullscreen().catch(() => {});
+  });
+
+  document.addEventListener("fullscreenchange", syncUiFullscreen);
+  document.addEventListener(
+    "webkitfullscreenchange",
+    syncUiFullscreen as EventListener,
+  );
 
   const MAX_REINTENTOS = 3;
   const DELAY_REINTENTO_MS = 4000;
@@ -85,6 +191,13 @@
     elCargando.classList.toggle("oculto", estado !== "cargando");
     elError.classList.toggle("oculto", estado !== "error");
     video.classList.toggle("oculto", estado !== "video");
+    btnFullscreen.classList.toggle("oculto", estado !== "video");
+    if (estado !== "video") {
+      if (fullscreenElementActual()) {
+        salirFullscreen().catch(() => {});
+      }
+      syncUiFullscreen();
+    }
     logDebug(`estado UI -> ${estado}`);
     renderInfo(`estado_actual: ${estado}`);
   }
@@ -206,6 +319,39 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .btn-fullscreen {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 0.375rem;
+    background: rgba(2, 44, 34, 0.75);
+    color: var(--color-emerald-200);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-fullscreen:hover {
+    background: rgba(6, 78, 59, 0.9);
+    border-color: var(--color-emerald-600);
+  }
+
+  .btn-fullscreen:focus {
+    outline: none;
+  }
+
+  .btn-fullscreen:focus-visible {
+    outline: 2px solid var(--color-emerald-300);
+    outline-offset: 2px;
   }
 
   .camara-estado {
